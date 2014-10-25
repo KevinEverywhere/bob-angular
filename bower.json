@@ -1,0 +1,39 @@
+{
+  "name": "bob-angular",
+  "description": "A visual best of breed solution for AngularJS using Less, Three, and d3 frameworks.",
+  "version": "0.0.0",
+  "homepage": "https://github.com/KevinEverywhere/bob-angular",
+  "license": "MIT",
+  "main": "app/app.js",
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "ui-router": "0.2.x",
+    "angular-loader": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "bootstrap": "~3.2.0",
+    "html5-boilerplate": "~4.3.0",
+    "3l": "~1.4.x",
+    "three.js": "https://raw.githubusercontent.com/mrdoob/three.js/master/build/three.js",
+    "less":"1.7.0",
+    "localCRUD":"https://raw.githubusercontent.com/KevinEverywhere/angular_local_CRUD/master/local_crud_module.js",
+    "d3":"3.4.x",
+    "css-3d-renderer":"http://threejs.org/examples/js/renderers/CSS3DRenderer.js"
+  },
+  "authors": [
+    "Kevin Ready",
+    "Kevin Ready <kevin@planetkevin.com>"
+  ],
+  "keywords": [
+    "angular",
+    "d3",
+    "three",
+    "css3",
+    "less",
+    "mixins"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KevinEverywhere/bob-angular.git"
+  }
+}
