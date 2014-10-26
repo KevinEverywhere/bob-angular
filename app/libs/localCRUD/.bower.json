@@ -1,0 +1,13 @@
+{
+  "name": "localCRUD",
+  "_cacheHeaders": {
+    "ETag": "\"62a3878f3ae5eb351e1d05c14cacc3d2df645e0c\"",
+    "Content-Length": "5755",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:62a3878f3",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/KevinEverywhere/angular_local_CRUD/master/local_crud_module.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/KevinEverywhere/angular_local_CRUD/master/local_crud_module.js"
+}

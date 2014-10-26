@@ -1,0 +1,143 @@
+.nav li{
+	color:#fff;
+	display:inline-block;
+	width:24%;
+	padding: 0;
+	margin: 0;
+}
+.nav{
+	position:relative;
+	left:@axis1L;
+	right:@axis1R;
+	height:@axis1T;
+	padding: 0;
+	margin: 0;
+}
+li a{
+
+	color:#fff;
+	display:inline-block;	
+}
+#main{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+.boundInterior{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+.content{
+	background-color:#77e;
+	padding:10px;
+	font-family:Arial;
+	font-size:25px;
+	font-weight:650;
+	width:@axis1W;
+	height:@axis1H;
+}
+
+#ytplayer, #main .content{
+	background-color:#77e;
+	padding:10px;
+	font-family:Arial;
+	font-size:25px;
+	font-weight:650;
+	width:@axis2W;
+	height:@axis2H;
+}
+
+#main canvas{
+	/*
+	transform:rotate(45deg);
+	*/
+	opacity:0.7;
+}
+
+#footer{
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	width:@pageBottomW;
+	height:@pageBottomH;
+}
+
+#footer canvas{
+	opacity:0.1;
+}
+
+#axis1{
+	background-color:#dee;
+	position:absolute;
+	left:@axis1L;
+	top:@axis1T;
+	right:@axis1R;
+	bottom:@axis1B;
+	width:@axis1W;
+	height:@axis1H;
+}
+
+#axis2{
+	background-color:#e74;
+	position:absolute;
+	left:@axis2L;
+	top:@axis2T;
+	right:@axis2R;
+	bottom:@axis2B;
+	width:@axis2W;
+	height:@axis2H;
+}
+
+#axis2 .more{
+	background-color:#d4F;
+	left:0px;
+	top:0px;
+}
+.more{
+	display:block;
+	background-color:0xFFCC33;
+	border:1px #000 solid;
+}
+
+#axis3{
+	background-color:#439;
+	position:absolute;
+	left:@axis3L;
+	top:@axis3T;
+	right:@axis3R;
+	bottom:@axis3B;
+	width:@axis3W;
+	height:@axis3H;
+}
+
+#pageBottom{
+	background-color:#ed4;
+	position:absolute;
+	left:@pageBottomL;
+	top:@pageBottomT;
+	right:@pageBottomR;
+	bottom:@pageBottomB;
+	width:@pageBottomW;
+	height:@pageBottomH;
+}
+
+
+#pageBottom .content{
+	background-color:#ed4;
+	position:absolute;
+	left:0em;
+	top:0em;
+	right:0em;
+	bottom:0em;
+	width:@pageBottomW;
+	height:@pageBottomH;
+}
+

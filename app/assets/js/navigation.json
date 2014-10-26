@@ -1,0 +1,6 @@
+[
+	{"action": "main", "name": "Controls"},
+	{"action": "video", "name": "Video"},
+	{"action": "map", "name": "Map"},
+	{"action":"story", "name": "Story"}
+]
