@@ -16,7 +16,7 @@ var threeModule = angular.module('threeModule', [])
 					scope.renderer.domElement.className="boundInterior";
 					elem.appendChild( scope.renderer.domElement );
 					scope.contentElement = $(_name)[0];
-			//		console.log("scope.contentElement=" + scope.contentElement);
+					console.log("scope.w+h=" + scope._width + " and " + scope._height);
 					scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
 					scope.targetPosRot=null;
 					scope.currentPosRot=null;

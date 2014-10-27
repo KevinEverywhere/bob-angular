@@ -13,8 +13,8 @@
 	padding: 0;
 	margin: 0;
 }
-li a{
 
+#navbar-wrapper li a{
 	color:#fff;
 	display:inline-block;	
 }
@@ -34,24 +34,44 @@ li a{
 	bottom:0px;
 }
 
-.content{
+#navigation .content{
 	background-color:#77e;
 	padding:10px;
-	font-family:Arial;
-	font-size:25px;
-	font-weight:650;
 	width:@axis1W;
 	height:@axis1H;
 }
 
-#ytplayer, #main .content{
+#story, #story .content{
 	background-color:#77e;
+	padding:10px;
+	width:@axis2W;
+	height:@axis2H;
+}
+
+.contextItem{
+	font-family:Arial;
+	font-size:25px;
+	padding:1em;
+	color:#fff;
+}
+
+#ytplayer, #main .content{
 	padding:10px;
 	font-family:Arial;
 	font-size:25px;
 	font-weight:650;
 	width:@axis2W;
 	height:@axis2H;
+}
+
+#context .content{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	width:@axis3W;
+	height:@axis3H;
 }
 
 #main canvas{
