@@ -41,7 +41,7 @@ Thumbs.db
 examples/
 node_modules/
 scripts/
-app/
+app/lib
 e2e-tests/
 karma.conf.js
-README.md
+*README.md
