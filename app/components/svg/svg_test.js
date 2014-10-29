@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.svg module', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.svg'));
 
-  describe('footer controller', function(){
+  describe('ThreeSVGController controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeSVGController = $controller('ThreeSVGController');
+      expect(threeSVGController).toBeDefined();
     }));
 
   });

@@ -24,10 +24,10 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 					// create the tile layer with correct attribution
 					var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 					var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-					var osm = new $window.L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});		
+					var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib});		
 
 					// start the map in South-East England
-					map.setView(new $window.L.LatLng(51.3, 0.7),9);
+					map.setView(new $window.L.LatLng(45.438, 12.33),5);
 					map.addLayer(osm);
 					// me.leafletMap = , {center: [51.505, -0.09], zoom: 13});
 				}catch(oops){

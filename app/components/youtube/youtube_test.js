@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.youtube module', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.youtube'));
 
   describe('footer controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeYouTubeController = $controller('ThreeYouTubeController');
+      expect(threeYouTubeController).toBeDefined();
     }));
 
   });

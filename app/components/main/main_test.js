@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.main  module', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.main'));
 
-  describe('footer controller', function(){
+  describe('ThreeCSSController controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeCSSController = $controller('ThreeCSSController');
+      expect(threeCSSController).toBeDefined();
     }));
 
   });

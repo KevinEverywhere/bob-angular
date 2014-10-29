@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.leaflet module', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.leaflet'));
 
-  describe('footer controller', function(){
+  describe('ThreeLeafletController controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeLeafletController = $controller('ThreeLeafletController');
+      expect(threeLeafletController).toBeDefined();
     }));
 
   });

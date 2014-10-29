@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.media module', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.media'));
 
-  describe('footer controller', function(){
+  describe('bobApp.media controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeMediaController = $controller('ThreeMediaController');
+      expect(threeMediaController).toBeDefined();
     }));
 
   });

@@ -4,12 +4,12 @@ describe('myApp.footer module', function() {
 
   beforeEach(module('myApp.footer'));
 
-  describe('footer controller', function(){
+  describe('threeFooterController controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeFooterController = $controller('ThreeFooterController');
+      expect(threeFooterController).toBeDefined();
     }));
 
   });

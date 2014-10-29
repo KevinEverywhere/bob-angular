@@ -1,15 +1,15 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.context module', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.context'));
 
-  describe('footer controller', function(){
+  describe('context controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var footerCtrl = $controller('FooterCtrl');
-      expect(footerCtrl).toBeDefined();
+      var threeContextController = $controller('ThreeContextController');
+      expect(threeContextController).toBeDefined();
     }));
 
   });
