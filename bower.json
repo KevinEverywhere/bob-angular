@@ -12,6 +12,7 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "bootstrap": "~3.2.0",
+    "leaflet": "0.7.x",
     "html5-boilerplate": "~4.3.0",
     "3l": "~1.4.x",
     "three.js": "https://raw.githubusercontent.com/mrdoob/three.js/master/build/three.js",
