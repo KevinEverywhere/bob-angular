@@ -4,10 +4,8 @@ angular.module('bobApp.main',  ["bobApp", "threeModule", "ngRoute", "ui.router"]
 	.controller('ThreeCSSController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", 
 		function ThreeCSSController($window, $scope, $rootScope, $state, $stateParams, threeCSSService) {
 			$scope.name='ThreeCSSController';
-			$scope.toObject=null;
-			$scope.activeFunction=null;
 			$scope.activeAnimations=[];
-			$scope.activeParams=null;
+			$scope.activeParams=[];
 			$scope.count=0;
 			$scope.maxCount=100;
 			$scope.init=function(elem, _content){

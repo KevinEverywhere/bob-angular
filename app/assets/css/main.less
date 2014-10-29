@@ -5,6 +5,25 @@
 	.transformSVG(.95);
 }
 
+#countryMap{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+.alignRight{
+	float:right;
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	height:100%;
+	width:100%;
+}
+
 
 .transformSVG(@toWhat) {
 	-webkit-transform-style: preserve-3d;
@@ -49,7 +68,7 @@
 	display:inline-block;	
 }
 
-#svgHolder, #main{
+#leaflet, #leaflet .content, #svgHolder, #main{
 	position:absolute;
 	left:0px;
 	top:0px;
@@ -86,7 +105,7 @@
 	color:#fff;
 }
 
-#ytplayer, #main .content{
+.leafletMap, #ytplayer, #main .content, .leaflet-map-pane{
 	padding:10px;
 	font-family:Arial;
 	font-size:25px;
@@ -123,6 +142,18 @@
 
 #footer canvas{
 	opacity:0.1;
+}
+
+#footer .nav li{
+	float:right;
+}
+
+.alignRight li{
+	color:#fff;
+	display:inline-block;
+	width:15%;
+	padding: 0;
+	margin: 0;
 }
 
 #axis1{

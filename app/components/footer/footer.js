@@ -10,6 +10,15 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 			$scope.activeParams=null;
 			$scope.count=0;
 			$scope.maxCount=100;
+			$scope._position={
+				z:-2
+			};
+			$scope._rotation={
+				x:threeCSSService.radianCalculator(1.3),
+				y:threeCSSService.radianCalculator(180),
+				z:threeCSSService.radianCalculator(180)
+			};
+
 			$scope.init=function(elem, _content){
 				console.log("elem=" + elem)
 				if(!this.isInited){

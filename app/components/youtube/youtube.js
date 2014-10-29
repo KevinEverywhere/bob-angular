@@ -25,24 +25,27 @@ angular.module('bobApp.youtube', ["bobApp"])
 	.controller('ThreeYouTubeController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$timeout",
 		function ThreeYouTubeController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
 			$scope.name='ThreeYouTubeController';
+			$scope._position={
+				z:100
+			};
 			$scope._rotation={
 				x:0,
-				y:threeCSSService.radianCalculator(210),
+				y:threeCSSService.radianCalculator(200),
 				z:threeCSSService.radianCalculator(180)
 			};
-			$scope.toObject=null;
-			$scope.activeFunction=null;
-			$scope.activeAnimations=[];
-			$scope.activeParams=null;
+			$scope.activeAnimations=["animate"];
+			$scope.activeParams={};
 			$scope.count=0;
-			$scope.maxCount=100;
 			$scope.youtubeId="7duPNQCp-w4";
 			$scope.youtubeURL="";
+			$scope._dir=-1;
+			$scope.incr=.01;
+			$scope.currentRotate=199;
+			$scope.maxRotate=200;
+			$scope.minRotate=160;
 
 			$scope.init=function(elem, _content){
-				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=0&";
-				
-				console.log("elem=" + elem)
+				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&autostart=1&";
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
 					this.isInited=true;
@@ -56,29 +59,27 @@ angular.module('bobApp.youtube', ["bobApp"])
 			}
 			$scope.startMedia=function(which){
 			  var player = new $window.YT.Player('ytplayer', {
-			      height: '390',
-			      width: '640',
+			      height: $scope._height,
+			      width: $scope._width,
 			      videoId: which
 			    });
 			}
 			$scope.animate=function(){
-				$scope.count++
-				if($scope.count<$scope.maxCount){
-					if($scope.css3DObject.rotation.y<4.7){
-						$scope.css3DObject.rotation.y=$scope.css3DObject.rotation.y+0.502;
-						console.log("object.rotation=" + $scope.css3DObject.rotation.y);
-		//				$scope.rotate({
-		//					y:0.001
-		//				});
-			//			this.move({x:-8});
-						$scope.renderer.render($scope.scene, $scope.camera);
+				$scope.currentRotate+=($scope._dir * $scope.incr);
+				if($scope.currentRotate<$scope.maxRotate){
+					if($scope.currentRotate<$scope.minRotate){
+						$scope._dir=-$scope._dir;
+						$scope.currentRotate+=$scope._dir;
 					}
+				}else{
+					$scope._dir=-$scope._dir;
+					$scope.currentRotate+=$scope._dir;
 				}
+				$scope.css3DObject.rotation.y=threeCSSService.radianCalculator($scope.currentRotate)
+				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr * 10);
+				$scope.renderer.render($scope.scene, $scope.camera);
 			}
-			
 			var render=function() {
-				console.log("THREECSSCONTROLER.render function");
-			//	$window.requestAnimationFrame(render);
 				$scope.renderer.render($scope.scene, $scope.camera);
 				threeCSSService.render($scope);
 			}

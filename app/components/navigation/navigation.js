@@ -6,10 +6,7 @@ angular.module('bobApp.navigation', ["bobApp", "threeModule", "ngRoute", "ui.rou
 		function ThreeNavController($window, $http, $scope, $rootScope, $state, $stateParams, threeCSSService) {
 			$scope.name='ThreeNavController';
 			$scope.navJSONURL="assets/js/navigation.json";
-			$scope.timer=null;
-			$scope.toObject=null;
-			$scope.activeFunction=null;
-			$scope.activeAnimations=["animate"];
+			$scope.activeAnimations=[];
 			$scope.activeParams={};
 			$scope.navs = {};
 			$scope.init=function(elem, _content){

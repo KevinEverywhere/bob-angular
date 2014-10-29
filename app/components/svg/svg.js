@@ -19,10 +19,8 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				});
 			}
 			$scope.name='ThreeSVGController';
-			$scope.toObject=null;
-			$scope.activeFunction=null;
 			$scope.activeAnimations=[];
-			$scope.activeParams=null;
+			$scope.activeParams=[];
 			$scope.count=0;
 			$scope.maxCount=100;
 			$scope.init=function(elem, _content){
@@ -38,10 +36,6 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				if($scope.count<$scope.maxCount){
 					if($scope.css3DObject.rotation.y<4.7){
 						console.log("object.rotation=" + $scope.css3DObject.rotation.y);
-			//			$scope.rotate({
-			//				y:0.001
-			//			});
-			//			this.move({x:-8});
 						$scope.renderer.render($scope.scene, $scope.camera);
 					}
 				}

@@ -6,9 +6,7 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 		function ThreeContextController($window, $http, $scope, $rootScope, $state, $stateParams, threeCSSService) {
 			$scope.name='ThreeContextController';
 			$scope.timer=null;
-			$scope.toObject=null;
-			$scope.activeFunction=null;
-			$scope.activeAnimations=["animate"];
+			$scope.activeAnimations=[];
 			$scope.activeParams={};
 			$scope.navs = {};
 			$scope.init=function(elem, _content){
@@ -18,7 +16,6 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 				render();
 			}
 			$scope.animate=function(){
-				console.log("this.css3DObject.rotation.z=" + this.css3DObject.rotation.z);;
 				$scope.renderer.render($scope.scene, $scope.camera);
 			}
 			var render=function() {
