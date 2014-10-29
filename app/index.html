@@ -7,11 +7,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Bob Angular: Three D Navigation Seed</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <!-- script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script -->
+
+  <meta name = "viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,width=device-width" />
+
   <meta name="description" content="bob-angular is a set of JavaScript and CSS frameworks that enable rapid development of Web Content in a 3D metaphor.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="libs/jquery/dist/jquery.min.js"></script>
   <link rel="stylesheet" href="libs/html5-boilerplate/css/normalize.css" />
   <link rel="stylesheet" href="libs/html5-boilerplate/css/main.css" />
+  <link rel="stylesheet" href="libs/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css" />  <!--  Replace with .min.js-->
   <script src="assets/js/startup.js"></script>
   <script>
@@ -84,6 +90,7 @@ less = {
   <script src="libs/bootstrap/dist/js/bootstrap.js"></script>  <!--  Replace with .min.js-->
   <script src="libs/d3/d3.js"></script>  <!--  Replace with .min.js-->
   <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="libs/leaflet/dist/leaflet.js"></script>
   <script src="libs/three.js/index.js"></script>
   <script src="libs/css-3d-renderer/index.js"></script>
 
@@ -93,9 +100,16 @@ less = {
   <script src="components/main/main.js"></script>
   <script src="components/media/media.js"></script>
   <script src="components/context/context.js"></script>
+  <script src="components/leaflet/leaflet.js"></script>
   <script src="components/youtube/youtube.js"></script>
+  <!-- script src="components/googlemap/googlemap.js"></script -->
+  <script src="components/svg/svg.js"></script>
   <script src="components/navigation/navigation.js"></script>
-  <script src="shared/three_module/three_module.js"></script>
+  <script src="shared/d3_module.js"></script>
+  <script src="shared/three_module.js"></script>
+
+
+
   <link rel="stylesheet/less" type="text/css" href="assets/css/main.less" />
   <link rel="stylesheet/less" type="text/css" href="libs/3l/3L/3L.less" />
   <script src="assets/js/bob-angular.js"></script>

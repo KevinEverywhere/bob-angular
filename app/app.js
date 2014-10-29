@@ -10,7 +10,8 @@ var bobApp=angular.module("bobApp",  [
 	'bobApp.main',
 	'bobApp.footer',
 	'bobApp.media',
-	'bobApp.googlemap',
+//	'bobApp.googlemap',
+	'bobApp.leaflet',
 	'bobApp.youtube',
 	'ngRoute', 
 	'localCRUD',
@@ -135,8 +136,10 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeNavController'
 				},
 				"axis2":{
-					templateUrl: 'components/googlemap/googlemap.html',
-					controller: 'ThreeMapController'
+//					templateUrl: 'components/googlemap/googlemap.html',
+//					controller: 'ThreeMapController'
+					templateUrl: 'components/leaflet/leaflet.html',
+					controller: 'ThreeLeafletController'
 				},
 				"axis3":{
  					templateUrl: 'components/context/context.html',
