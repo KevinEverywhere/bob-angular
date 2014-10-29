@@ -13,15 +13,9 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope.navs = {};
 			$scope.init=function(elem, _content){
 				var me=$scope;
-					if(!me.isInited){
-						threeCSSService.init(elem, me, _content);
-						me.isInited=true;
-						$('.nav').on('click', 'li', function() {
-							me.setNavByText( $(this).text() );
-
-						});
-						render();
-					}
+				threeCSSService.init(elem, me, _content);
+				me.isInited=true;
+				render();
 			}
 			$scope.animate=function(){
 				console.log("this.css3DObject.rotation.z=" + this.css3DObject.rotation.z);;

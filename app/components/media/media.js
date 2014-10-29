@@ -4,6 +4,8 @@ angular.module('bobApp.media',  ["bobApp", "threeModule", "ngRoute", "ui.router"
 	.controller('ThreeMediaController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", 
 		function ThreeMediaController($window, $scope, $rootScope, $state, $stateParams, threeCSSService) {
 			$scope.name='ThreeMediaController';
+			$scope._position={};
+			$scope._rotation={};
 			$scope.toObject=null;
 			$scope.activeFunction=null;
 			$scope.activeAnimations=[];

@@ -1,7 +1,37 @@
+#theWorld{
+	position:relative;
+	top:-2.5em;
+	left:-2.5em;
+	.transformSVG(.95);
+}
+
+
+.transformSVG(@toWhat) {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: scale(@toWhat, @toWhat);
+	-moz-transform-style: preserve-3d;
+	-moz-transform: scale(@toWhat, @toWhat);
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.worldDiv{
+	background-color:#fff;
+	position:absolute;
+	top:0em;
+	left:0em;
+	z-index:992;
+	width:70em;
+	height:32.25em;
+	opacity:0,
+	overflow:hidden;
+}
+
+
 .nav li{
 	color:#fff;
 	display:inline-block;
-	width:24%;
+	width:19.5%;
 	padding: 0;
 	margin: 0;
 }
@@ -18,7 +48,8 @@
 	color:#fff;
 	display:inline-block;	
 }
-#main{
+
+#svgHolder, #main{
 	position:absolute;
 	left:0px;
 	top:0px;

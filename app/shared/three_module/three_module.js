@@ -94,17 +94,40 @@ var threeModule = angular.module('threeModule', [])
 					/*
 					*/
 					console.log("FAR SIDE OF _name=" + _name);
-					scope.css3DObject.orig={position:{},rotation:{}}
-					scope.css3DObject.position.x = scope.css3DObject.orig.position.x = (scope._width/2);
-					scope.css3DObject.position.y = scope.css3DObject.orig.position.y = (scope._height/2);
-					scope.css3DObject.position.z = scope.css3DObject.orig.position.z = 0;
-					scope.css3DObject.rotation.x = scope.css3DObject.orig.rotation.x = 0;
-					scope.css3DObject.rotation.y = scope.css3DObject.orig.rotation.y = this.radianCalculator(180);
-					scope.css3DObject.rotation.z = scope.css3DObject.orig.rotation.z= this.radianCalculator(180);
-					scope.scene.add( scope.css3DObject );
-					scope.camera.lookAt(scope.css3DObject);
-					console.log("far side of init=" + _name);
-
+					this.mapScopeObject(scope);
+				},
+				mapScopeObject:function(whichScope){
+					whichScope.css3DObject.orig={position:{},rotation:{}}
+					if(whichScope._position){
+						for(var o in whichScope._position){
+							whichScope.css3DObject.orig.position[o]=whichScope._position[o];
+						}
+					}
+					if(whichScope._rotation){
+						for(var o in whichScope._rotation){
+							whichScope.css3DObject.orig.rotation[o]=whichScope._rotation[o];
+						}
+					}
+					whichScope.css3DObject.position.x = 
+						whichScope.css3DObject.orig.position.x ?
+						whichScope.css3DObject.orig.position.x : (whichScope._width/2);
+					whichScope.css3DObject.position.y = 
+						whichScope.css3DObject.orig.position.y ?
+						whichScope.css3DObject.orig.position.y : (whichScope._height/2);
+					whichScope.css3DObject.position.z = 
+						whichScope.css3DObject.orig.position.z ?
+						whichScope.css3DObject.orig.position.z : 0;
+					whichScope.css3DObject.rotation.x = 
+						whichScope.css3DObject.orig.rotation.x ?
+						whichScope.css3DObject.orig.rotation.x : 0;
+					whichScope.css3DObject.rotation.y = 
+						whichScope.css3DObject.orig.rotation.y ?
+						whichScope.css3DObject.orig.rotation.y : this.radianCalculator(180);
+					whichScope.css3DObject.rotation.z = 
+						whichScope.css3DObject.orig.rotation.z ?
+						whichScope.css3DObject.orig.rotation.z : this.radianCalculator(180);
+					whichScope.scene.add( whichScope.css3DObject );
+					whichScope.camera.lookAt(whichScope.css3DObject);
 				},
 				resetCamAndObjects:function(){
 					scope.camera.lookAt(object);

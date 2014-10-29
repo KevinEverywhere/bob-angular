@@ -25,6 +25,11 @@ angular.module('bobApp.youtube', ["bobApp"])
 	.controller('ThreeYouTubeController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$timeout",
 		function ThreeYouTubeController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
 			$scope.name='ThreeYouTubeController';
+			$scope._rotation={
+				x:0,
+				y:threeCSSService.radianCalculator(210),
+				z:threeCSSService.radianCalculator(180)
+			};
 			$scope.toObject=null;
 			$scope.activeFunction=null;
 			$scope.activeAnimations=[];

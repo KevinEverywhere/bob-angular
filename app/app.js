@@ -2,7 +2,10 @@
 
 var bobApp=angular.module("bobApp",  [
 	'threeModule',
+	'd3Module',
 	'bobAngular',
+	'bobApp.svg',
+	'bobApp.context',
 	'bobApp.navigation',
 	'bobApp.main',
 	'bobApp.footer',
