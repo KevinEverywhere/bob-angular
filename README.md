@@ -57,9 +57,19 @@ npm start
 ```
 
 The app should now be running at `http://localhost:8000/app/`. The most typical
-problems in npm start involve permission issues and software availability. Ensure
-that you have the correct software installed to begin, and that the directory in
-which you are running npm start contains the bob-angular seed files. 
+problems in npm start involve permission issues, availability of port, and 
+software availability. Ensure that you have the correct software installed to begin, 
+and that the directory in which you are running npm start contains the bob-angular 
+seed files. 
+
+####Port 8000 Availability
+
+Edit line 23 of package.json so that the 8000 port is changed to the one you wish
+to use.
+
+```
+    "start": "http-server -a localhost -p 8000 -c-1",
+```
 
 
 ## Directory Layout
