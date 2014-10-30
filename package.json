@@ -13,7 +13,8 @@
     "karma-junit-reporter": "^0.2.2"
   },
   "config": {
-    "unsafe-perm":true // Included to avoid "cannot run in wd" error
+    "unsafe-perm":true,
+    "//": "Included to avoid 'cannot run in wd' error"
   },  
   "scripts": {
     "postinstall": "bower install",
