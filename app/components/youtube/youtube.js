@@ -36,7 +36,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
 			$scope.count=0;
-			$scope.youtubeId="7duPNQCp-w4";
+			$scope.youtubeId="RF0HhrwIwp0";
 			$scope.youtubeURL="";
 			$scope._dir=-1;
 			$scope.incr=.01;
@@ -51,9 +51,9 @@ angular.module('bobApp.youtube', ["bobApp"])
 					this.isInited=true;
 					render();
 					try{
-						$scope.startMedia("7duPNQCp-w4");
+						$scope.startMedia("RF0HhrwIwp0");
 					}catch(oops){
-						$timeout(function(){$scope.startMedia("7duPNQCp-w4");},1000)
+						$timeout(function(){$scope.startMedia("RF0HhrwIwp0");},1000)
 					}
 				}
 			}
