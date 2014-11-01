@@ -1,8 +1,14 @@
+body{
+	background-color:0x000;
+}
 #theWorld{
 	position:relative;
 	top:-2.5em;
 	left:-2.5em;
 	.transformSVG(.95);
+}
+.verticalScroll{
+	overflow-y:auto;
 }
 
 #countryMap{
@@ -34,14 +40,13 @@
 	-webkit-box-sizing: border-box;
 }
 
-.worldDiv{
-	background-color:#fff;
+.svgDiv{
 	position:absolute;
 	top:0em;
 	left:0em;
 	z-index:992;
-	width:70em;
-	height:32.25em;
+	right:0em;
+	bottom:0em;
 	opacity:0,
 	overflow:hidden;
 }
@@ -77,6 +82,8 @@
 }
 
 .boundInterior{
+	overflow-x: hidden;
+	overflow-y:scroll;
 	position:absolute;
 	left:0px;
 	top:0px;
@@ -168,7 +175,7 @@
 }
 
 #axis2{
-	background-color:#e74;
+	background-color:0x000;
 	position:absolute;
 	left:@axis2L;
 	top:@axis2T;
@@ -179,13 +186,11 @@
 }
 
 #axis2 .more{
-	background-color:#d4F;
 	left:0px;
 	top:0px;
 }
 .more{
 	display:block;
-	background-color:0xFFCC33;
 	border:1px #000 solid;
 }
 
