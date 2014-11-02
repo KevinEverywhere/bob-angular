@@ -4,12 +4,13 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 	.controller('ThreeFooterController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", 
 		function ThreeFooterController($window, $scope, $rootScope, $state, $stateParams, threeCSSService) {
 			$scope.name='ThreeFooterController';
-			$scope.toObject=null;
-			$scope.activeFunction=null;
 			$scope.activeAnimations=[];
-			$scope.activeParams=null;
-			$scope.count=0;
-			$scope.maxCount=100;
+			$scope.activeParams={};
+			$scope._dir=-1;
+			$scope.incr=.1;
+			$scope.currentRotate=180;
+			$scope.maxRotate=189;
+			$scope.minRotate=171;
 			$scope._position={
 				z:-2
 			};
@@ -28,17 +29,20 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 				}
 			}
 			$scope.animate=function(){
-				$scope.count++
-				if($scope.count<$scope.maxCount){
-					if($scope.css3DObject.rotation.y<4.7){
-						console.log("object.rotation=" + $scope.css3DObject.rotation.y);
-			//			$scope.rotate({
-			//				y:0.001
-			//			});
-			//			this.move({x:-8});
-						$scope.renderer.render($scope.scene, $scope.camera);
+				console.log("footeranimate");
+				$scope.currentRotate+=($scope._dir * $scope.incr);
+				if($scope.currentRotate<$scope.maxRotate){
+					if($scope.currentRotate<$scope.minRotate){
+						$scope._dir=-$scope._dir;
+						$scope.currentRotate+=$scope._dir;
 					}
+				}else{
+					$scope._dir=-$scope._dir;
+					$scope.currentRotate+=$scope._dir;
 				}
+				$scope.css3DObject.rotation.x=threeCSSService.radianCalculator($scope.currentRotate);
+				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr);
+				$scope.renderer.render($scope.scene, $scope.camera);
 			}
 			var render=function() {
 				console.log("THREECSSfooter.render function");

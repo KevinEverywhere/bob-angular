@@ -5,7 +5,7 @@ var threeModule = angular.module('threeModule', [])
 		function threeSphereService($window, $rootScope, $http, $state) {
 			var service={
 				init:function(_elem, scope, _content){
-					console.log(_elem+ "  and " + scope + " and finally " + _content)
+					console.log("sphereSERVIcE=" +  _elem+ "  and " + scope + " and finally " + _content)
 					var elem = document.getElementById(_elem), _name="#" + _elem + " > ." + _content;
 					var elem = document.getElementById(_elem), _name="#" + _elem + " > ." + _content;
                     scope._width=parseInt(window.getComputedStyle(elem).width);
@@ -40,7 +40,7 @@ var threeModule = angular.module('threeModule', [])
 					scope.stars = service.createStars(90, 64);
 					scope.scene.add(scope.stars);
 
-//					scope.controls = new THREE.OrbitControls(scope.camera);
+					// scope.controls = new THREE.OrbitControls(scope.camera);
 
 					elem.appendChild( scope.renderer.domElement );
 					scope.contentElement = $(_name)[0];

@@ -20,6 +20,28 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 					});
 				}
 
+
+				masterMapApp
+					.controller('SVGController', ["$scope", "$rootScope", "$stateParams", "D3Service", "LocalCRUDService",
+						function SVGController($scope, $rootScope, $stateParams, D3Service, LocalCRUDService) {
+							var d3World=D3Service, countryURL="assets/world.json";
+							if(LocalCRUDService.manageLocalCRUD('retrieve', 'd3Data')){
+								d3World.d3Data=LocalCRUDService.manageLocalCRUD('retrieve', 'd3Data');
+								d3World.init(d3World.defaultSVGWidth,d3World.defaultSVGHeight,"#worldDiv", "assets/groupedWorld.svg");
+							}else{
+								var _LocalCRUDService=LocalCRUDService;
+								d3World.d3Data=null; 
+								d3.json(countryURL,function(err, d){
+									if(!err){
+										d3World.d3Data=d;
+										_LocalCRUDService.manageLocalCRUD("create",{"key":"d3Data","value":d});
+										d3World.init(d3World.defaultSVGWidth,d3World.defaultSVGHeight,"#worldDiv", "assets/groupedWorld.svg");
+									}
+								});
+							}
+						}
+
+
 				var width  = window.innerWidth,
 					height = window.innerHeight;
 
@@ -119,8 +141,7 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 
 			*/
 
-		$scope.name='ThreeSVGController';
-	
+			$scope.name='ThreeSVGController';
 			$scope._position={
 				z:100
 			};
@@ -129,17 +150,53 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				y:threeCSSService.radianCalculator(200),
 				z:threeCSSService.radianCalculator(180)
 			};
+			$scope.threeCSSService=threeCSSService;
+			$scope.currentItem=null;
 			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
+			$scope.d3World={};
 			$scope._dir=-1;
-			$scope.incr=.01;
-			$scope.currentRotate=199;
-			$scope.maxRotate=200;
-			$scope.minRotate=160;
-
-			$scope.init=function(elem, _content){
-				threeCSSService.init(elem, $scope, _content);
-				render();
+			$scope.incr=.001;
+			$scope.currentRotate=180;
+			$scope.maxRotate=190;
+			$scope.minRotate=170;
+			$scope.initWorld=function(){
+				var me=this;
+				document.getElementById("svgWrapper").addEventListener("touchend", function(evt){
+					me.svgCall(evt);
+				}, false);
+				document.getElementById("svgWrapper").addEventListener("click",  function(evt){
+					me.svgCall(evt);
+				}, false);
+			};
+			$scope.svgCall=function(evt){
+				if($scope.currentItem!=null){
+					d3.select("#" + $scope.currentItem).attr('opacity',1)
+				}
+				$scope.currentItem=evt.target.parentNode.id;
+				d3.select("#" + evt.target.parentNode.id).attr('opacity',0.5)
+			
+ 			};
+			$scope.loadSVG=function(xml){
+        		try{
+					$scope.importedNode = document.importNode(xml.documentElement, true);
+					$window.d3.select("#" + $scope._svgDiv).node().appendChild($scope.importedNode);
+					$scope.threeCSSService.init($scope.elem, $scope, $scope.__content);
+					render();
+				}catch(oops){}
+            };
+			$scope.init=function(elem, _content, _svgDiv, svgURL){
+				var me=$scope;
+				$scope.elem=elem;
+				$scope.__content=_content;
+				$scope._svgDiv=_svgDiv;
+				$scope.svgURL=svgURL;
+				$scope.d3World=d3.xml($scope.svgURL, "image/svg+xml",function(xml) {
+					console.log("xml=" + xml);
+					$window._xml=xml;
+					me.loadSVG(xml);
+					me.initWorld();
+				});
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
@@ -161,8 +218,6 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				threeCSSService.render($scope);
 			}
 
-
-
 		}
 	])
 
@@ -170,12 +225,11 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 		var threeObj = {
 			restrict: 'AE',
 			replace:false,
-			scope:true,
-			_scope: {
+			scope:{
 				"id":"@",
 				"eventHandler": '&ngClick'
 			},
-			template: "<div id='worldDiv' data-ng-click='mapClick(this)'></div>"
+			template: "<div id='svgDiv' data-ng-click='mapClick(this)'></div>"
 		};
 		return threeObj;
 	});
