@@ -234,7 +234,6 @@ var threeModule = angular.module('threeModule', [])
 					}
 
 					scope.doActiveAnimations=function(){
-						console.log(scope.name + ".doActiveAnimations")
 						if(scope.activeAnimations &&  scope.activeAnimations.length>0){
 							for(var anim=0;anim< scope.activeAnimations.length;anim++){
 								try{
