@@ -4,6 +4,8 @@ var threeModule = angular.module('threeModule', [])
 	.service('threeCSSService', ["$window", "$rootScope", "$http", "$state",
 		function threeCSSService($window, $rootScope, $http, $state) {
 			var service={
+				isInitted:false,
+				childObjects:[],
 				"globalPositioning":{
 					"position":{
 						x:0,
@@ -38,17 +40,28 @@ var threeModule = angular.module('threeModule', [])
 					}
 					return obj;
 				},
+				updateAllSizes:function(){
+					for(var z in this.childObjects){
+						console.log("updateAllSizes." + z);
+					//	this.childObjects[z].updateSize();
+					}
+				},
 				init:function(_elem, scope, _content){
-					var elem = document.getElementById(_elem), _name="#" + _elem + " > ." + _content;
-                    scope._width=parseInt(window.getComputedStyle(elem).width);
-                    scope._height=parseInt(window.getComputedStyle(elem).height);
+					scope.elem = document.getElementById(_elem);
+                    scope._name="#" + _elem + " > ." + _content;
+                    service.childObjects[scope._name]=scope;
+					scope.updateSize=function(){
+	                    scope._width=parseInt(window.getComputedStyle(scope.elem).width);
+	                    scope._height=parseInt(window.getComputedStyle(scope.elem).height);
+						scope.renderer.setSize( scope._width, scope._height);
+					}
 					scope.scene = new THREE.Scene();
 					scope.camera = new THREE.PerspectiveCamera( 75, scope._width/scope._height, 0.1, 2000 );
 					scope.renderer = new THREE.CSS3DRenderer();
-					scope.renderer.setSize( scope._width, scope._height);
+					scope.updateSize();
 					scope.renderer.domElement.className="boundInterior";
-					elem.appendChild( scope.renderer.domElement );
-					scope.contentElement = $(_name)[0];
+					scope.elem.appendChild( scope.renderer.domElement );
+					scope.contentElement = $(scope._name)[0];
 					scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
 					scope.targetPosRot=null;
 					scope.currentPosRot=null;
@@ -60,7 +73,6 @@ var threeModule = angular.module('threeModule', [])
 					scope.removeActiveAnimation=function(which){
 						scope.activeAnimations[which]=null;
 					}
-
 					scope.doActiveAnimations=function(){
 						if(scope.activeAnimations &&  scope.activeAnimations.length>0){
 							for(var anim=0;anim< scope.activeAnimations.length;anim++){
@@ -176,6 +188,14 @@ var threeModule = angular.module('threeModule', [])
 				render:function(scope){
 					scope.startAnimation();
 				}
+			}
+			if(!service.isInitted){
+				console.log("$window.addEventListener('resize', changeOrient, false);")
+		        $window.hardcoded=function(){
+		        	console.log("window.hardcoded=window.hardcoded=window.hardcoded=window.hardcoded")
+		        	service.updateAllSizes();
+		        };
+		        service.isInitted=true;
 			}
 			return service;
 		}
