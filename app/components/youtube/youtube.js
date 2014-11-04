@@ -45,7 +45,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.minRotate=160;
 
 			$scope.init=function(elem, _content){
-				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&autostart=1&";
+				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&autostart=1&enablejsapi=1&";
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
 					this.isInited=true;
@@ -63,6 +63,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			      width: $scope._width,
 			      videoId: which
 			    });
+			  	player.play();
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);

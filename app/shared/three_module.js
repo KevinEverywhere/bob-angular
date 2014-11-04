@@ -4,13 +4,13 @@ var threeModule = angular.module('threeModule', [])
 	.service('threeCSSService', ["$window", "$rootScope", "$http", "$state",
 		function threeCSSService($window, $rootScope, $http, $state) {
 			var service={
-				globalPositioning:{
-					position:{
+				"globalPositioning":{
+					"position":{
 						x:0,
 						y:0,
 						z:0
 					},
-					rotation:{
+					"rotation":{
 						x:0,
 						y:0,
 						z:0
@@ -31,10 +31,10 @@ var threeModule = angular.module('threeModule', [])
 				getGPS:function(){
 					var obj={position:{},rotation:{}};
 					for(var o in this.globalPositioning.position){
-						obj[o]=this.globalPositioning.position[o];
+						obj.position[o]=this.globalPositioning.position[o];
 					}
 					for(var o in this.globalPositioning.rotation){
-						obj[o]=this.globalPositioning.rotation[o];
+						obj.rotation[o]=this.globalPositioning.rotation[o];
 					}
 					return obj;
 				},
@@ -49,7 +49,6 @@ var threeModule = angular.module('threeModule', [])
 					scope.renderer.domElement.className="boundInterior";
 					elem.appendChild( scope.renderer.domElement );
 					scope.contentElement = $(_name)[0];
-					console.log("threeCSSService.init=" + _elem+ "  and " + scope + " and " + _content + " and w+h=" + scope._width + " and " + scope._height);
 					scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
 					scope.targetPosRot=null;
 					scope.currentPosRot=null;
@@ -133,9 +132,6 @@ var threeModule = angular.module('threeModule', [])
 							}, interval)
 						this.timer=new Date();
 					}
-					/*
-					*/
-					console.log("FAR SIDE OF _name=" + _name);
 					this.mapScopeObject(scope);
 				},
 				mapScopeObject:function(whichScope){

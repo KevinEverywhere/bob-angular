@@ -1,3 +1,7 @@
+/*
+	General styles
+*/
+
 body{
 	background-color:#000;
 }
@@ -16,6 +20,14 @@ a{
 	width:100%;
 }
 
+.alignRight li{
+	color:#fff;
+	display:inline-block;
+	width:15%;
+	padding: 0;
+	margin: 0;
+}
+
 .boundInterior{
 	overflow-x: hidden;
 	overflow-y:scroll;
@@ -25,6 +37,23 @@ a{
 	right:0px;
 	bottom:0px;
 }
+
+#main .content{
+	background-color:#eee;
+}
+
+#leaflet, #leaflet .content, #svgHolder, #main{
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+/*
+	SVG styles
+*/
+
 
 
 #theWorld{
@@ -54,6 +83,17 @@ a{
 	overflow:hidden;
 }
 
+#ytplayer{
+	padding:0em;
+	margin:0em;
+	width:@axis2W;
+	height:@axis2H;
+}
+
+/*
+	Navigation styles
+*/
+
 .nav li{
 	color:#fff;
 	display:inline-block;
@@ -76,16 +116,7 @@ a{
 	display:inline-block;	
 }
 
-#leaflet, #leaflet .content, #svgHolder, #main{
-	position:absolute;
-	left:0px;
-	top:0px;
-	right:0px;
-	bottom:0px;
-}
-
 #navigation .content{
-	background-color:#77e;
 	padding:10px;
 	width:@axis1W;
 	height:@axis1H;
@@ -95,13 +126,6 @@ a{
 	overflow-y:auto;
 }
 
-#story, #story .content{
-	background-color:#77e;
-	padding:10px;
-	width:@axis2W;
-	height:@axis2H;
-}
-
 .contextItem{
 	font-family:Arial;
 	font-size:25px;
@@ -109,7 +133,7 @@ a{
 	color:#fff;
 }
 
-.leafletMap, #ytplayer, #main .content, .leaflet-map-pane{
+.leafletMap, #main .content, .leaflet-map-pane{
 	padding:10px;
 	font-family:Arial;
 	font-size:25px;
@@ -128,11 +152,59 @@ a{
 	height:@axis3H;
 }
 
-#main canvas{
-	/*
-	transform:rotate(45deg);
-	*/
-	opacity:0.7;
+#axis1{
+	background-color:#222;
+	position:absolute;
+	left:@axis1L;
+	top:@axis1T;
+	right:@axis1R;
+	bottom:@axis1B;
+	width:@axis1W;
+	height:@axis1H;
+}
+
+#axis2{
+	background-color:#222;
+	position:absolute;
+	left:@axis2L;
+	top:@axis2T;
+	right:@axis2R;
+	bottom:@axis2B;
+	width:@axis2W;
+	height:@axis2H;
+}
+
+#axis3{
+	background-color:#333;
+	position:absolute;
+	left:@axis3L;
+	top:@axis3T;
+	right:@axis3R;
+	bottom:@axis3B;
+	width:@axis3W;
+	height:@axis3H;
+}
+
+/*
+	Footer Styles
+*/
+ 
+#pageBottom{
+	position:absolute;
+	left:@pageBottomL;
+	top:@pageBottomT;
+	right:@pageBottomR;
+	bottom:@pageBottomB;
+	width:@pageBottomW;
+	height:@pageBottomH;
+}
+
+#pageBottom .content{
+	position:absolute;
+	left:0em;
+	top:0em;
+	right:0em;
+	bottom:0em;
 }
 
 #footer{
@@ -152,76 +224,4 @@ a{
 	float:right;
 }
 
-.alignRight li{
-	color:#fff;
-	display:inline-block;
-	width:15%;
-	padding: 0;
-	margin: 0;
-}
-
-#axis1{
-	background-color:#dee;
-	position:absolute;
-	left:@axis1L;
-	top:@axis1T;
-	right:@axis1R;
-	bottom:@axis1B;
-	width:@axis1W;
-	height:@axis1H;
-}
-
-#axis2{
-	background-color:0x000;
-	position:absolute;
-	left:@axis2L;
-	top:@axis2T;
-	right:@axis2R;
-	bottom:@axis2B;
-	width:@axis2W;
-	height:@axis2H;
-}
-
-#axis2 .more{
-	left:0px;
-	top:0px;
-}
-
-.more{
-	display:block;
-	border:1px #000 solid;
-}
-
-#axis3{
-	background-color:#439;
-	position:absolute;
-	left:@axis3L;
-	top:@axis3T;
-	right:@axis3R;
-	bottom:@axis3B;
-	width:@axis3W;
-	height:@axis3H;
-}
-
-#pageBottom{
-	background-color:#ed4;
-	position:absolute;
-	left:@pageBottomL;
-	top:@pageBottomT;
-	right:@pageBottomR;
-	bottom:@pageBottomB;
-	width:@pageBottomW;
-	height:@pageBottomH;
-}
-
-#pageBottom .content{
-	background-color:#ed4;
-	position:absolute;
-	left:0em;
-	top:0em;
-	right:0em;
-	bottom:0em;
-	width:@pageBottomW;
-	height:@pageBottomH;
-}
 

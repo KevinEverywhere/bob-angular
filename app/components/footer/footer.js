@@ -17,7 +17,7 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 				z:2
 			};
 			$scope._rotation={
-				x:threeCSSService.radianCalculator(2),
+				x:threeCSSService.radianCalculator(1.3),
 				y:threeCSSService.radianCalculator(180),
 				z:threeCSSService.radianCalculator(180)
 			};

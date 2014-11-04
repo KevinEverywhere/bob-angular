@@ -2,7 +2,7 @@
 	<div class="content">
 		<div class="navbar-wrapper">
 			<div class="container">
-				<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+				<div class="navbar navbar-inverse navbar-static-top" role="none">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
@@ -15,10 +15,10 @@
 					</div>
 					<div class="navbar-collapse collapse alignRight">
 						<ul class="nav navbar-nav alignRight">
-							<li class="active"><a>Home</a></li>
-							<li><a>Video</a></li>
-							<li><a>Map</a></li>
-							<li><a>SVG</a></li>
+							<li ng-class="{active: $state.includes('home')}"><a href="#/">Home</a></li>
+							<li ng-class="{active: $state.includes('video')}"><a href="#video">Video</a></li>
+							<li ng-class="{active: $state.includes('map')}"><a href="#map">Map</a></li>
+							<li ng-class="{active: $state.includes('svg')}"><a href="#svg">SVG</a></li>
 						</ul>
 					</div>
 				</div>
