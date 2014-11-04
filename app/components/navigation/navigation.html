@@ -16,10 +16,10 @@
 						</div>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="#/">Home</a></li>
-								<li><a href="#video">Video</a></li>
-								<li><a href="#map">Map</a></li>
-								<li><a href="#svg">SVG</a></li>
+								<li ng-class="{active: $state.includes('home')}"><a href="#/">Home</a></li>
+								<li ng-class="{active: $state.includes('video')}"><a href="#video">Video</a></li>
+								<li ng-class="{active: $state.includes('map')}"><a href="#map">Map</a></li>
+								<li ng-class="{active: $state.includes('svg')}"><a href="#svg">SVG</a></li>
 							</ul>
 						</div>
 					</div>
