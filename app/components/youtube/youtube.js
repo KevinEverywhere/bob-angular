@@ -63,7 +63,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			      width: $scope._width,
 			      videoId: which
 			    });
-			  	player.play();
+			  	player.playVideo();
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);

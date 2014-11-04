@@ -35,6 +35,7 @@ function changeOrient(evt){
         "@pageBottomH":pixelWrap("pageBottomH"),
         "@userFont":uaFont
     });
+    if(window.hardcoded){console.log("window.hardcoded=" + window.hardcoded);window.hardcoded()}
 }    
 
 function getCurrentDimensions(){

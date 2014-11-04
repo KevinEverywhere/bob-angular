@@ -8,6 +8,12 @@ angular.module('bobApp.navigation', ["bobApp", "threeModule", "ngRoute", "ui.rou
 			$scope.currentRotate=-2;
 			$scope.maxRotate=2;
 			$scope.minRotate=-2;
+			$scope._position={
+				z:2
+			};
+			$scope._rotation={
+				x:threeCSSService.radianCalculator(-0.5)
+			};
 			$scope._dir=-1;
 			$scope.incr=.01;
 			$scope.navJSONURL="assets/js/navigation.json";

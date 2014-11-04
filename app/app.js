@@ -3,6 +3,7 @@
 var bobApp=angular.module("bobApp",  [
 	'threeModule',
 	'd3Module',
+	'countryModule',
 	'bobAngular',
 	'bobApp.svg',
 	'bobApp.context',
@@ -17,7 +18,7 @@ var bobApp=angular.module("bobApp",  [
 	'localCRUD',
 	'ui.router'
 ])
-	.run(function ($rootScope, $state, $stateParams, $window) {
+	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService) {
 		$rootScope.$state = $state;
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.hasOpened=true;
@@ -40,11 +41,42 @@ var bobApp=angular.module("bobApp",  [
  			console.log('navigatingToSection=' + toWhich);
 			$state.go(toWhich);
  		});
+
+		$rootScope.$on('$stateChangeStart', 
+		function(event, toState, toParams, fromState, fromParams){ 
+			switch(toState){
+				case "video":
+					break;
+				case "map":
+					break;
+				case "home":
+					break;
+				case "svg":
+					break;
+			}
+			$window['stated']=toState;
+			console.log("toState=" + toState);
+		})
+		$rootScope.$on('$stateChangeSuccess', 
+		function(event, toState, toParams, fromState, fromParams){ 
+			switch(toState){
+				case "video":
+					break;
+				case "map":
+					break;
+				case "home":
+					break;
+				case "svg":
+					break;
+			}
+			$window['stated']=toState;
+			console.log("stateChangeSuccess=" + toState);
+		})
 	})
 	.config(function($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.otherwise('/');
 		$stateProvider
-		  .state('main', {
+		  .state('home', {
 			url: '/',
 			views:{
 				"axis1":{
@@ -54,27 +86,6 @@ var bobApp=angular.module("bobApp",  [
 				"axis2":{
 					templateUrl: 'components/main/main.html',
 					controller: 'ThreeCSSController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',
-					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
-				}
-			}
-		  })
-		  .state('story', {
-			url: '/story',
-			views:{
-				"axis1":{
-					templateUrl: 'components/navigation/navigation.html',
-					controller: 'ThreeNavController'
-				},
-				"axis2":{
-					templateUrl: 'components/media/media.html',
-					controller: 'ThreeMediaController'
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',

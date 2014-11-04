@@ -44,4 +44,3 @@ scripts/
 app/lib
 e2e-tests/
 karma.conf.js
-*README.md

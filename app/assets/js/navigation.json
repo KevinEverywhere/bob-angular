@@ -1,7 +1,6 @@
 [
-	{"action": "main", "name": "Controls"},
+	{"action": "main", "name": "Home"},
 	{"action": "video", "name": "Video"},
 	{"action": "map", "name": "Map"},
-	{"action": "svg", "name": "SVG"},
-	{"action":"story", "name": "Story"}
+	{"action": "svg", "name": "SVG"}
 ]
