@@ -1,19 +1,8 @@
 body{
-	background-color:0x000;
+	background-color:#000;
 }
-#theWorld{
-	position:relative;
-	top:-2.5em;
-	left:-2.5em;
-	.transformSVG(.95);
-}
-
-#countryMap{
-	position:absolute;
-	left:0px;
-	top:0px;
-	right:0px;
-	bottom:0px;
+a{
+	cursor:pointer;
 }
 
 .alignRight{
@@ -27,6 +16,23 @@ body{
 	width:100%;
 }
 
+.boundInterior{
+	overflow-x: hidden;
+	overflow-y:scroll;
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+}
+
+
+#theWorld{
+	position:relative;
+	top:-2.5em;
+	left:-2.5em;
+	.transformSVG(.95);
+}
 
 .transformSVG(@toWhat) {
 	-webkit-transform-style: preserve-3d;
@@ -48,7 +54,6 @@ body{
 	overflow:hidden;
 }
 
-
 .nav li{
 	color:#fff;
 	display:inline-block;
@@ -56,6 +61,7 @@ body{
 	padding: 0;
 	margin: 0;
 }
+
 .nav{
 	position:relative;
 	left:@axis1L;
@@ -71,16 +77,6 @@ body{
 }
 
 #leaflet, #leaflet .content, #svgHolder, #main{
-	position:absolute;
-	left:0px;
-	top:0px;
-	right:0px;
-	bottom:0px;
-}
-
-.boundInterior{
-	overflow-x: hidden;
-	overflow-y:scroll;
 	position:absolute;
 	left:0px;
 	top:0px;
@@ -190,6 +186,7 @@ body{
 	left:0px;
 	top:0px;
 }
+
 .more{
 	display:block;
 	border:1px #000 solid;
@@ -216,7 +213,6 @@ body{
 	width:@pageBottomW;
 	height:@pageBottomH;
 }
-
 
 #pageBottom .content{
 	background-color:#ed4;

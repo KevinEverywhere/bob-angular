@@ -42,8 +42,9 @@ angular.module('bobApp.main',  ["bobApp", "threeModule", "ngRoute", "ui.router"]
 		var threeObj = {
 			restrict: 'EA',
 			replace:false,
+			transclude:true,
 			scope: true,
-			controller: "ThreeController",
+			controller: "ThreeCSSController",
 			_scope: {
 				"id":"@",
 				"eventHandler": '&ngClick'

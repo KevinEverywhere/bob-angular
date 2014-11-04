@@ -5,6 +5,17 @@ angular.module('bobApp.navigation', ["bobApp", "threeModule", "ngRoute", "ui.rou
 	.controller('ThreeNavController', ["$window", "$http", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", 
 		function ThreeNavController($window, $http, $scope, $rootScope, $state, $stateParams, threeCSSService) {
 			$scope.name='ThreeNavController';
+			$scope.currentRotate=-2;
+			$scope.maxRotate=2;
+			$scope.minRotate=-2;
+			$scope._position={
+				z:2
+			};
+			$scope._rotation={
+				x:threeCSSService.radianCalculator(-2)
+			};
+			$scope._dir=-1;
+			$scope.incr=.01;
 			$scope.navJSONURL="assets/js/navigation.json";
 			$scope.activeAnimations=[];
 			$scope.activeParams={};
@@ -22,7 +33,6 @@ angular.module('bobApp.navigation', ["bobApp", "threeModule", "ngRoute", "ui.rou
 						me.isInited=true;
 						$('.nav').on('click', 'li', function() {
 							me.setNavByText( $(this).text() );
-
 						});
 						render();
 					}

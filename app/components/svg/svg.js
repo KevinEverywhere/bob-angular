@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
-	.controller('ThreeSVGController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "LocalCRUDService", "threeCSSService", 
-		function ThreeSVGController($window, $scope, $rootScope, $state, $stateParams, LocalCRUDService, threeCSSService) {
+	.controller('ThreeSVGController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "LocalCRUDService", "threeCSSService", "countryService",  
+		function ThreeSVGController($window, $scope, $rootScope, $state, $stateParams, LocalCRUDService, threeCSSService, countryService) {
 			$scope.name='ThreeSVGController';
 			$scope._position={
 				z:-70
@@ -37,7 +37,7 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 			};
 			$scope.svgCall=function(evt){
 				if($scope.currentItem!=null){
-					d3.select("#" + $scope.currentItem).attr('opacity',1)
+					d3.select("#" + $scope.currentItem).attr('opacity',1);
 				}
 				$scope.currentItem=evt.target.parentNode.id;
 				d3.select("#" + evt.target.parentNode.id).attr('opacity',0.);
@@ -50,6 +50,49 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 					render();
 				}catch(oops){}
             };
+			$scope.csvCall=function(csvURL){
+				// Original URL: "https://raw.githubusercontent.com/datasets/cpi/master/data/cpi.csv";
+				var _csv="assets/js/cpi.csv";
+				var rtn=d3.csv(_csv)
+				    .row(function(d) { 
+				    	var theYear=+d.Year;
+							if(theYear==2010){
+								return{
+									name:d["Country Name"],
+									year:theYear,
+									code:d["Country Code"],
+									cpi:Math.floor(d.CPI)
+								};
+							};
+				     })
+				    .get(function(error, rows) { 
+				    	return rows;
+				    	console.log(rows); 
+				    });
+
+				/*
+
+				var parsed=[], _parsed=d3.csv(_csv,
+					function(error, data) {
+						data.forEach(function(d) { 
+							var theYear=+d.Year;
+							if(theYear==2010){
+								parsed.push({
+									name:d["Country Name"],
+									year:theYear,
+									code:d["Country Code"],
+									cpi:Math.floor(d.CPI)
+								});
+							};
+						}
+					)
+			    });
+			    $window.parsed= parsed;
+				console.log("_parsed=" + parsed);
+
+				*/
+				return rtn;
+            };
 			$scope.init=function(elem, _content, _svgDiv, svgURL){
 				var me=$scope;
 				$scope.elem=elem;
@@ -61,7 +104,30 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 					$window._xml=xml;
 					me.loadSVG(xml);
 					me.initWorld();
+					countryService.init();
+					me.paintOrder(me.csvCall());
+		//			me.paintOrder(countryService.countries);
+		//			$window.parsed=me.csvCall();
+					console.log('countryService.get3From2("CAn")=' + countryService.get2From3("CAn"));
 				});
+			}
+			$scope.paintOrder=function(arr, _colorArray){
+				var colorArray= (_colorArray) ? _colorArray : ["000","2b2b2b","555","777","999","BBB","DDD","FFF"];
+				var counter=0;
+				for(var a=0;a<arr.length;a++){
+					try{
+						console.log("arr.length=" + arr.length);
+		//				console.log(arr[a].name + "=" + Math.min(0.5+Math.floor((a * 10)/arr.length)/10, 1));
+						d3.select("#"  + countryService.get2From3(arr[a].code).toLowerCase())
+			//			d3.select("#"  + arr[a].iso2.toLowerCase()).attr('opacity',0); 
+					//	.attr('opacity', Math.min(0.5+Math.floor((a * 10)/arr.length)/10, 1));
+						  				// 'fill', "#" + colorArray[Math.floor((a *  colorArray.length) / arr.length)])
+						counter++;
+						console.log(counter + " ok " + colorArray[Math.floor((a *  colorArray.length) / arr.length)]);
+					}catch(oops){
+						console.log(counter + " FAILED  " + arr[a]);
+					}
+				}
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
@@ -82,13 +148,6 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				$scope.renderer.render($scope.scene, $scope.camera);
 				threeCSSService.render($scope);
 			}
-			var setVendor=function(element, property, value) {
-			  element.style["webkit" + property] = value;
-			  element.style["moz" + property] = value;
-			  element.style["ms" + property] = value;
-			  element.style["o" + property] = value;
-			}
-
 		}
 	])
 

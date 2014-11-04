@@ -36,7 +36,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
 			$scope.count=0;
-			$scope.youtubeId="RF0HhrwIwp0";
+			$scope.youtubeId="afBm0Dpfj_k";// "RF0HhrwIwp0";
 			$scope.youtubeURL="";
 			$scope._dir=-1;
 			$scope.incr=.01;
@@ -51,9 +51,9 @@ angular.module('bobApp.youtube', ["bobApp"])
 					this.isInited=true;
 					render();
 					try{
-						$scope.startMedia("RF0HhrwIwp0");
+						$scope.startMedia($scope.youtubeId);
 					}catch(oops){
-						$timeout(function(){$scope.startMedia("RF0HhrwIwp0");},1000)
+						$timeout(function(){$scope.startMedia($scope.youtubeId);},1000)
 					}
 				}
 			}
@@ -93,6 +93,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 		var threeObj = {
 			restrict: 'EA',
 			replace:false,
+	        transclude: true,
 			scope: true,
 			controller: "ThreeYouTubeController",
 			_scope: {
