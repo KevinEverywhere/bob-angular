@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('bobApp.youtube', ["bobApp"])
-
 	.service("YouTubeService",['$rootScope', "$http", "$q", "$state", "$window",
 		 function($rootScope, $http, $q, $state, $window) {
 			var _service={
@@ -21,7 +20,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			return _service;
 		}
 	])
-
 	.controller('ThreeYouTubeController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$timeout",
 		function ThreeYouTubeController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
 			$scope.name='ThreeYouTubeController';
@@ -36,7 +34,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
 			$scope.count=0;
-			$scope.youtubeId="afBm0Dpfj_k";// "RF0HhrwIwp0";
+			$scope.youtubeId="afBm0Dpfj_k";// "Pkaq0_qOx0E" "RF0HhrwIwp0"; 
 			$scope.youtubeURL="";
 			$scope._dir=-1;
 			$scope.incr=.01;
@@ -44,8 +42,9 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.maxRotate=200;
 			$scope.minRotate=160;
 
-			$scope.init=function(elem, _content){
+			$scope.init=function(elem, _content, _context){
 				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&autostart=1&enablejsapi=1&";
+				$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
 					this.isInited=true;
@@ -63,7 +62,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			      width: $scope._width,
 			      videoId: which
 			    });
-			  	player.playVideo();
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
@@ -86,9 +84,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			}
 		}
 	])
-
-
-
 
 	.directive( "threeYouTube", [function( ) {
 		var threeObj = {

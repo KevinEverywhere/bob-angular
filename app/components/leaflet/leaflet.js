@@ -59,7 +59,8 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope._rotation={
 				x:threeCSSService.radianCalculator(1)
 			};
-			$scope.init=function(elem, _content, map){
+			$scope.init=function(elem, _content, map, _context){
+				$rootScope._context=$("#"+ _context).html();
 				console.log("init-" + elem + " and " + _content);
 				var me=$scope;
 				if(!me.isInited){

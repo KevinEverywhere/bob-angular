@@ -10,8 +10,6 @@ var bobApp=angular.module("bobApp",  [
 	'bobApp.navigation',
 	'bobApp.main',
 	'bobApp.footer',
-	'bobApp.media',
-//	'bobApp.googlemap',
 	'bobApp.leaflet',
 	'bobApp.youtube',
 	'ngRoute', 
@@ -19,6 +17,7 @@ var bobApp=angular.module("bobApp",  [
 	'ui.router'
 ])
 	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService) {
+		$rootScope.sectionTitle="Testing";
 		$rootScope.$state = $state;
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.hasOpened=true;
@@ -61,12 +60,16 @@ var bobApp=angular.module("bobApp",  [
 		function(event, toState, toParams, fromState, fromParams){ 
 			switch(toState){
 				case "video":
+				//	$("#sectionTitle").html("You Tube");
 					break;
 				case "map":
+				//	$("#sectionTitle").html("Leaflet Map");
 					break;
 				case "home":
+				//	$("#sectionTitle").html("About this App");
 					break;
 				case "svg":
+				//	$("#sectionTitle").html("SVG Example");
 					break;
 			}
 			$window['stated']=toState;

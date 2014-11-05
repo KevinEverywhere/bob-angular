@@ -20,11 +20,19 @@ a{
 	width:100%;
 }
 
-.alignRight li{
+.alignRight li, .alignLeft li{
 	display:inline-block;
 	width:15%;
 	padding: 0;
 	margin: 0;
+}
+
+div.alignLeft{
+	min-width:60%;
+}
+
+ul.alignLeft{
+	min-width:40%;
 }
 
 .boundInterior{
@@ -41,7 +49,7 @@ a{
 	background-color:#eee;
 }
 
-#leaflet, #leaflet .content, #svgHolder, #main{
+#leaflet, #leaflet .content, #context, #context .content, #svgHolder, #main{
 	position:absolute;
 	left:0px;
 	top:0px;
@@ -114,15 +122,14 @@ a{
 	display:inline-block;	
 }
 
-.three .content{
+.three .content, .axis3{
 	overflow-y:auto;
 }
 
 .contextItem{
-	font-family:Arial;
-	font-size:25px;
-	padding:1em;
-	color:#fff;
+	padding:.2em;
+	min-width:100px;
+	min-height:100px;
 }
 
 .leafletMap, #main .content, .leaflet-map-pane{
@@ -132,6 +139,10 @@ a{
 	font-weight:650;
 	width:@axis2W;
 	height:@axis2H;
+}
+
+#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext{
+  display:none;
 }
 
 #context .content{
@@ -155,6 +166,13 @@ a{
 	height:@axis1H;
 }
 
+h3 li{
+	display:none;
+}
+h3 li.active{
+	display:block;
+}
+
 #axis2{
 	background-color:#222;
 	position:absolute;
@@ -173,6 +191,11 @@ a{
 	top:@axis3T;
 	right:@axis3R;
 	bottom:@axis3B;
+	width:@axis3W;
+	height:@axis3H;
+}
+
+.axis3{
 	width:@axis3W;
 	height:@axis3H;
 }

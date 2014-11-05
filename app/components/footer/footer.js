@@ -21,16 +21,6 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 				y:threeCSSService.radianCalculator(180),
 				z:threeCSSService.radianCalculator(180)
 			};
-			/*
-			$scope.init=function(elem, _content){
-				console.log("elem=" + elem)
-				if(!this.isInited){
-					threeCSSService.init(elem, $scope, _content);
-					this.isInited=true;
-					render();
-				}
-			}
-			*/
 			$scope.init=function(elem, _content){
 				var me=$scope;
 				$http({method: 'GET', url: $scope.navJSONURL})

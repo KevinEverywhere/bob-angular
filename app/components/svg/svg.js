@@ -93,7 +93,8 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				*/
 				return rtn;
             };
-			$scope.init=function(elem, _content, _svgDiv, svgURL){
+			$scope.init=function(elem, _content, _svgDiv, _context, svgURL){
+				$rootScope._context=$("#"+ _context).html();
 				var me=$scope;
 				$scope.elem=elem;
 				$scope.__content=_content;
