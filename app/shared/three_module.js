@@ -190,7 +190,6 @@ var threeModule = angular.module('threeModule', [])
 				}
 			}
 			if(!service.isInitted){
-				console.log("$window.addEventListener('resize', changeOrient, false);")
 		        $window.hardcoded=function(){
 		        	console.log("window.hardcoded=window.hardcoded=window.hardcoded=window.hardcoded")
 		        	service.updateAllSizes();

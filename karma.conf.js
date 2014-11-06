@@ -28,7 +28,6 @@ module.exports = function(config){
       'app/libs/leaflet/dist/leaflet.css',
       'app/libs/bootstrap/dist/css/bootstrap.css',
       'app/assets/js/startup.js',
-   /*   'app/assets/js/world.json', */
       'app/components/**/*.js'
     ],
 
@@ -37,6 +36,7 @@ module.exports = function(config){
     frameworks: ['jasmine'],
 
     browsers : ['Chrome'],
+    singleRun: true,
 
 
     plugins : [
