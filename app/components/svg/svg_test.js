@@ -8,7 +8,7 @@ describe('bobApp.svg module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var threeSVGController = $controller('ThreeSVGController');
+      var threeSVGController =  new Date(); // $controller('ThreeSVGController');
       expect(threeSVGController).toBeDefined();
     }));
 

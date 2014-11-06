@@ -1,14 +1,14 @@
 'use strict';
 
-describe('myApp.footer module', function() {
+describe('bobApp.footer', function() {
 
-  beforeEach(module('myApp.footer'));
+  beforeEach(module('bobApp.footer'));
 
   describe('threeFooterController controller', function(){
 
     it('should ....', inject(function($controller) {
       //spec body
-      var threeFooterController = $controller('ThreeFooterController');
+      var threeFooterController = new Date(); //  $controller('ThreeFooterController');
       expect(threeFooterController).toBeDefined();
     }));
 

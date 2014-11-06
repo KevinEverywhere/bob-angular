@@ -76,12 +76,6 @@ less = {
     rootpath: ""
 };
 
-  $(document).ready(function (){
-    angular.bootstrap(document, ['bobApp']);
-    window.addEventListener('orientationchange', changeOrient, false);
-    window.addEventListener('resize', changeOrient, false);
-    changeOrient();
-  });
   </script>
   <script src="https://www.youtube.com/player_api"></script>
   <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -127,7 +121,14 @@ less = {
     <div ui-view="axis3" id="axis3" class="padded"></div>
     <div ui-view="pageBottom" id="pageBottom" class="padded"></div>
   </div>
-
+<script type="text/javascript">
+  $(document).ready(function (){
+    angular.bootstrap(document, ['bobApp']);
+    window.addEventListener('orientationchange', changeOrient, false);
+    window.addEventListener('resize', changeOrient, false);
+    changeOrient();
+  });  
+</script>
   <script src="app.js"></script>
 
   </body>

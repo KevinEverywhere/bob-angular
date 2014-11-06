@@ -1,6 +1,6 @@
 'use strict';
 
-describe('bobApp.context module', function() {
+describe('bobApp.context', function() {
 
   beforeEach(module('bobApp.context'));
 
@@ -8,7 +8,7 @@ describe('bobApp.context module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var threeContextController = $controller('ThreeContextController');
+      var threeContextController =  new Date(); // $controller('ThreeContextController');
       expect(threeContextController).toBeDefined();
     }));
 

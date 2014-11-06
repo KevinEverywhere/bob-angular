@@ -24,7 +24,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 		function ThreeYouTubeController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
 			$scope.name='ThreeYouTubeController';
 			$scope._position={
-				z:100
+				z:20
 			};
 			$scope._rotation={
 				x:0,

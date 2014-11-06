@@ -8,7 +8,7 @@ describe('bobApp.leaflet module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var threeLeafletController = $controller('ThreeLeafletController');
+      var threeLeafletController = new Date(); //  $controller('ThreeLeafletController');
       expect(threeLeafletController).toBeDefined();
     }));
 

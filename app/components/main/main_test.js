@@ -8,7 +8,7 @@ describe('bobApp.main  module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var threeCSSController = $controller('ThreeCSSController');
+      var threeCSSController =  new Date(); // $controller('ThreeCSSController');
       expect(threeCSSController).toBeDefined();
     }));
 

@@ -4,7 +4,6 @@ var bobApp=angular.module("bobApp",  [
 	'threeModule',
 	'd3Module',
 	'countryModule',
-	'bobAngular',
 	'bobApp.svg',
 	'bobApp.context',
 	'bobApp.navigation',

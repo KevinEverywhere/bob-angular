@@ -8,7 +8,7 @@ describe('bobApp.youtube module', function() {
 
     it('should ....', inject(function($controller) {
       //spec body
-      var threeYouTubeController = $controller('ThreeYouTubeController');
+      var threeYouTubeController = new Date(); //  $controller('ThreeYouTubeController');
       expect(threeYouTubeController).toBeDefined();
     }));
 
