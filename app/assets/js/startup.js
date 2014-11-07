@@ -33,14 +33,15 @@ function changeOrient(evt){
         "@pageBottomB":pixelWrap("pageBottomB"),
         "@pageBottomW":pixelWrap("pageBottomW"),
         "@pageBottomH":pixelWrap("pageBottomH"),
+        "@rowTrim":pixelWrap("rowTrim"),
+        "@columnTrim":pixelWrap("columnTrim"),
         "@userFont":uaFont
     });
     if(window.hardcoded){console.log("window.hardcoded=" + window.hardcoded);window.hardcoded()}
 }    
 
+var rowTrim=80, columnTrim=200;
 function getCurrentDimensions(){
-    rowTrim=80;
-    columnTrim=200;
     try{
         theLarge=Math.max(window.innerWidth, window.innerHeight);
         theSmall=Math.min(window.innerWidth, window.innerHeight);
