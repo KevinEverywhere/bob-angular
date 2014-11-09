@@ -3,14 +3,7 @@
 		<div class="container">
 			<ul id="footerFeed">
 				<li ng-repeat="article in articles">
-					<a data-toggle="tooltip" title="{{article.summary}}" href="{{article.url}}">{{article.title}}</a>
-					<!-- p>
-						{{article.summary}}
-					</p>
-					<p>
-						{{article.publish_date}}, {{article.source}}<br>
-						{{article.source_url}}
-					</p -->
+					<a data-toggle="tooltip" data-toggle-delay="{'show':'50','hide':'2500'}" title="{{article.summary}}" href="{{article.url}}">{{article.title}}</a>
 				</li>
 			</ul>
 		</div>	
