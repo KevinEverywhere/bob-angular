@@ -7,7 +7,11 @@ describe('bobApp.main module', function() {
 				var scope = {},
 				ctrl = $controller('ThreeCSSController', {$scope:scope});
 				expect(scope.name).toBe("ThreeCSSController");
-			})
-		);
+			}));
+			it('should have an init function', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeCSSController', {$scope:scope});
+				expect(scope.init).toBeDefined();
+			}));
 	});
 });
