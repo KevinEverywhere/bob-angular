@@ -11,9 +11,10 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 			$scope.navs = {};
 			$scope._dir=-1;
 			$scope.incr=.5;
-			$scope.currentMove=0;
+			$scope.feedItemWidth=320;
+			$scope.currentMove=null;
 			$scope.maxMove=0;
-			$scope.minMove=-5000;
+			$scope.minMove=-3800;
 			$scope._position={
 				z:2,
 				y:50
@@ -23,6 +24,10 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 				y:threeCSSService.radianCalculator(180),
 				z:threeCSSService.radianCalculator(180)
 			};
+			$scope.makeScrollFit=function(howMany){
+				$scope.maxMove=$scope._width;
+				$scope.minMove=$scope._width-($scope.feedItemWidth * howMany);
+			};
 			$scope.init=function(elem, _content){
 				var me=$scope;
 				$http({method: 'GET', url: $scope.newsFeedURL})
@@ -31,7 +36,9 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 						$scope.articles=data.articles;
 						threeCSSService.init(elem, me, _content);
 						me.isInited=true;
+						me.makeScrollFit(data.articles.length);
 						render();
+						console.log("$scope.minMove=" + $scope.minMove + " and $scope.maxMove=" + $scope.maxMove);
 					}
 				})
 				.error(function(data, status, headers, config) {
@@ -42,15 +49,9 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 				$rootScope.$broadcast("navigatingToSection", $scope.navs[whatText].action);
 			}
 			$scope.animate=function(){
-				$scope.currentMove+=($scope._dir * $scope.incr);
-				if($scope.currentMove<$scope.maxMove){
-					if($scope.currentMove<$scope.minMove){
-						$scope._dir=-$scope._dir;
-						$scope.currentMove+=$scope._dir;
-					}
-				}else{
-					$scope._dir=-$scope._dir;
-					$scope.currentMove+=$scope._dir;
+				$scope.currentMove= ($scope.currentMove==null) ? $scope.maxMove : $scope.currentMove+($scope._dir * $scope.incr);
+				if($scope.currentMove<$scope.minMove){
+					$scope.currentMove=$scope.maxMove;
 				}
 				$scope.css3DObject.position.x=$scope.currentMove;
 				$scope.renderer.render($scope.scene, $scope.camera);

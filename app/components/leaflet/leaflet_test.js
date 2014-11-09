@@ -1,16 +1,13 @@
 'use strict';
 
 describe('bobApp.leaflet module', function() {
-
-  beforeEach(module('bobApp.leaflet'));
-
-  describe('ThreeLeafletController controller', function(){
-
-    it('should ....', inject(function($controller) {
-      //spec body
-      var threeLeafletController = new Date(); //  $controller('ThreeLeafletController');
-      expect(threeLeafletController).toBeDefined();
-    }));
-
-  });
+	beforeEach(module('bobApp.leaflet'));
+		describe('ThreeLeafletController  controller', function(){
+			it('should have the right name', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeLeafletController', {$scope:scope});
+				expect(scope.name).toBe("ThreeLeafletController");
+			})
+		);
+	});
 });

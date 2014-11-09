@@ -1,16 +1,13 @@
 'use strict';
 
 describe('bobApp.svg module', function() {
-
-  beforeEach(module('bobApp.svg'));
-
-  describe('ThreeSVGController controller', function(){
-
-    it('should ....', inject(function($controller) {
-      //spec body
-      var threeSVGController =  new Date(); // $controller('ThreeSVGController');
-      expect(threeSVGController).toBeDefined();
-    }));
-
-  });
+	beforeEach(module('bobApp.svg'));
+		describe('ThreeSVGController controller', function(){
+			it('should have the right name', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeSVGController', {$scope:scope});
+				expect(scope.name).toBe("ThreeSVGController");
+			})
+		);
+	});
 });

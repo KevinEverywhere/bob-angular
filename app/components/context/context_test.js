@@ -1,16 +1,13 @@
 'use strict';
 
-describe('bobApp.context', function() {
-
-  beforeEach(module('bobApp.context'));
-
-  describe('context controller', function(){
-
-    it('should ....', inject(function($controller) {
-      //spec body
-      var threeContextController =  new Date(); // $controller('ThreeContextController');
-      expect(threeContextController).toBeDefined();
-    }));
-
-  });
+describe('bobApp.context module', function() {
+	beforeEach(module('bobApp.context'));
+		describe('ThreeContextController  controller', function(){
+			it('should have the right name', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeContextController', {$scope:scope});
+				expect(scope.name).toBe("ThreeContextController");
+			})
+		);
+	});
 });

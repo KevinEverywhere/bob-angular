@@ -1,20 +1,18 @@
 <div ng-controller="ThreeFooterController" class="threeFooter" id="footer" ng-init="init('footer','content');">
 	<div class="content">
-		<div class="navbar-wrapper">
-			<div class="container">
-				<ul id="footerFeed">
-					<li ng-repeat="article in articles">
-						<a href="{{article.url}}">{{article.title}}</a>
-						<!-- p>
-							{{article.summary}}
-						</p>
-						<p>
-							{{article.publish_date}}, {{article.source}}<br>
-							{{article.source_url}}
-						</p -->
-					</li>
-				</ul>
-  			</div>
+		<div class="container">
+			<ul id="footerFeed">
+				<li ng-repeat="article in articles">
+					<a data-toggle="tooltip" title="{{article.summary}}" href="{{article.url}}">{{article.title}}</a>
+					<!-- p>
+						{{article.summary}}
+					</p>
+					<p>
+						{{article.publish_date}}, {{article.source}}<br>
+						{{article.source_url}}
+					</p -->
+				</li>
+			</ul>
 		</div>	
 	</div>
 </div>
