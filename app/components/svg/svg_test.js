@@ -8,10 +8,10 @@ describe('bobApp.svg module', function() {
 				ctrl = $controller('ThreeSVGController', {$scope:scope});
 				expect(scope.name).toBe("ThreeSVGController");
 			}));
-			it('should have an render function', inject(function($controller) {
+			it('should have an init function', inject(function($controller) {
 				var scope = {},
 				ctrl = $controller('ThreeSVGController', {$scope:scope});
-				expect(scope.render).toBeDefined();
+				expect(scope.init).toBeDefined();
 			}));
 	});
 });
