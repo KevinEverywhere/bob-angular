@@ -1,24 +1,22 @@
-var express = require('express');
-var https = require('https');
-var http = require('http');
-var app = express();
-
-/*
-
 var express = require('express')
-var app = express();
+    , morgan = require('morgan')
+    , bodyParser = require('body-parser')
+    , methodOverride = require('method-override')
+    , app = express()
+    , port = process.env.PORT || 3000
+    , router = express.Router();
 
-app.set('port', (process.env.PORT || 5000))
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/views')); // set the static files location for the static html
+app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+app.use(morgan('dev'));                     // log every request to the console
+app.use(bodyParser());                      // pull information from html in POST
+app.use(methodOverride());                  // simulate DELETE and PUT
 
-app.get('/', function(request, response) {
-  response.send('Hello World!')
-})
+router.get('/', function(req, res, next) {
+    res.render('app/index.html');
+});
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running at localhost:" + app.get('port'))
-})
+app.use('/', router);
 
-*/
-
-http.createServer(app).listen( (process.env.PORT || 5000));
+app.listen(port);
+console.log('App running on port', port);
