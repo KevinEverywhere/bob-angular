@@ -13,5 +13,10 @@ describe('bobApp.main module', function() {
 				ctrl = $controller('ThreeCSSController', {$scope:scope});
 				expect(scope.init).toBeDefined();
 			}));
+			it('should not yet have an isInited value', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeCSSController', {$scope:scope});
+				expect(scope.isInited).toBeFalsy();
+			}));
 	});
 });

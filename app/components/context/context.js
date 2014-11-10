@@ -5,9 +5,8 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 		function ThreeContextController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
 			$scope.name='ThreeContextController';
 			$scope.sectionTitle="ThreeContextController";
-			$scope.activeAnimations=["animate"]; // "animate"];
+			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
-			$scope.count=0;
 			$scope._dir=-1;
 			$scope.incr=.001;
 			$scope.currentPosition=0;

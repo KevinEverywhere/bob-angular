@@ -28,7 +28,6 @@
     "method-override": "^1.0.0"
   },
   "scripts": {
-    "postinstall": "bower install",
     "postinstall": "./node_modules/bower/bin/bower install",
 
     "prestart": "npm install",
