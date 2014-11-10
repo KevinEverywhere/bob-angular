@@ -26,7 +26,7 @@
     "postinstall": "./node_modules/bower/bin/bower install",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p -c-1",
+    "start": "http-server -a localhost 9876 -p -c-1",
 
     "pretest": "npm install",
     "test": "karma start karma.conf.js",
