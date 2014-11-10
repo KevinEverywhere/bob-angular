@@ -7,7 +7,11 @@ describe('bobApp.svg module', function() {
 				var scope = {},
 				ctrl = $controller('ThreeSVGController', {$scope:scope});
 				expect(scope.name).toBe("ThreeSVGController");
-			})
-		);
+			}));
+			it('should have an render function', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeSVGController', {$scope:scope});
+				expect(scope.render).toBeDefined();
+			}));
 	});
 });
