@@ -11,7 +11,7 @@ describe('bobApp.leaflet module', function() {
 			it('should have an init function', inject(function($controller) {
 				var scope = {},
 				ctrl = $controller('ThreeLeafletController', {$scope:scope});
-				expect(scope.buildMap).toBeDefined();
+				expect(scope.init).toBeDefined();
 			}));
 	});
 });
