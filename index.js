@@ -7,10 +7,10 @@ var express = require('express')
     , router = express.Router();
 
 app.use(express.static(__dirname + '/app')); 
-// app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
-// app.use(morgan('dev'));                     // log every request to the console
-app.use(bodyParser());                      // pull information from html in POST
-// app.use(methodOverride());                  // simulate DELETE and PUT
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 router.get('/', function(req, res, next) {
     res.render('/app/index.html');
