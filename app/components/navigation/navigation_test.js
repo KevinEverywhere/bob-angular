@@ -7,7 +7,11 @@ describe('bobApp.navigation module', function() {
 				var scope = {},
 				ctrl = $controller('ThreeNavController', {$scope:scope});
 				expect(scope.name).toBe("ThreeNavController");
-			})
-		);
+			}));
+			it('should have an init function', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeNavController', {$scope:scope});
+				expect(scope.init).toBeDefined();
+			}));
 	});
 });
