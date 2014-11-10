@@ -7,7 +7,11 @@ describe('bobApp.youtube module', function() {
 				var scope = {},
 				ctrl = $controller('ThreeYouTubeController', {$scope:scope});
 				expect(scope.name).toBe("ThreeYouTubeController");
-			})
-		);
+			}));
+			it('should have an init function', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeYouTubeController', {$scope:scope});
+				expect(scope.init).toBeDefined();
+			}));
 	});
 });
