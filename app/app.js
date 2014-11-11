@@ -82,8 +82,8 @@ var bobApp=angular.module("bobApp",  [
 			url: '/',
 			views:{
 				"axis1":{
-					templateUrl: 'components/navigation/navigation.html',
-					controller: 'ThreeNavController'
+				//	templateUrl: 'components/navigation/navigation.html',
+				//	controller: 'ThreeNavController'
 				},
 				"axis2":{
 					templateUrl: 'components/main/main.html',
@@ -94,8 +94,8 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeContextController'
 				},
 				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
+				//	templateUrl: 'components/footer/footer.html',
+				//	controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -103,8 +103,8 @@ var bobApp=angular.module("bobApp",  [
 			url: '/video',
 			views:{
 				"axis1":{
-					templateUrl: 'components/navigation/navigation.html',
-					controller: 'ThreeNavController'
+				//	templateUrl: 'components/navigation/navigation.html',
+				//	controller: 'ThreeNavController'
 				},
 				"axis2":{
 					templateUrl: 'components/youtube/youtube.html',
@@ -115,8 +115,8 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeContextController'
 				},
 				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
+				//	templateUrl: 'components/footer/footer.html',
+				//	controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -124,8 +124,8 @@ var bobApp=angular.module("bobApp",  [
 			url: '/svg',
 			views:{
 				"axis1":{
-					templateUrl: 'components/navigation/navigation.html',
-					controller: 'ThreeNavController'
+				//	templateUrl: 'components/navigation/navigation.html',
+				//	controller: 'ThreeNavController'
 				},
 				"axis2":{
 					templateUrl: 'components/svg/svg.html',
@@ -136,8 +136,8 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeContextController'
 				},
 				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
+				//	templateUrl: 'components/footer/footer.html',
+				//	controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -145,12 +145,10 @@ var bobApp=angular.module("bobApp",  [
 			url: '/map',
 			views:{
 				"axis1":{
-					templateUrl: 'components/navigation/navigation.html',
-					controller: 'ThreeNavController'
+				//	templateUrl: 'components/navigation/navigation.html',
+				//	controller: 'ThreeNavController'
 				},
 				"axis2":{
-//					templateUrl: 'components/googlemap/googlemap.html',
-//					controller: 'ThreeMapController'
 					templateUrl: 'components/leaflet/leaflet.html',
 					controller: 'ThreeLeafletController'
 				},
@@ -159,8 +157,8 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeContextController'
 				},
 				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
+				//	templateUrl: 'components/footer/footer.html',
+				//	controller: 'ThreeFooterController'
 				}
 			}
 		  });

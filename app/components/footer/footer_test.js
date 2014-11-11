@@ -22,7 +22,30 @@ describe('bobApp.footer module', function() {
 				scope._width=640;
 				scope.makeScrollFit(5);
 				expect(scope.minMove).toBe(-960);
-			})
-			)
+			}));
+
+			it('should have one activeAnimation', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeFooterController', {$scope:scope});
+				expect(scope.activeAnimations.length).toBe(1);
+			}));
+			it('should have one activeAnimation function', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeFooterController', {$scope:scope});
+				expect(scope[scope.activeAnimations[0]]).toBeDefined();
+			}));
+
+			it('should have a currentMove of null', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeFooterController', {$scope:scope});
+				expect(scope.currentMove).toBeNull();
+			}));
+
+			it('should have a maxMove greater than its minMove', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeFooterController', {$scope:scope});
+				expect(scope.maxMove).toBeGreaterThan(scope.minMove);
+			}));
+
 	});
 });
