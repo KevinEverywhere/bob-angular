@@ -2,6 +2,8 @@
 
 *This is in development and is not recommended to develop with as a base until version 0.0.1. You can still look under the hood to see how things work by following the installation process.*
 
+The sample application that is built from this code is viewable at 
+[bob-angular](http://bob-angular.herokuapp.com/)
 
 This project is an application skeleton, influenced by and forked from angular-seed,
 [https://github.com/angular/angular-seed](https://github.com/angular/angular-seed)
