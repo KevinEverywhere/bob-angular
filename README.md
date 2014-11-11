@@ -1,4 +1,3 @@
-# bob-angular — A D3-Three seed for AngularJS apps
 ###version 0.0.0
 
 *This is in development and is not recommended to develop with as a base until version 0.0.1. You can still look under the hood to see how things work by following the installation process.*
@@ -6,16 +5,14 @@
 
 This project is an application skeleton, influenced by and forked from angular-seed,
 [https://github.com/angular/angular-seed](https://github.com/angular/angular-seed)
-It provides a Three D metaphor with sample page and use scenarios.
+It uses three.js [http://threejs.org/] to provide a means to map 2D Web content to 3D space. 
 
-The application is preconfigured to install the Angular framework, three.js, d3, less,
-and required third-party frameworks. The seed app provides navigation and transition 
-functionality, API-powered 3D content panes, as well as development and testing tools.
+The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests.
 
 ### Prerequisites
 
 You must have node.js and its package manager (npm) installed. All other dependencies
-are managed by node through package.json, and then bower thrugh bower.json. You can 
+are managed by node through package.json, and then bower through bower.json. You can 
 get node and npm from [http://nodejs.org/](http://nodejs.org/).
 
 ### Clone bob-angular
@@ -50,47 +47,37 @@ and then populate them with imported code:
 
 ### Run the Application
 
-The application can be tested in localhost:8000 by running npm start
+The application should be testable in localhost:3000 by running _npm start_. If that port is already being used, look at the console to see which port that the application found available.
 
 ```
 npm start
 ```
 
-The app should now be running at `http://localhost:8000/app/`. The most typical
-problems in npm start involve permission issues, availability of port, and 
-software availability. Ensure that you have the correct software installed to begin, 
-and that the directory in which you are running npm start contains the bob-angular 
-seed files. 
+The app should now be running at <code>http://localhost:3000/</code> (or an alternative that was found to be available at runtime).
 
-####Port 8000 Availability
-
-Edit line 23 of package.json so that the 8000 port is changed to the one you wish
-to use.
-
-```
-    "start": "http-server -a localhost -p 8000 -c-1",
-```
-
+####Troubleshooting
+The most typical problems in _npm start_ involve permission issues, availability of port, and software availability. Ensure that you have the correct software installed to begin, and that the directory in which you are running npm start contains the bob-angular seed files. Consult your console, and Google, to take care of any issues unique to your system.
 
 ## Directory Layout
 
 ```
-app/                                   --> all of the source files for the application
-  assets/                              --> asset and creation media, CSS JS, JSON files
+index.js                               --> the file containing the webserver
+app/                                   --> application source files
+  assets/                              --> media, CSS JS, JSON assets
     css, js, media
   components/                          --> view or feature based components
-    footer, main, media, navigation    --> view components
-    youtube, leaflet                   --> feature (vendor) based components
-  shared/                              --> feature based shared components (services)
-    three_module                       --> angular three service used by view pontts 
-  libs/                                --> the repository for bower installed JS files
-    3l, angular, bootstrap, three.js,  --> bower-maintained source files created after
-    jquery, less, ui-router, others        running 'npm start' or 'bower install' 
+    footer, main, context, navigation  --> view components
+    youtube, leaflet, svg              --> feature (vendor) based components
+  shared/                              --> feature based shared services
+    three_module, country_module        
+  libs/                                --> repository for bower-created 
+    3l, angular, bootstrap, three.js,      source files from 'npm start' or  
+    jquery, less, ui-router, others        'bower install' 
   app.js                               --> main application module
   index.html                           --> the entrace point to the app.
+karma.conf.js                          --> config file for Karma unit tests 
 TODO:
-  index-async.html                     --> index.html with asynchronous JavaScript loads
-karma.conf.js                          --> config file for running unit tests with Karma
+  index-async.html                     --> index.html with asynchronous loads
 e2e-tests/                             --> end-to-end tests
 ```
 
@@ -105,6 +92,8 @@ This section will be expanded as the content is updated and made available for v
 For more information on bob-angular please contact kevin@planetkevin.com
 
 [angular]: http://angularjs.org/
+[three]: http://threejs.org/
+[express]: http://expressjs.com/
 [git]: http://git-scm.com/
 [bower]: http://bower.io
 [npm]: https://www.npmjs.org/
@@ -115,4 +104,5 @@ For more information on bob-angular please contact kevin@planetkevin.com
 [jasmine]: http://jasmine.github.io
 [karma]: http://karma-runner.github.io
 [travis]: https://travis-ci.org/
-[http-server]: https://github.com/nodeapps/http-server
+
+
