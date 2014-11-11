@@ -5,9 +5,7 @@
 The sample application that is built from this code is viewable at 
 [bob-angular](http://bob-angular.herokuapp.com/)
 
-This project is an application skeleton, influenced by and forked from angular-seed,
-[https://github.com/angular/angular-seed](https://github.com/angular/angular-seed)
-It uses three.js [http://threejs.org/] to provide a means to map 2D Web content to 3D space. 
+This project is an application skeleton, influenced by and forked from [angular-seed](https://github.com/angular/angular-seed). It uses [three.js](http://threejs.org/) to provide a means to map 2D Web content to 3D space. 
 
 The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests.
 
@@ -15,7 +13,7 @@ The application is preconfigured to install the Angular framework, three.js, and
 
 You must have node.js and its package manager (npm) installed. All other dependencies
 are managed by node through package.json, and then bower through bower.json. You can 
-get node and npm from [http://nodejs.org/](http://nodejs.org/).
+get node and npm from [nodejs](http://nodejs.org/).
 
 ### Clone bob-angular
 
