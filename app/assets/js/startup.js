@@ -7,7 +7,12 @@ function pixelWrap(_var){
 };
 
 function changeOrient(event){
-    event.preventDefault();
+    try{
+        event.preventDefault();
+    }catch(oops){
+        changeSize(event)
+        console.log("no orient change")
+    }
 };
 
 function changeSize(evt){
