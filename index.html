@@ -126,9 +126,39 @@ e2e-tests/                             --&gt; end-to-end tests
 <h2>
 <a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h2>
 
-<p>There will be two kinds of tests in the bob-angular seed application: Unit tests and End to End tests.</p>
+<h3>
+<a id="unit-tests" class="anchor" href="#unit-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unit Tests</h3>
 
-<p>This section will be expanded as the content is updated and made available for view and testing.</p>
+<p>The karma unit tests are set up in the components folders that they are associated with. Additional tests will be developed for services distinctly and throughout the app as opportunities are identified.</p>
+
+<p>Sample file and location:</p>
+
+<pre><code>app/components/footer/footer.html
+                      footer.js
+                      footer_test.js
+</code></pre>
+
+<p>In the example above, the footer_test file contains the actual karma tests that are run.  To run the unit tests, enter the following into the terminal:</p>
+
+<pre><code>npm test
+</code></pre>
+
+<h3>
+<a id="e2e-tests" class="anchor" href="#e2e-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>E2E Tests</h3>
+
+<p>The E2E tests require two terminal windows to be open: one with the local server, the other for protactor. This is facilitated by first starting the server by entering the following into the terminal:</p>
+
+<pre><code>npm run protractor
+</code></pre>
+
+<p>This window will launch an express server at localhost:3000. If this port is not available, you may need to edit your exports.index.js file. The console will give you a message to start the actual protactor in a new terminal window and then entering:</p>
+
+<pre><code>npm run protract
+</code></pre>
+
+<p>The results of the tests will be given in the second console window.</p>
+
+<p>Unit and E2E tests, along with the rest of the seed application content, will grow from the simple tests that currently exist. As features are added, they will be associated with test files and methods as needed.</p>
 
 <h2>
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h2>
