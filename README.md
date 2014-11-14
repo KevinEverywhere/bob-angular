@@ -83,9 +83,42 @@ e2e-tests/                             --> end-to-end tests
 
 ## Testing
 
-There will be two kinds of tests in the bob-angular seed application: Unit tests and End to End tests.
+### Unit Tests
 
-This section will be expanded as the content is updated and made available for view and testing.
+The karma unit tests are set up in the components folders that they are associated with. Additional tests will be developed for services distinctly and throughout the app as opportunities are identified.
+
+Sample file and location:
+
+app/components/footer/footer.html
+                      footer.js
+                      footer_test.js
+
+The footer_test file contains the actual karma tests that are run. 
+
+To run the unit tests, enter the following into the terminal:
+
+
+```
+npm test
+```
+
+
+
+### E2E Tests                      
+
+The E2E tests require two terminal windows to be open: one with the local server, the other for protactor. This is facilitated by first starting the server by entering the following into the terminal:
+
+```
+npm run protactor
+```
+This window will launch an express server at localhost:3000. If this port is not available, you may need to edit your exports.index.js file. The console will give you a message to start the actual protactor in a new terminal window and then entering:
+
+```
+npm run protact
+```
+The results of the tests will be given in the second console window.
+
+Unit and E2E tests, along with the rest of the seed application content, will grow from the simple tests that currently exist. As features are added, they will be associated with test files and methods as needed.
 
 ## Contact
 
