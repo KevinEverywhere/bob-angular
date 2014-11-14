@@ -39,7 +39,7 @@
     "test-single-run": "./node_modules/karma/bin/karma start --single-run",
 
     "preupdate-webdriver": "npm start",
-    "update-webdriver": "webdriver-manager update --standalone",
+    "update-webdriver": "webdriver-manager update",
 
     "preupdate-test-webdriver": "npm run starttest",
     "update-test-webdriver": "webdriver-manager update --standalone",
