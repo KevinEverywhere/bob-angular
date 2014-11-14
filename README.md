@@ -89,13 +89,13 @@ The karma unit tests are set up in the components folders that they are associat
 
 Sample file and location:
 
+```
 app/components/footer/footer.html
                       footer.js
                       footer_test.js
+```
 
-The footer_test file contains the actual karma tests that are run. 
-
-To run the unit tests, enter the following into the terminal:
+In the example above, the footer_test file contains the actual karma tests that are run.  To run the unit tests, enter the following into the terminal:
 
 
 ```
@@ -109,12 +109,12 @@ npm test
 The E2E tests require two terminal windows to be open: one with the local server, the other for protactor. This is facilitated by first starting the server by entering the following into the terminal:
 
 ```
-npm run protactor
+npm run protractor
 ```
 This window will launch an express server at localhost:3000. If this port is not available, you may need to edit your exports.index.js file. The console will give you a message to start the actual protactor in a new terminal window and then entering:
 
 ```
-npm run protact
+npm run protract
 ```
 The results of the tests will be given in the second console window.
 
