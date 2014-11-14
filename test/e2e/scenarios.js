@@ -19,7 +19,7 @@ describe('bobApp', function() {
        expect(ptor.isElementPresent(ele)).toBe(true);
     });
   });
-  
+
   describe('bobApp.context', function() {
     it('should have #context in the main window', function() {
        var ele = element(by.css('#context'));
@@ -29,7 +29,7 @@ describe('bobApp', function() {
 
   describe('bobApp.main', function() {
     it('should have #main in the main window', function() {
-      var _link=element(by.binding("homeLink"));
+      var _link=element(by.id("homeLink"));
       _link.click();
       var ele = element(by.css('#main'));
       expect(ptor.isElementPresent(ele)).toBe(true);
@@ -38,7 +38,7 @@ describe('bobApp', function() {
 
   describe('bobApp.youtube', function() {
     it('should have #youtube in the main window', function() {
-      var _link=element(by.binding("videoLink"));
+      var _link=element(by.id("videoLink"));
       _link.click();
       var ele = element(by.css('#youtube'));
       expect(ptor.isElementPresent(ele)).toBe(true);
@@ -47,7 +47,7 @@ describe('bobApp', function() {
 
   describe('bobApp.leaflet', function() {
     it('should have #leaflet in the main window', function() {
-      var _link=element(by.binding("mapLink"));
+      var _link=element(by.id("mapLink"));
       _link.click();
        var ele = element(by.css('#leaflet'));
        expect(ptor.isElementPresent(ele)).toBe(true);
@@ -56,7 +56,7 @@ describe('bobApp', function() {
 
   describe('bobApp.svg', function() {
     it('should have #svg in the main window', function() {
-      var _link=element(by.binding("svgLink"));
+      var _link=element(by.id("svgLink"));
       _link.click();
        var ele = element(by.css('.svgDiv'));
        expect(ptor.isElementPresent(ele)).toBe(true);
