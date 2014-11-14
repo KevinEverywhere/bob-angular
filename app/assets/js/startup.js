@@ -7,6 +7,10 @@ function pixelWrap(_var){
 };
 
 function changeOrient(evt){
+    evt.preventDefault();
+};
+
+function changeSize(evt){
     getCurrentDimensions();
     less.modifyVars({
         "@axis1L":pixelWrap("axis1L"),
