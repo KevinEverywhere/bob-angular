@@ -6,8 +6,8 @@ function pixelWrap(_var){
   }
 };
 
-function changeOrient(evt){
-    evt.preventDefault();
+function changeOrient(event){
+    event.preventDefault();
 };
 
 function changeSize(evt){
