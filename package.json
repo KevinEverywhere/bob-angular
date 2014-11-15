@@ -15,7 +15,8 @@
     "grunt-contrib-cssmin": "~0.6.0",
     "grunt-html2js":"0.2.x",
     "grunt-contrib-watch": "~0.4.0",
-    "selenium-webdriver": "2.34.x"
+    "selenium-webdriver": "2.34.x",
+    "wd":"0.3.x"
   },
   "config": {
     "unsafe-perm":true,
@@ -40,6 +41,10 @@
 
     "preupdate-webdriver": "npm start",
     "update-webdriver": "webdriver-manager update",
+
+    "iphone-protract": "protractor test/e2e/protractor.iphone.conf.js",
+
+    "ipad-protract": "protractor test/e2e/protractor.pad.conf.js",
 
     "preupdate-test-webdriver": "npm run starttest",
     "update-test-webdriver": "webdriver-manager update --standalone",

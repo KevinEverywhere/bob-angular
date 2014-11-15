@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css" />  <!--  Replace with .min.js-->
   <script src="assets/js/startup.js"></script>
   <script>
-var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
+var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
 
 if(userAgent.toLowerCase().indexOf("chrome")!=-1){
     uaFont="Roboto";
@@ -46,6 +46,8 @@ less = {
     poll: 1000,
     globalVars:{
       userFont:uaFont,
+      bobAppX:null, 
+      bobAppY:null,
       axis1L:null,
       axis1T:null,
       axis1R:null,

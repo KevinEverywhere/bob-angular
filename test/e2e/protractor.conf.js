@@ -5,17 +5,28 @@ exports.config = {
     '*.js'
   ],
   onPrepare:function(){
-    browser.driver.manage().window().setSize(800,490);
+    browser.driver.manage().window().setSize(800,600);
   },
 
-directConnect: true,
-chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
 
+  directConnect: true,
+  chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
+
+  multiCapabilities: [
+
+      {
+        'browserName' : 'chrome'
+      }, 
+      {
+        'browserName' : 'firefox'
+      }
+    ],
+/*
   capabilities: {
     'browserName': 'chrome'
   },
 
-/*  baseUrl: 'http://localhost:3000/',*/
+  baseUrl: 'http://localhost:3000/',*/
   baseUrl: 'http://localhost:3000/',
 
   framework: 'jasmine',

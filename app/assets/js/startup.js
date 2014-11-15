@@ -21,6 +21,8 @@ function changeSize(evt){
     less.modifyVars({
         "@axis1L":pixelWrap("axis1L"),
         "@axis1T":pixelWrap("axis1T"),
+        "@axis1L":pixelWrap("axis1L"),
+        "@axis1T":pixelWrap("axis1T"),
         "@axis1R":pixelWrap("axis1R"),
         "@axis1B":pixelWrap("axis1B"),
         "@axis1W":pixelWrap("axis1W"),
@@ -94,5 +96,7 @@ function getCurrentDimensions(){
     pageBottomB=0;
     pageBottomT=(theOrientation=="horizontal") ? (theSmall-rowTrim) : (theLarge-rowTrim);
     pageBottomW=(theOrientation=="horizontal") ? theLarge : theSmall;
+    bobAppX=(theOrientation=="horizontal") ? (theLarge-theSmall)/2 : (-theSmalltheLarge)/2; 
+    bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (-theSmalltheLarge)/2; 
 
 }
