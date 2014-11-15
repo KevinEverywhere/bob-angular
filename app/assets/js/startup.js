@@ -96,7 +96,7 @@ function getCurrentDimensions(){
     pageBottomB=0;
     pageBottomT=(theOrientation=="horizontal") ? (theSmall-rowTrim) : (theLarge-rowTrim);
     pageBottomW=(theOrientation=="horizontal") ? theLarge : theSmall;
-    bobAppX=(theOrientation=="horizontal") ? (theLarge-theSmall)/2 : (-theSmalltheLarge)/2; 
-    bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (-theSmalltheLarge)/2; 
+    bobAppX=(theOrientation=="horizontal") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
+    bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
 
 }
