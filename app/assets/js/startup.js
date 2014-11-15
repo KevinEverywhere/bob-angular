@@ -8,8 +8,8 @@ function pixelWrap(_var){
 
 function changeOrient(event){
     try{
-        event.preventDefault();
-        alert('orient changed')
+        changeSize(event)
+     //   event.preventDefault();
     }catch(oops){
         changeSize(event)
         console.log("no orient change")
