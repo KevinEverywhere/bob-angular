@@ -1,5 +1,5 @@
 exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+  seleniumAddress: 'http://localhost:4723/wd/hub',
   allScriptsTimeout: 30000,
   specs: [
     'scenarios.js'

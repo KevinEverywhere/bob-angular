@@ -1,20 +1,29 @@
 exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
-  
+  seleniumAddress: 'http://localhost:4723/wd/hub',
   allScriptsTimeout: 30000,
-
   specs: [
     'scenarios.js'
   ],
 
   // Reference: https://github.com/appium/sample-code/blob/master/sample-code/examples/node/helpers/caps.js
+  /*
   capabilities: {
     browserName: 'safari',
     'appium-version': '1.0',
     platformName: 'iOS',
-    platformVersion: '7.1',
-    deviceName: 'iPhone Simulator',
+    platformVersion: '7.0.3',
+    deviceName: 'iPhone',
   },
+  */
+
+  capabilities: {
+    browserName: 'chrome',
+    'appium-version': '1.0',
+    platformName: 'android',
+    platformVersion: '4.4',
+    deviceName: 'Android Emulator',
+  },
+
   baseUrl: 'http://localhost:3000/',
 
   framework: 'jasmine',
