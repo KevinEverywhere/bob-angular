@@ -5,7 +5,7 @@
 The sample application that is built from this code is viewable at 
 [bob-angular](http://bob-angular.herokuapp.com/)
 
-This project is an application skeleton, influenced by and forked from [angular-seed](https://github.com/angular/angular-seed). It uses [three.js](http://threejs.org/) to provide a means to map 2D Web content to 3D space. 
+This project is influenced by and borrows from [angular-seed](https://github.com/angular/angular-seed). It uses [three.js](http://threejs.org/) to provide a means to map 2D Web content to 3D space. 
 
 The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests.
 
@@ -115,7 +115,6 @@ npm run protractor
 
 The results of the tests will be given in the second console window after running the script.
 
-
 ### One Script for Unit and E2E Tests
 
 A streamlined testing mechanism is available through entering the following command at the root of the repository:
@@ -129,9 +128,7 @@ This will run the unit tests first and then launch the server for protractor e2e
 npm run protractor
 ```
 
-The e2e testing will be expanded soon to iOS and other devices. 
-
-This software is dynamic and will be evolving. As features are added, they will be associated with test files and methods as needed.
+The e2e testing will be expanded soon to iOS and other devices.  bob-angular is currently under constant development. As features are added and content explored, additional tests will be added to those currently included.
 
 ## Contact
 
