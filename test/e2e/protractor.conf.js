@@ -1,5 +1,5 @@
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 15000,
   specs: [
     'scenarios.js'
   ],
@@ -7,7 +7,9 @@ exports.config = {
     browser.driver.manage().window().setSize(800,600);
   },
   directConnect: true,
-  chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
+  chromeDriver: '../../node_modules/chromedriver/bin/chromedriver',
+/*  chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
+*/
   multiCapabilities: [{
       'browserName' : 'chrome'
     },{
@@ -19,6 +21,6 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     isVerbose: true,
-    defaultTimeoutInterval: 30000
+    defaultTimeoutInterval: 60000
   }
 };
