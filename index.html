@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="bob-angular : An evolving angular-three.js seed">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>bob-angular</title>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>bob-angular by KevinEverywhere</title>
   </head>
 
   <body>
+    <div id="container">
+      <div class="inner">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/KevinEverywhere/bob-angular">View on GitHub</a>
-
-          <h1 id="project_title">bob-angular</h1>
-          <h2 id="project_tagline">An evolving angular-three.js seed</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/KevinEverywhere/bob-angular/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/KevinEverywhere/bob-angular/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+        <header>
+          <h1>bob-angular</h1>
+          <h2>An evolving angular-three.js seed</h2>
         </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/KevinEverywhere/bob-angular/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/KevinEverywhere/bob-angular/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/KevinEverywhere/bob-angular" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h3>
 <a id="version-000" class="anchor" href="#version-000" aria-hidden="true"><span class="octicon octicon-link"></span></a>version 0.0.0</h3>
 
 <p><em>This is in development and is not recommended to develop with as a base until version 0.0.1. You can still look under the hood to see how things work by following the installation process.</em></p>
@@ -118,8 +118,7 @@ app/                                   --&gt; application source files
   app.js                               --&gt; main application module
   index.html                           --&gt; the entrace point to the app.
 karma.conf.js                          --&gt; config file for Karma unit tests 
-TODO:
-  index-async.html                     --&gt; index.html with asynchronous loads
+tests/                                 --&gt; supporting files for tests 
 e2e-tests/                             --&gt; end-to-end tests
 </code></pre>
 
@@ -146,36 +145,48 @@ e2e-tests/                             --&gt; end-to-end tests
 <h3>
 <a id="e2e-tests" class="anchor" href="#e2e-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>E2E Tests</h3>
 
-<p>The E2E tests require two terminal windows to be open: one with the local server, the other for protactor. This is facilitated by first starting the server by entering the following into the terminal:</p>
+<p>The E2E tests require two terminal windows to be open: one with the local server, the other for protractor. This is facilitated by first starting the server by entering the following into the terminal:</p>
+
+<pre><code>npm start
+</code></pre>
+
+<p>This window will launch an express server at localhost:3000. If this port is not available, you may need to edit exports.index.js. The console will give you a message to start the actual protractor in a new terminal window. From the same directory where you launched the server, bob-angular, enter:</p>
 
 <pre><code>npm run protractor
 </code></pre>
 
-<p>This window will launch an express server at localhost:3000. If this port is not available, you may need to edit your exports.index.js file. The console will give you a message to start the actual protactor in a new terminal window and then entering:</p>
+<p>The results of the tests will be given in the second console window after running the script.</p>
 
-<pre><code>npm run protract
+<h3>
+<a id="one-script-for-unit-and-e2e-tests" class="anchor" href="#one-script-for-unit-and-e2e-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>One Script for Unit and E2E Tests</h3>
+
+<p>A streamlined testing mechanism is available through entering the following command at the root of the repository:</p>
+
+<pre><code>npm run fulltest
 </code></pre>
 
-<p>The results of the tests will be given in the second console window.</p>
+<p>This will run the unit tests first and then launch the server for protractor e2e testing in a second window. The e2e component requires you to open a new window while the server is running in the original window. From the same directory where you launched the server, bob-angular, enter:</p>
 
-<p>Unit and E2E tests, along with the rest of the seed application content, will grow from the simple tests that currently exist. As features are added, they will be associated with test files and methods as needed.</p>
+<pre><code>npm run protractor
+</code></pre>
+
+<p>The e2e testing will be expanded soon to iOS and other devices. </p>
+
+<p>This software is dynamic and will be evolving. As features are added, they will be associated with test files and methods as needed.</p>
 
 <h2>
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h2>
 
 <p>For more information on bob-angular please contact <a href="mailto:kevin@planetkevin.com">kevin@planetkevin.com</a></p>
-      </section>
+        </section>
+
+        <footer>
+          bob-angular is maintained by <a href="https://github.com/KevinEverywhere">KevinEverywhere</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
     </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">bob-angular maintained by <a href="https://github.com/KevinEverywhere">KevinEverywhere</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
   </body>
 </html>
