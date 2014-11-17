@@ -1,3 +1,7 @@
+// var child_process=require('child_process').spawn();
+
+// java -jar selenium-server-standalone-2.24.1.jar
+
 var express = require('express')
     , morgan = require('morgan')
     , bodyParser = require('body-parser')
@@ -22,3 +26,14 @@ app.listen(port);
 console.log('App running on port', port);
 
 java -jar selenium-server-standalone-2.24.1.jar
+
+var webdriver = require('selenium-webdriver');
+ 
+var driver = new webdriver.Builder().
+   withCapabilities(webdriver.Capabilities.chrome()).
+   build();
+ 
+driver.get('http://www.google.com');
+driver.findElement(webdriver.By.name('q')).sendKeys('simple programmer');
+driver.findElement(webdriver.By.name('btnG')).click();
+driver.quit();

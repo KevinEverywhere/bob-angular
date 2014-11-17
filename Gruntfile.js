@@ -2,6 +2,11 @@ module.exports = function(grunt) {
 	"use strict";
 
 	grunt.initConfig({
+		protractor_webdriver: {
+	        options: {
+	            keepAlive : true   // True to keep the webdriver alive
+	        }
+	    },
 		watch: {
 			files: [
 				'app/app.js',
