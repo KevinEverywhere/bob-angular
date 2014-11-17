@@ -37,7 +37,9 @@
     
     "pretest": "npm install",
     "test": "./node_modules/karma/bin/karma start",
-    "posttest": "node exports.index.js",
+
+    "prefulltest": "npm test",
+    "fulltest": "node exports.index.js",
 
     "test-single-run": "./node_modules/karma/bin/karma start --single-run",
 
