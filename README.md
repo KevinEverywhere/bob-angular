@@ -76,8 +76,7 @@ app/                                   --> application source files
   app.js                               --> main application module
   index.html                           --> the entrace point to the app.
 karma.conf.js                          --> config file for Karma unit tests 
-TODO:
-  index-async.html                     --> index.html with asynchronous loads
+tests/                                 --> supporting files for tests 
 e2e-tests/                             --> end-to-end tests
 ```
 
@@ -97,28 +96,40 @@ app/components/footer/footer.html
 
 In the example above, the footer_test file contains the actual karma tests that are run.  To run the unit tests, enter the following into the terminal:
 
-
 ```
 npm test
 ```
 
-
-
 ### E2E Tests                      
 
-The E2E tests require two terminal windows to be open: one with the local server, the other for protactor. This is facilitated by first starting the server by entering the following into the terminal:
+The E2E tests require two terminal windows to be open: one with the local server, the other for protractor. This is facilitated by first starting the server by entering the following into the terminal:
+
+```
+npm start
+```
+This window will launch an express server at localhost:3000. If this port is not available, you may need to edit exports.index.js. The console will give you a message to start the actual protractor in a new terminal window. From the same directory where you launched the server, bob-angular, enter:
 
 ```
 npm run protractor
 ```
-This window will launch an express server at localhost:3000. If this port is not available, you may need to edit your exports.index.js file. The console will give you a message to start the actual protactor in a new terminal window and then entering:
+The results of the tests will be given in the second console window after running the script.
+
+
+### One Script for Unit and E2E Tests
+
+A streamlined testing mechanism is available through entering the following command at the root of the repository:
 
 ```
-npm run protract
+npm run fulltest
 ```
-The results of the tests will be given in the second console window.
+This will run the unit tests first and then launch the server for protractor e2e testing in a second window. The e2e component requires you to open a new window while the server is running in the original window. From the same directory where you launched the server, bob-angular, enter:
 
-Unit and E2E tests, along with the rest of the seed application content, will grow from the simple tests that currently exist. As features are added, they will be associated with test files and methods as needed.
+```
+npm run protractor
+
+The e2e testing will be expanded soon to iOS devices. 
+
+This software is dynamic and will be evolving. As features are added, they will be associated with test files and methods as needed.
 
 ## Contact
 
