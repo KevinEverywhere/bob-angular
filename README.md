@@ -112,6 +112,7 @@ This window will launch an express server at localhost:3000. If this port is not
 ```
 npm run protractor
 ```
+
 The results of the tests will be given in the second console window after running the script.
 
 
@@ -126,6 +127,7 @@ This will run the unit tests first and then launch the server for protractor e2e
 
 ```
 npm run protractor
+```
 
 The e2e testing will be expanded soon to iOS and other devices. 
 
