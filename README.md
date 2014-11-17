@@ -127,7 +127,7 @@ This will run the unit tests first and then launch the server for protractor e2e
 ```
 npm run protractor
 
-The e2e testing will be expanded soon to iOS devices. 
+The e2e testing will be expanded soon to iOS and other devices. 
 
 This software is dynamic and will be evolving. As features are added, they will be associated with test files and methods as needed.
 
