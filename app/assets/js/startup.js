@@ -125,20 +125,36 @@ function getCurrentDimensions(){
     axis1W= (theOrientation=="horizontal") ? theLarge : theSmall;
     axis1B=(theOrientation=="horizontal") ? (theSmall-rowTrim) : (theLarge-rowTrim);
 
-    axis2L=0;
-    axis2T=rowTrim;
-    axis2R=(theOrientation=="horizontal") ? columnTrim : 0;
-    axis2B=(theOrientation=="horizontal") ? rowTrim : (2 * rowTrim);
-    axis2W=(theOrientation=="horizontal") ? (theLarge-columnTrim) : theSmall;
-    axis2H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : theLarge-(3 * rowTrim);
+    if(isMobile().any() || (theSmall < 480)){
+        axis2L=0;
+        axis2T=rowTrim;
+        axis2R=0;
+        axis2B=rowTrim;
+        axis2W=(theOrientation=="horizontal") ? theLarge : theSmall;
+        axis2H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : theLarge-(2 * rowTrim);
+/*
+        axis3L=(theOrientation=="horizontal") ? (theLarge-columnTrim) : 0;
+        axis3H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : (2*rowTrim);
+        axis3R=0;
+        axis3B=rowTrim;
+        axis3W=(theOrientation=="horizontal") ? columnTrim : theSmall;
+        axis3T=(theOrientation=="horizontal") ? rowTrim : theLarge-(3 * rowTrim);
+*/
+    }else{
+        axis2L=0;
+        axis2T=rowTrim;
+        axis2R=(theOrientation=="horizontal") ? columnTrim : 0;
+        axis2B=(theOrientation=="horizontal") ? rowTrim : (2 * rowTrim);
+        axis2W=(theOrientation=="horizontal") ? (theLarge-columnTrim) : theSmall;
+        axis2H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : theLarge-(3 * rowTrim);
 
-    axis3L=(theOrientation=="horizontal") ? (theLarge-columnTrim) : 0;
-    axis3H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : (2*rowTrim);
-    axis3R=0;
-    axis3B=rowTrim;
-    axis3W=(theOrientation=="horizontal") ? columnTrim : theSmall;
-    axis3T=(theOrientation=="horizontal") ? rowTrim : theLarge-(3 * rowTrim);
-
+        axis3L=(theOrientation=="horizontal") ? (theLarge-columnTrim) : 0;
+        axis3H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : (2*rowTrim);
+        axis3R=0;
+        axis3B=rowTrim;
+        axis3W=(theOrientation=="horizontal") ? columnTrim : theSmall;
+        axis3T=(theOrientation=="horizontal") ? rowTrim : theLarge-(3 * rowTrim);
+    }
     pageBottomL=0;
     pageBottomH=rowTrim;
     pageBottomR=0;
