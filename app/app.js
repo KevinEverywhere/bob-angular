@@ -22,10 +22,14 @@ var bobApp=angular.module("bobApp",  [
 		$rootScope.hasOpened=true;
 		$rootScope.interstitialized={done:false};
 		var redraw=function () {
-			console.log('redraw')
+			console.log('redraw');
+		};
+		var resize=function (evt) {
+			$window.changeSize(evt);
+			console.log('resize');
 		};
 		$window.addEventListener('orientationchange', redraw, false);
-		$window.addEventListener('resize', redraw, false);
+		$window.addEventListener('resize', resize, false);
 		$window.addEventListener('online', function(e) {
 			console.log("masterMapApp.updateOnlineStatus");
 			$rootScope.$broadcast("onlineStatusUpdate");
@@ -73,7 +77,8 @@ var bobApp=angular.module("bobApp",  [
 			}
 			$window['stated']=toState;
 			console.log("stateChangeSuccess=" + toState);
-		})
+		});
+		resize();
 	})
 	.config(function($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.otherwise('/');

@@ -35,6 +35,10 @@
     "prestart": "npm install",
     "start": "node index.js",
     
+    "/* */":"Make sure that this matches the location of your terminal application..",
+    "open-window":"open -a /Applications/Utilities/Terminal.app/ ./",
+    "postopen-window":"npm run protractor",
+
     "pretest": "npm install",
     "test": "./node_modules/karma/bin/karma start",
 

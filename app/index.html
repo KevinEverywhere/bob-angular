@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css" />  <!--  Replace with .min.js-->
   <script src="assets/js/startup.js"></script>
   <script>
-var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
+var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, isMobile, mobileType, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
 
 if(userAgent.toLowerCase().indexOf("chrome")!=-1){
     uaFont="Roboto";
@@ -45,6 +45,8 @@ less = {
     fileAsync: false,
     poll: 1000,
     globalVars:{
+      isMobile:null,
+      mobileType:"starting",
       userFont:uaFont,
       bobAppX:null, 
       bobAppY:null,
@@ -88,7 +90,7 @@ less = {
   <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script src="libs/leaflet/dist/leaflet.js"></script>
   <script src="libs/three.js/index.js"></script>
-  <script src="libs/OrbitControls/index.js"></script>
+  <script src="libs/TrackballControls/index.js"></script>
   <script src="libs/css-3d-renderer/index.js"></script>
 
   <script src="libs/ui-router/release/angular-ui-router.js"></script>  <!--  Replace with .min.js-->
@@ -125,9 +127,9 @@ less = {
 <script type="text/javascript">
   $(document).ready(function (){
     angular.bootstrap(document, ['bobApp']);
-    window.addEventListener('orientationchange', changeOrient, false);
-    window.addEventListener('resize', changeSize, false);
-    changeOrient();
+  //  window.addEventListener('orientationchange', changeOrient, false);
+  //  window.addEventListener('resize', changeSize, false);
+  //  changeOrient();
   });  
 </script>
   <script src="app.js"></script>

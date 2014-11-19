@@ -16,11 +16,59 @@ function changeOrient(event){
     }
 };
 
+function isMobile(){
+    var _isMobile={
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iPhone: function() {
+            return navigator.userAgent.match(/iPhone/i);
+        },
+        iPod: function() {
+            return navigator.userAgent.match(/iPod/i);
+        },
+        iPad: function() {
+            return navigator.userAgent.match(/iPad/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Desktop: function() {
+            return navigator.userAgent.match(/Chrome/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (_isMobile.Android() || _isMobile.BlackBerry() || _isMobile.iOS() || _isMobile.Opera() || _isMobile.Windows());
+        },
+        type:function(){
+            var _type="NotMobile";
+            for(var z in _isMobile){
+                if((z!="type") && (z!="any") && (z!="iOS")){
+                    if(_isMobile[z]()){
+                        _type=z;
+                        break;
+                    }
+                }
+            }
+            return _type;
+        }
+    }
+    return _isMobile;
+}
+
 function changeSize(evt){
     getCurrentDimensions();
     less.modifyVars({
-        "@axis1L":pixelWrap("axis1L"),
-        "@axis1T":pixelWrap("axis1T"),
+        "@bobAppX":pixelWrap("bobAppX"),
+        "@bobAppY":pixelWrap("bobAppY"),
         "@axis1L":pixelWrap("axis1L"),
         "@axis1T":pixelWrap("axis1T"),
         "@axis1R":pixelWrap("axis1R"),
@@ -45,6 +93,8 @@ function changeSize(evt){
         "@pageBottomB":pixelWrap("pageBottomB"),
         "@pageBottomW":pixelWrap("pageBottomW"),
         "@pageBottomH":pixelWrap("pageBottomH"),
+        "@isMobile":isMobile().any(),
+        "@mobileType":isMobile().type(),
         "@rowTrim":pixelWrap("rowTrim"),
         "@columnTrim":pixelWrap("columnTrim"),
         "@userFont":uaFont

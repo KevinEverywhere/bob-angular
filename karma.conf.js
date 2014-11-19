@@ -12,7 +12,7 @@ module.exports = function(config){
       'app/libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js',
       'app/libs/leaflet/dist/leaflet.js',
       'app/libs/three.js/index.js',
-      'app/libs/OrbitControls/index.js',
+      'app/libs/TrackballControls/index.js',
       'app/libs/css-3d-renderer/index.js',
       'app/libs/ui-router/release/angular-ui-router.js',
       'app/libs/localCRUD/index.js',

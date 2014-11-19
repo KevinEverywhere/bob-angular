@@ -14,13 +14,15 @@
 							</button>
 							<a class="navbar-brand" href="#">bob-angular</a>
 						</div>
-						<div class="navbar-collapse collapse alignLeft">
-							<ul class="nav navbar-nav alignLeft">
-								<li ng-class="{active: $state.includes('home'),inactive: !$state.includes('home')}"><a id="homeLink" href="#/">Home</a></li>
-								<li ng-class="{active: $state.includes('video'),inactive: !$state.includes('video')}"><a id="videoLink" href="#video">Video</a></li>
-								<li ng-class="{active: $state.includes('map'),inactive: !$state.includes('map')}"><a id="mapLink" href="#map">Map</a></li>
-								<li ng-class="{active: $state.includes('svg'),inactive: !$state.includes('svg')}"><a id="svgLink" href="#svg">SVG</a></li>
-							</ul>
+						<div class="navbar-collapse collapse">
+							<div class="nav navbar-nav">
+								<ul class="nav navbar-nav alignLeft">
+									<li ng-class="{active: $state.includes('home'),inactive: !$state.includes('home')}"><a id="homeLink" href="#/">Home</a></li>
+									<li ng-class="{active: $state.includes('video'),inactive: !$state.includes('video')}"><a id="videoLink" href="#video">Video</a></li>
+									<li ng-class="{active: $state.includes('map'),inactive: !$state.includes('map')}"><a id="mapLink" href="#map">Map</a></li>
+									<li ng-class="{active: $state.includes('svg'),inactive: !$state.includes('svg')}"><a id="svgLink" href="#svg">SVG</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
