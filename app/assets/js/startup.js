@@ -98,7 +98,7 @@ function changeSize(evt){
         "@rowTrim":pixelWrap("rowTrim"),
         "@columnTrim":pixelWrap("columnTrim")
     });
-    if(window.hardcoded){console.log("window.hardcoded=" + window.hardcoded);window.hardcoded()}
+    if(window.hardcoded){window.hardcoded()}
 }    
 
 var rowTrim=80, columnTrim=200;
