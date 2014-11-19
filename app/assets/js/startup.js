@@ -96,8 +96,7 @@ function changeSize(evt){
         "@isMobile":isMobile().any(),
         "@mobileType":isMobile().type(),
         "@rowTrim":pixelWrap("rowTrim"),
-        "@columnTrim":pixelWrap("columnTrim"),
-        "@userFont":uaFont
+        "@columnTrim":pixelWrap("columnTrim")
     });
     if(window.hardcoded){console.log("window.hardcoded=" + window.hardcoded);window.hardcoded()}
 }    
