@@ -43,7 +43,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.minRotate=160;
 
 			$scope.init=function(elem, _content, _context){
-				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&autostart=1&enablejsapi=1&";
+				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&";
 				$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
@@ -60,7 +60,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 			  var player = new $window.YT.Player('ytplayer', {
 			      height: $scope._height,
 			      width: $scope._width,
-			      videoId: which
+			      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&"
 			    });
 			}
 			$scope.animate=function(){
