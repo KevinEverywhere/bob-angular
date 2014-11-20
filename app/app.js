@@ -86,10 +86,6 @@ var bobApp=angular.module("bobApp",  [
 		  .state('home', {
 			url: '/',
 			views:{
-				"axis1":{
-				//	templateUrl: 'components/navigation/navigation.html',
-				//	controller: 'ThreeNavController'
-				},
 				"axis2":{
 					templateUrl: 'components/main/main.html',
 					controller: 'ThreeCSSController'
@@ -97,20 +93,12 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
 					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-				//	templateUrl: 'components/footer/footer.html',
-				//	controller: 'ThreeFooterController'
 				}
 			}
 		  })
 		  .state('video', {
 			url: '/video',
 			views:{
-				"axis1":{
-				//	templateUrl: 'components/navigation/navigation.html',
-				//	controller: 'ThreeNavController'
-				},
 				"axis2":{
 					templateUrl: 'components/youtube/youtube.html',
 					controller: 'ThreeYouTubeController'
@@ -118,20 +106,12 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
  					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-				//	templateUrl: 'components/footer/footer.html',
-				//	controller: 'ThreeFooterController'
 				}
 			}
 		  })
 		  .state('svg', {
 			url: '/svg',
 			views:{
-				"axis1":{
-				//	templateUrl: 'components/navigation/navigation.html',
-				//	controller: 'ThreeNavController'
-				},
 				"axis2":{
 					templateUrl: 'components/svg/svg.html',
 					controller: 'ThreeSVGController'
@@ -139,20 +119,12 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
  					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-				//	templateUrl: 'components/footer/footer.html',
-				//	controller: 'ThreeFooterController'
 				}
 			}
 		  })
 		  .state('map', {
 			url: '/map',
 			views:{
-				"axis1":{
-				//	templateUrl: 'components/navigation/navigation.html',
-				//	controller: 'ThreeNavController'
-				},
 				"axis2":{
 					templateUrl: 'components/leaflet/leaflet.html',
 					controller: 'ThreeLeafletController'
@@ -160,10 +132,6 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
  					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-				//	templateUrl: 'components/footer/footer.html',
-				//	controller: 'ThreeFooterController'
 				}
 			}
 		  });

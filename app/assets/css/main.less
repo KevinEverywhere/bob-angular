@@ -14,11 +14,25 @@
 	ul.nav.navbar-nav.alignLeft{
 		
 	}
-	div.navbar-collapse.collapse.in{
-		height:2.5em;
-		top: -.5em;
+
+	/* ul.navbar-collapse.collapse,  */
+	ul.navbar-collapse.collapse.in{
+		height:3.5em;
+		top: -.75em;
 		position: relative;
 		overflow:hidden;
+	}
+
+	/* div.navbar-collapse.collapse,   */
+	div.navbar-collapse.collapse.in{
+		height:2.5em;
+		top: -.75em;
+		position: relative;
+		overflow:hidden;
+	}
+	.nav > li > a{
+		padding:1.2em;
+		line-height:0em;
 	}
 	.collapsed{
 		display:block !important;
@@ -47,7 +61,8 @@
 }
 
 .navbar-inverse{
-	background: rgba(100, 99, 99, 0.1);
+	background: rgba(100, 99, 99, 0.01);
+	border:none;
 }
 
  /*
@@ -83,9 +98,9 @@ a{
 	width:100%;
 }
 
-.alignRight li, .alignLeft li{
+.alignRight li, .alignLeft li, li a{
 	display:inline-block;
-	width:19%;
+	min-width:5em;
 	padding: 0;
 	margin: 0;
 }
