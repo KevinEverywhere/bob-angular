@@ -101,7 +101,7 @@ function changeSize(evt){
     if(window.hardcoded){window.hardcoded()}
 }    
 
-var rowTrim=80, columnTrim=200;
+var rowTrim=50, columnTrim=200;
 function getCurrentDimensions(){
     try{
         theLarge=Math.max(window.innerWidth, window.innerHeight);
