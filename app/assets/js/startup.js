@@ -125,7 +125,7 @@ function getCurrentDimensions(){
     axis1W= (theOrientation=="horizontal") ? theLarge : theSmall;
     axis1B=(theOrientation=="horizontal") ? (theSmall-rowTrim) : (theLarge-rowTrim);
 
-    if(isMobile().any() || (theSmall < 480) || (theLarge < 720 )){
+    if(isMobile().any() && ((theSmall < 480) || (theLarge < 720 ) || theOrientation=="vertical")){
         axis2L=0;
         axis2T=rowTrim;
         axis2R=0;
