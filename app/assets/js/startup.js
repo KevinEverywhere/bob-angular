@@ -7,12 +7,13 @@ function pixelWrap(_var){
 };
 
 function changeOrient(event){
+    console.log("changeOrient . startup---");
     try{
         changeSize(event)
      //   event.preventDefault();
     }catch(oops){
         changeSize(event)
-        console.log("no orient change")
+        console.log("no orient change");
     }
 };
 
@@ -65,6 +66,7 @@ function isMobile(){
 }
 
 function changeSize(evt){
+    console.log("changeSize---");
     getCurrentDimensions();
     less.modifyVars({
         "@bobAppX":pixelWrap("bobAppX"),
@@ -133,6 +135,14 @@ function getCurrentDimensions(){
         axis2B=rowTrim;
         axis2W=(theOrientation=="horizontal") ? theLarge : theSmall;
         axis2H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : theLarge-(2 * rowTrim);
+
+        axis3L=0;
+        axis3H=0;
+        axis3R=(theOrientation=="horizontal") ? theLarge : theSmall;
+        axis3B=(theOrientation=="horizontal") ? theSmall : theLarge;
+        axis3W=0;
+        axis3T=(theOrientation=="horizontal") ? theSmall : theLarge;
+
     }else{
         axis2L=0;
         axis2T=rowTrim;
