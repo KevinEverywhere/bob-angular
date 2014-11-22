@@ -29,6 +29,7 @@ var bobApp=angular.module("bobApp",  [
 			$window.changeSize(evt);
 			try{
 				$state.reload();
+				console.log("$state.reload()");
 			}catch(oops){}
 		};
 		$window.addEventListener('orientationchange', redraw, false);

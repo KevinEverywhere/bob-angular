@@ -47,16 +47,17 @@ var threeModule = angular.module('threeModule', [])
 					}
 				},
 				init:function(_elem, scope, _content){
+					scope._service=this;
 					scope.elem = document.getElementById(_elem);
 					scope._content=_content;
                     scope._name="#" + _elem + " > ." + _content;
                     service.childObjects[scope._name]=scope;
 					scope.addActiveAnimation=function(animName, animParams){
-						scope.activeAnimations[animName]=animName;
-						if(animParams) {scope.activeParams[animName]=animParams;}
+						this.activeAnimations[animName]=animName;
+						if(animParams) {this.activeParams[animName]=animParams;}
 					}
 					scope.removeActiveAnimation=function(which){
-						scope.activeAnimations[which]=null;
+						this.activeAnimations[which]=null;
 					}
 					scope.doActiveAnimations=function(){
 						if(scope.activeAnimations &&  scope.activeAnimations.length>0){
@@ -71,7 +72,7 @@ var threeModule = angular.module('threeModule', [])
 					}
 					scope.rerender=function(){
 						scope.isInited=false;
-						service.postinit(scope);
+						scope._service.postinit(scope);
 					}
 					scope.startAnimation=function(obj){
 						scope.doActiveAnimations();
@@ -133,8 +134,8 @@ var threeModule = angular.module('threeModule', [])
 						this.timer=new Date();
 					}
 					scope.updateSize=function(){
-						scope.renderer.setSize( scope._width, scope._height);
-						console.log("updateSize=" + scope._width + " and " + scope._height);
+						this.renderer.setSize( this._width, this._height);
+						console.log("updateSize=" + this._width + " and " + this._height);
 					}
 					scope.scene = new THREE.Scene();
 					scope.renderer = new THREE.CSS3DRenderer();
@@ -151,16 +152,13 @@ var threeModule = angular.module('threeModule', [])
 					scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
 					scope.scene.add( scope.css3DObject );
                     service.postinit(scope, true);
+					service.mapScopeObject(scope, true);
 				},
 				postinit:function(scope, init){
 					if(!init){
 	                    scope._width=parseInt($window.getComputedStyle(scope.elem).width);
 	                    scope._height=parseInt($window.getComputedStyle(scope.elem).height);
-						scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
-						scope.childElem=scope.renderer.domElement;
-						scope.elem.appendChild(scope.childElem);
 					}
-					service.mapScopeObject(scope, init);
 				},
 				mapScopeObject:function(whichScope, init){
 					console.log("mapScopeObject:function(" + whichScope + " and init " + init);
@@ -179,12 +177,24 @@ var threeModule = angular.module('threeModule', [])
 						whichScope.camera = new THREE.PerspectiveCamera( 75, whichScope._width/whichScope._height, 0.1, 2000 );
 					}
 					console.log("inside mapScopeObject," + whichScope._name +"  " + whichScope._width + " amd h=" + whichScope._height)
-					whichScope.css3DObject.position.x = (whichScope._width/2);
-					whichScope.css3DObject.position.y = (whichScope._height/2);
-					whichScope.css3DObject.position.z = 0;
-					whichScope.css3DObject.rotation.x = 0;
-					whichScope.css3DObject.rotation.y = service.radianCalculator(180);
-					whichScope.css3DObject.rotation.z = service.radianCalculator(180);
+					whichScope.css3DObject.position.x = 
+						whichScope.css3DObject.orig.position.x ?
+						whichScope.css3DObject.orig.position.x : (whichScope._width/2);
+					whichScope.css3DObject.position.y = 
+						whichScope.css3DObject.orig.position.y ?
+						whichScope.css3DObject.orig.position.y : (whichScope._height/2);
+					whichScope.css3DObject.position.z = 
+						whichScope.css3DObject.orig.position.z ?
+						whichScope.css3DObject.orig.position.z : 0;
+					whichScope.css3DObject.rotation.x = 
+						whichScope.css3DObject.orig.rotation.x ?
+						whichScope.css3DObject.orig.rotation.x : 0;
+					whichScope.css3DObject.rotation.y = 
+						whichScope.css3DObject.orig.rotation.y ?
+						whichScope.css3DObject.orig.rotation.y : this.radianCalculator(180);
+					whichScope.css3DObject.rotation.z = 
+						whichScope.css3DObject.orig.rotation.z ?
+						whichScope.css3DObject.orig.rotation.z : this.radianCalculator(180);
 					whichScope.updateSize();
 					whichScope.camera.updateProjectionMatrix();
 					whichScope.camera.lookAt(whichScope.css3DObject);
