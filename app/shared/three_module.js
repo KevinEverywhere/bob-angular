@@ -178,7 +178,7 @@ var threeModule = angular.module('threeModule', [])
 						}
 						whichScope.camera = new THREE.PerspectiveCamera( 75, whichScope._width/whichScope._height, 0.1, 2000 );
 					}
-					console.log("inside mapScopeObject=" + whichScope._width + " amd h=" + whichScope._height)
+					console.log("inside mapScopeObject," + whichScope._name +"  " + whichScope._width + " amd h=" + whichScope._height)
 					whichScope.css3DObject.position.x = (whichScope._width/2);
 					whichScope.css3DObject.position.y = (whichScope._height/2);
 					whichScope.css3DObject.position.z = 0;

@@ -23,27 +23,26 @@ var bobApp=angular.module("bobApp",  [
 		$rootScope.interstitialized={done:false};
 		var redraw=function () {
 			console.log('redraw');
+			resize();
 		};
 		var resize=function (evt) {
 			$window.changeSize(evt);
-			console.log('resize');
+			try{
+				$state.reload();
+			}catch(oops){}
 		};
 		$window.addEventListener('orientationchange', redraw, false);
 		$window.addEventListener('resize', resize, false);
 		$window.addEventListener('online', function(e) {
-			console.log("masterMapApp.updateOnlineStatus");
 			$rootScope.$broadcast("onlineStatusUpdate");
 		}, false);
 		$window.addEventListener('offline',function(e) {
-			console.log("masterMapApp.updateOnFFlineStatus");
 			$rootScope.$broadcast("onlineStatusUpdate");
 		}, false);
 
  		$rootScope.$on('navigatingToSection',function(toWhat, toWhich){
- 			console.log('navigatingToSection=' + toWhich);
 			$state.go(toWhich);
  		});
-
 		$rootScope.$on('$stateChangeStart', 
 		function(event, toState, toParams, fromState, fromParams){ 
 			switch(toState){
