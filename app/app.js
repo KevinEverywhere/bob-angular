@@ -92,6 +92,10 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
 					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -105,6 +109,10 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
  					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -118,6 +126,10 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
  					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -131,6 +143,10 @@ var bobApp=angular.module("bobApp",  [
 				"axis3":{
  					templateUrl: 'components/context/context.html',
 					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
 				}
 			}
 		  });
