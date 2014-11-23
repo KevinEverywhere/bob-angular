@@ -14,9 +14,12 @@ var threeModule = angular.module('threeModule', [])
 					},
 					"rotation":{
 						x:0,
-						y:0,
-						z:0
+						y:Math.PI,
+						z:Math.PI
 					}
+				},
+				radianCalculator:function(degrees){
+					return(degrees * Math.PI/180);
 				},
 				setGPS:function(toWhat){
 					if (toWhat.position) {
@@ -160,23 +163,7 @@ var threeModule = angular.module('threeModule', [])
 	                    scope._height=parseInt($window.getComputedStyle(scope.elem).height);
 					}
 				},
-				mapScopeObject:function(whichScope, init){
-					console.log("mapScopeObject:function(" + whichScope + " and init " + init);
-					if(init){
-						whichScope.css3DObject.orig={position:{},rotation:{}}
-						if(whichScope._position){
-							for(var o in whichScope._position){
-								whichScope.css3DObject.orig.position[o]=whichScope._position[o];
-							}
-						}
-						if(whichScope._rotation){
-							for(var o in whichScope._rotation){
-								whichScope.css3DObject.orig.rotation[o]=whichScope._rotation[o];
-							}
-						}
-						whichScope.camera = new THREE.PerspectiveCamera( 75, whichScope._width/whichScope._height, 0.1, 2000 );
-					}
-					console.log("inside mapScopeObject," + whichScope._name +"  " + whichScope._width + " amd h=" + whichScope._height)
+				initObjectPosition:function(whichScope){
 					whichScope.css3DObject.position.x = 
 						whichScope.css3DObject.orig.position.x ?
 						whichScope.css3DObject.orig.position.x : (whichScope._width/2);
@@ -195,15 +182,29 @@ var threeModule = angular.module('threeModule', [])
 					whichScope.css3DObject.rotation.z = 
 						whichScope.css3DObject.orig.rotation.z ?
 						whichScope.css3DObject.orig.rotation.z : this.radianCalculator(180);
+				},
+				mapScopeObject:function(whichScope, init){
+					if(init){
+						whichScope.css3DObject.orig={position:{},rotation:{}}
+						if(whichScope._position){
+							for(var o in whichScope._position){
+								whichScope.css3DObject.orig.position[o]=whichScope._position[o];
+							}
+						}
+						if(whichScope._rotation){
+							for(var o in whichScope._rotation){
+								whichScope.css3DObject.orig.rotation[o]=whichScope._rotation[o];
+							}
+						}
+						whichScope.camera = new THREE.PerspectiveCamera( 75, whichScope._width/whichScope._height, 0.1, 2000 );
+					}
+					service.initObjectPosition(whichScope);
 					whichScope.updateSize();
 					whichScope.camera.updateProjectionMatrix();
 					whichScope.camera.lookAt(whichScope.css3DObject);
 				},
 				resetCamAndObjects:function(){
 					scope.camera.lookAt(object);
-				},
-				radianCalculator:function(degrees){
-					return(degrees * Math.PI/180);
 				},
 				render:function(scope){
 					scope.startAnimation();

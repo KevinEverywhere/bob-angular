@@ -57,11 +57,18 @@ angular.module('bobApp.youtube', ["bobApp"])
 				}
 			}
 			$scope.startMedia=function(which){
-			  var player = new $window.YT.Player('ytplayer', {
+				$scope.player = new $window.YT.Player('ytplayer', {
 			      height: $scope._height,
 			      width: $scope._width,
 			      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&"
 			    });
+			    /*
+    function onYouTubePlayerReady(playerId) {
+      ytplayer = document.getElementById("myytplayer");
+    }
+
+			    $scope.player.
+			    */
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
