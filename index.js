@@ -22,7 +22,10 @@ router.get('/feed/:feedURL', function(req, res) {
 		curl.request(decodeURIComponent(req.param("feedURL")), function (err, stdout, meta) {
 		    res.set({'Content-Type': 'text/xml'});
 			res.send(stdout);
-		});		
+		});
+	 }else{
+	    res.set({'Content-Type': 'text/xml'});
+		res.send("<xml version='1.0'><nocontent /></xml>");
 	 }
 });
 
