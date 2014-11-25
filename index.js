@@ -18,12 +18,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/feed/:feedURL', function(req, res) {
-	// if(req.host.indexOf("heroku")==0){
+	if(req.host=="bob-angular.herokuapp.com"){
 		curl.request(decodeURIComponent(req.param("feedURL")), function (err, stdout, meta) {
 		    res.set({'Content-Type': 'text/xml'});
-			res.send("Host=" + req.host); // stdout);
+			res.send(stdout);
 		});		
-	// }
+	 }
 });
 
 app.use('/', router);
@@ -31,3 +31,4 @@ app.use('/', router);
 app.listen(port);
 
 console.log('App running on port', port);
+
