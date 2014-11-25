@@ -1,3 +1,4 @@
+var curl = require('curlrequest');
 var express = require('express')
     , morgan = require('morgan')
     , bodyParser = require('body-parser')
@@ -16,7 +17,17 @@ router.get('/', function(req, res, next) {
     res.render('/app/index.html');
 });
 
+router.get('/feed/:feedURL', function(req, res) {
+	// if(req.host.indexOf("heroku")==0){
+		curl.request(decodeURIComponent(req.param("feedURL")), function (err, stdout, meta) {
+		    res.set({'Content-Type': 'text/xml'});
+			res.send(req.host ); // stdout);
+		});		
+	// }
+});
+
 app.use('/', router);
 
 app.listen(port);
+
 console.log('App running on port', port);
