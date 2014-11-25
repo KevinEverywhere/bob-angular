@@ -21,7 +21,7 @@ router.get('/feed/:feedURL', function(req, res) {
 	// if(req.host.indexOf("heroku")==0){
 		curl.request(decodeURIComponent(req.param("feedURL")), function (err, stdout, meta) {
 		    res.set({'Content-Type': 'text/xml'});
-			res.send(req.host ); // stdout);
+			res.send("Host=" + req.host); // stdout);
 		});		
 	// }
 });
