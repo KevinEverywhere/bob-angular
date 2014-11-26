@@ -35,7 +35,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.activeParams={};
 			$scope.count=0;
 			$scope.youtubeId="afBm0Dpfj_k";// "Pkaq0_qOx0E" "RF0HhrwIwp0"; 
-			$scope.youtubeURL="";
 			$scope._dir=-1;
 			$scope.incr=.01;
 			$scope.currentRotate=199;
@@ -43,7 +42,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.minRotate=160;
 
 			$scope.init=function(elem, _content, _context){
-				$scope.youtubeURL="http://www.youtube.com/embed/" + $scope.youtubeId + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&";
 				$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
@@ -57,18 +55,27 @@ angular.module('bobApp.youtube', ["bobApp"])
 				}
 			}
 			$scope.startMedia=function(which){
+				var me=$scope;
 				$scope.player = new $window.YT.Player('ytplayer', {
 			      height: $scope._height,
 			      width: $scope._width,
-			      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&"
-			    });
-			    /*
-    function onYouTubePlayerReady(playerId) {
-      ytplayer = document.getElementById("myytplayer");
-    }
+			      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
+                events: {
+                        'onReady': me.onPlayerReady,
+                        'onStateChange': me.onPlayerStateChange
+                }});
+			}
+			$scope.onPlayerReady=function(evt){
+				console.log("$....onPlayerReady...");
+				for(var z in evt.target){
+					console.log(z + ":" + evt.target[z]);
+				}
 
-			    $scope.player.
-			    */
+				$window.player=$scope.player;
+				console.log("$window.player.onPlayerReady=" + $window.player);
+			}
+			$scope.onPlayerStateChange=function(evt){
+				console.log("onPlayerStateChange=" + evt);
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
@@ -108,89 +115,3 @@ angular.module('bobApp.youtube', ["bobApp"])
 		return threeObj;
 	}
 	]);
-	/*
-				$.ajax( { 
-					url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22eminem%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&",
-					type: 'POST', 
-					dataType: 'jsonp',
-					success: function(data) {
-						window.theData=data.query.results.video;
-						init();
-						animate();
-					},
-					error: function() {
-						console.log("ujojo");
-					}
-				})
-
-
-
-	.directive( "youTubeSearch", [function( searchTerm ) {
-	])
-
-	.directive( "youTubeViewer", [function( youtubeId ) {
-    return {
-
-		handleClientLoad:function() {
-			gapi.client.setApiKey(apiKey);
-			gapi.client.load('youtube', 'v3', loadPlaylist);
-		},
-
-		loadPlaylist:function() {
-			requestVideoPlaylist("UU2SIfmttUkqIHbn_DBLSygw");
-			// PL51DF3E41144EE869 PL5080DB2DA76A9CFE
-		},
-		displayResult:function(videoSnippet) {
-		  var title = videoSnippet.title;
-		  var videoId = videoSnippet.resourceId.videoId;
-		  $('#list-container').append('<li><a href="' + "javascript:selectVideo('" + videoId +"')" + '">' + title + '</a></li>');
-		},
-		nextPage:function() {
-		  requestVideoPlaylist(playlistId, nextPageToken);
-		},
-
-		previousPage:function() {
-		  requestVideoPlaylist(playlistId, prevPageToken);
-		},
-		selectVideo:function(id){
-			$('#video-container').html(videoWrapper(id));
-		},
-	  
-			  link: function( scope, element, attrs, gapi ) {
-				element.bind( "click", function() {
-				 Book.addBook( { title: "Star Wars", author: "George Lucas" } );
-			   });
-			 }
-		   }
-		}]
-		)
-
-'use strict';
-
-angular.module('bobApp.youtube', ["bobApp"])
-
-	.service("YouTubeService",['$rootScope', "$http", "$q", "$state", "$window",
-		 function($rootScope, $http, $q, $state, $window) {
-			var _service={
-				feedStart:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22",
-				feedEnd:"%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK",
-				query:["query","results","video"],
-				returnObj:null,
-				searchVideos:function(searchTerm){
-					fields
-				}
-			}
-			return _service;
-		}
-	])
-
-	.controller('YouTubeCtrl', ["$rootScope", "$scope", 
-		function YouTubeCtrl($rootScope, $scope) {
-		// footer
-		}
-	]);
-
-
-
-*/
-

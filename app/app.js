@@ -11,6 +11,7 @@ var bobApp=angular.module("bobApp",  [
 	'bobApp.footer',
 	'bobApp.leaflet',
 	'bobApp.youtube',
+	'bobApp.youtube.search',
 	'ngRoute', 
 	'localCRUD',
 	'ui.router'

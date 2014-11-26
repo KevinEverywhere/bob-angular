@@ -38,7 +38,6 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 						me.isInited=true;
 						me.makeScrollFit(data.articles.length);
 						render();
-						console.log("$scope.minMove=" + $scope.minMove + " and $scope.maxMove=" + $scope.maxMove);
 					}
 				})
 				.error(function(data, status, headers, config) {
