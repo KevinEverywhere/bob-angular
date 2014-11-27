@@ -1,102 +1,117 @@
 'use strict';
 
 angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
-	.service("YouTubeSearchService",['$rootScope', "$http", "$q", "$state", "$window",
-		 function($rootScope, $http, $q, $state, $window) {
+	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window",
+		 function($rootScope, $http, $httpBackend, $q, $state, $window) {
 			var _service={
-				/*
-				query:["query","results","video"],
-				apiKey:"AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU",
-				returnObj:null,
-				handleClientLoad:function() {
-					gapi.client.setApiKey(this.apiKey);
-					gapi.client.load('youtube', 'v3', loadPlaylist);
-				},
-				loadPlaylist:function() {
-					this.requestVideoPlaylist("UU2SIfmttUkqIHbn_DBLSygw");
-					// PL51DF3E41144EE869 PL5080DB2DA76A9CFE
-				},
-				requestVideoPlaylist:function(playlistId, pageToken) {
-					var elem=$('#video-container')
-					elem.html('');
-					var requestOptions = {
-						playlistId: playlistId,
-						part: 'snippet',
-						maxResults: 10
-					};
-					if (pageToken) {
-						requestOptions.pageToken = pageToken;
-					}
-					var request = gapi.client.youtube.playlistItems.list(requestOptions);
-					request.execute(function(response) {
-					// Only show pagination buttons if there is a pagination token for the
-					// next or previous page of results.
-					nextPageToken = response.result.nextPageToken;
-					var nextVis = nextPageToken ? 'visible' : 'hidden';
-					$('#next-button').css('visibility', nextVis);
-					prevPageToken = response.result.prevPageToken
-					var prevVis = prevPageToken ? 'visible' : 'hidden';
-					$('#prev-button').css('visibility', prevVis);
+				init:function(){
 
-					var playlistItems = response.result.items;
-					if (playlistItems) {
-					$.each(playlistItems, function(index, item) {
-					displayResult(item.snippet);
+				},
+				searchForFeed:function(feed, callback, scope, tester){
+					var passed=false;
+					console.log("searchForFeed:function("+feed+", "+callback+", scope)")
+					$http.get(feed)
+					.success(function(data, status, headers, config) {
+						passed=true;
+						console.log("callback=" + callback)
+						// scope.articles=data.articles;
+						console.log(data);
+						return passed;
+					})
+					.error(function(data, status, headers, config) {
+						passed=false;
+						console.log('error=' + data);
+						return passed;
 					});
-					} else {
-					elem.html('Sorry you have no uploaded videos');
-					}
-					});
-				},
-
-				displayResult:function(videoSnippet) {
-				  var title = videoSnippet.title;
-				  var videoId = videoSnippet.resourceId.videoId;
-				  $('#list-container').append('<li><a href="' + "javascript:selectVideo('" + videoId +"')" + '">' + title + '</a></li>');
-				},
-				nextPage:function() {
-				  requestVideoPlaylist(playlistId, nextPageToken);
-				},
-
-				previousPage:function() {
-				  requestVideoPlaylist(playlistId, prevPageToken);
-				},
-				selectVideo:function(id){
-					$('#video-container').html(videoWrapper(id));
-				},
-				videoWrapper:function(id, _width, _height){
-					return('<iframe title="YouTube video player" width="'+_width+'" height="'+_height+
-						'" src="http://www.youtube.com/embed/'+id + 
-						'?hd=1&html5=1&autoplay=1" autoplay frameborder="0" allowfullscreen></iframe>');
-				},
-				searchVideos:function(searchTerm){
-				$.ajax( { 
-					url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22eminem%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&",
-					type: 'POST', 
-					dataType: 'jsonp',
-					success: function(data) {
-						window.theData=data.query.results.video;
-						init();
-						animate();
-					},
-					error: function() {
-						console.log("ujojo");
-					}
-				})
-					// fields
+					// nothing
 				}
+				/*
+					query:["query","results","video"],
+					apiKey:"AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU",
+					returnObj:null,
+					handleClientLoad:function() {
+						gapi.client.setApiKey(this.apiKey);
+						gapi.client.load('youtube', 'v3', loadPlaylist);
+					},
+					loadPlaylist:function() {
+						this.requestVideoPlaylist("UU2SIfmttUkqIHbn_DBLSygw");
+						// PL51DF3E41144EE869 PL5080DB2DA76A9CFE
+					},
+					requestVideoPlaylist:function(playlistId, pageToken) {
+						var elem=$('#video-container')
+						elem.html('');
+						var requestOptions = {
+							playlistId: playlistId,
+							part: 'snippet',
+							maxResults: 10
+						};
+						if (pageToken) {
+							requestOptions.pageToken = pageToken;
+						}
+						var request = gapi.client.youtube.playlistItems.list(requestOptions);
+						request.execute(function(response) {
+						// Only show pagination buttons if there is a pagination token for the
+						// next or previous page of results.
+						nextPageToken = response.result.nextPageToken;
+						var nextVis = nextPageToken ? 'visible' : 'hidden';
+						$('#next-button').css('visibility', nextVis);
+						prevPageToken = response.result.prevPageToken
+						var prevVis = prevPageToken ? 'visible' : 'hidden';
+						$('#prev-button').css('visibility', prevVis);
+						var playlistItems = response.result.items;
+						if (playlistItems) {
+						$.each(playlistItems, function(index, item) {
+						displayResult(item.snippet);
+						});
+						} else {
+						elem.html('Sorry you have no uploaded videos');
+						}
+						});
+					},
+					displayResult:function(videoSnippet) {
+					  var title = videoSnippet.title;
+					  var videoId = videoSnippet.resourceId.videoId;
+					  $('#list-container').append('<li><a href="' + "javascript:selectVideo('" + videoId +"')" + '">' + title + '</a></li>');
+					},
+					nextPage:function() {
+					  requestVideoPlaylist(playlistId, nextPageToken);
+					},
+					previousPage:function() {
+					  requestVideoPlaylist(playlistId, prevPageToken);
+					},
+					selectVideo:function(id){
+						$('#video-container').html(videoWrapper(id));
+					},
+					videoWrapper:function(id, _width, _height){
+						return('<iframe title="YouTube video player" width="'+_width+'" height="'+_height+
+							'" src="http://www.youtube.com/embed/'+id + 
+							'?hd=1&html5=1&autoplay=1" autoplay frameborder="0" allowfullscreen></iframe>');
+					},
+					searchVideos:function(searchTerm){
+					$.ajax( { 
+						url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22eminem%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&",
+						type: 'POST', 
+						dataType: 'jsonp',
+						success: function(data) {
+							window.theData=data.query.results.video;
+							init();
+							animate();
+						},
+						error: function() {
+							console.log("ujojo");
+						}
+					})
+						// fields
+					}
 				*/
 			}
 			return _service;
 		}
 	])
 
-
-  
-
-
-	.controller('YouTubeSearchController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$timeout",
-		function YouTubeSearchController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
+	.controller('YouTubeSearchController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "YouTubeSearchService", "threeCSSService", "$timeout",
+		function YouTubeSearchController($window, $scope, $rootScope, $state, $stateParams, YouTubeSearchService, threeCSSService, $timeout) {
+			$scope._service=YouTubeSearchService;
 			$scope.name='YouTubeSearchController';
 			$scope._position={
 				z:20
@@ -116,12 +131,17 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 			$scope.minRotate=160;
 
 			$scope.init=function(elem, _content, _context){
-				$rootScope._context=$("#"+ _context).html();
-				if(!this.isInited){
-					threeCSSService.init(elem, $scope, _content);
-					this.isInited=true;
-					render();
-				}
+			//	$rootScope._context=$("#"+ _context).html();
+			//	if(!this.isInited){
+			//		threeCSSService.init(elem, $scope, _content);
+			//		this.isInited=true;
+			//		render();
+			//	}
+			}
+			$scope.searchForFeed=function(feed, callback){
+				console.log("controller.searchForFeed=" + feed);
+				return $scope._service.searchForFeed(feed, callback, $scope);
+				console.log("controller.afTER=");
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
@@ -161,18 +181,6 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 		return threeObj;
 	}
 	])
-
-
-
-	.controller('YouTubeSearchController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "$timeout",
-		function YouTubeSearchController($window, $scope, $rootScope, $state, $stateParams,  $timeout) {
-			$scope.name='YouTubeSearchController';
-			$scope.init=function(elem, _content, _context){
-			}
-		}
-	])
-
-
 
 
 	.directive( "youTubeSearch", [function() {

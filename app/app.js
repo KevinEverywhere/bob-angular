@@ -17,6 +17,7 @@ var bobApp=angular.module("bobApp",  [
 	'ui.router'
 ])
 	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService) {
+		$rootScope.googleReady=false;
 		$rootScope.sectionTitle="Testing";
 		$rootScope.$state = $state;
 		$rootScope.$stateParams = $stateParams;
@@ -33,6 +34,10 @@ var bobApp=angular.module("bobApp",  [
 				console.log("$state.reload()");
 			}catch(oops){}
 		};
+		$window.googleApiClientReady = function($rootScope) {
+			$rootScope.googleReady=true;
+			console.log("ggole googleReady");
+		}
 		$window.addEventListener('orientationchange', redraw, false);
 		$window.addEventListener('resize', resize, false);
 		$window.addEventListener('online', function(e) {

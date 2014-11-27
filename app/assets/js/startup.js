@@ -66,7 +66,6 @@ function isMobile(){
 }
 
 function changeSize(evt){
-    console.log("changeSize---");
     getCurrentDimensions();
     less.modifyVars({
         "@bobAppX":pixelWrap("bobAppX"),
@@ -103,7 +102,10 @@ function changeSize(evt){
     if(window.hardcoded){window.hardcoded()}
 }    
 
-var rowTrim=50, columnTrim=200;
+var rowTrim=50, columnTrim=200, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
+    gapi.client.setApiKey(apiKey);
+};
+
 function getCurrentDimensions(){
     try{
         theLarge=Math.max(window.innerWidth, window.innerHeight);
