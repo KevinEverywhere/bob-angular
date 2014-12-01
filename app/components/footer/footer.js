@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"])
-	.controller('ThreeFooterController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$http", 
-		function ThreeFooterController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $http) {
+	.controller('ThreeFooterController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$http", "$httpBackend", 
+		function ThreeFooterController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $http, $httpBackend) {
 			$scope.name='ThreeFooterController';
 			$scope.newsFeedURL="http://api.feedzilla.com/v1/categories/19/articles.json";
 			$scope.feedItems=[];
@@ -28,21 +28,47 @@ angular.module('bobApp.footer', ["bobApp", "threeModule", "ngRoute", "ui.router"
 				$scope.maxMove=$scope._width;
 				$scope.minMove=$scope._width-($scope.feedItemWidth * howMany);
 			};
-			$scope.init=function(elem, _content){
+			$scope.init=function(elem, _content, toTest){
 				var me=$scope;
-				$http({method: 'GET', url: $scope.newsFeedURL})
-				.success(function(data, status, headers, config) {
-					if(!me.isInited){
-						$scope.articles=data.articles;
-						threeCSSService.init(elem, me, _content);
-						me.isInited=true;
-						me.makeScrollFit(data.articles.length);
-						render();
-					}
-				})
-				.error(function(data, status, headers, config) {
-					console.log('error=' + data);
-				});
+				if(!toTest){
+					$http({method: 'GET', url: $scope.newsFeedURL})
+					.success(function(data, status, headers, config) {
+						if(!me.isInited){
+							$scope.articles=data.articles;
+							threeCSSService.init(elem, me, _content);
+							me.isInited=true;
+							me.makeScrollFit(data.articles.length);
+							render();
+						}
+					})
+					.error(function(data, status, headers, config) {
+						console.log('error=' + data);
+					});
+				}else{
+					console.log('scopdde.$scope.newsFeedURL' + $scope.newsFeedURL);
+					$httpBackend.expectGET($scope.newsFeedURL).respond({
+						data:true
+					});
+					/*
+					$httpBackend.expectGET($scope.newsFeedURL).respond(function(method, url, data, headers){
+						console.log("data from expectGET=" + data);
+					});
+					$http({method: 'GET', url: $scope.newsFeedURL})
+					.success(function(data, status, headers, config) {
+						if(!me.isInited){
+							$scope.articles=data.articles;
+							threeCSSService.init(elem, me, _content);
+							me.isInited=true;
+							me.makeScrollFit(data.articles.length);
+							render();
+						}
+					})
+					.error(function(data, status, headers, config) {
+						console.log('error=' + data);
+					});					
+					*/
+
+				}
 			}
 			$scope.setNavByText=function(whatText){
 				$rootScope.$broadcast("navigatingToSection", $scope.navs[whatText].action);

@@ -18,12 +18,20 @@ describe('bobApp.footer module', function() {
 			it('should make room to fit articles', inject(function($controller){
 				var scope={},
 				ctrl=$controller('ThreeFooterController', {$scope:scope});
-				// scope.newsFeedURL="assets/js/test_article.json";
 				scope._width=640;
 				scope.makeScrollFit(5);
 				expect(scope.minMove).toBe(-960);
 			}));
-
+			it('should call a URL and get a dataset back', inject(function($controller) {
+				var scope = {},
+				ctrl = $controller('ThreeFooterController', {$scope:scope});
+				/*
+				$httpBackend.expectGET($scope.newsFeedURL).respond({
+					data:true
+				});
+				*/
+				scope.init("This tests for", "feed call", true);
+			}));
 			it('should have one activeAnimation', inject(function($controller) {
 				var scope = {},
 				ctrl = $controller('ThreeFooterController', {$scope:scope});

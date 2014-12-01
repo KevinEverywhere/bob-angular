@@ -18,7 +18,7 @@
   <meta name="description" content="bob-angular is a set of JavaScript and CSS frameworks that enable rapid development of Web Content in a 3D metaphor.">
   <script src="libs/jquery/dist/jquery.min.js"></script>
   <link rel="stylesheet" href="libs/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css" />  <!--  Replace with .min.js-->
+  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css" />  <!--  Replace with .min.js-->
   <script src="assets/js/startup.js"></script>
   <script>
 var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, isMobile, mobileType, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
@@ -83,17 +83,17 @@ less = {
   </script>
   <script src="https://www.youtube.com/player_api"></script>
   <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
-  <script src="libs/angular/angular.js"></script>  <!--  Replace with .min.js-->
-  <script src="libs/angular-route/angular-route.js"></script>  <!--  Replace with .min.js-->
-  <script src="libs/bootstrap/dist/js/bootstrap.js"></script>  <!--  Replace with .min.js-->
-  <script src="libs/d3/d3.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/angular/angular.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/angular-route/angular-route.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/d3/d3.min.js"></script>  <!--  Replace with .min.js-->
   <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script src="libs/leaflet/dist/leaflet.js"></script>
   <script src="libs/three.js/index.js"></script>
   <script src="libs/TrackballControls/index.js"></script>
   <script src="libs/css-3d-renderer/index.js"></script>
 
-  <script src="libs/ui-router/release/angular-ui-router.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/ui-router/release/angular-ui-router.min.js"></script>  <!--  Replace with .min.js-->
   <script src="libs/localCRUD/index.js"></script>
   <script src="components/footer/footer.js"></script>
   <script src="components/main/main.js"></script>
@@ -107,11 +107,8 @@ less = {
   <script src="shared/three_module.js"></script>
   <script src="shared/country_module.js"></script>
 
-
-
   <link rel="stylesheet/less" type="text/css" href="assets/css/main.less" />
   <link rel="stylesheet/less" type="text/css" href="libs/3l/3L/3L.less" />
-  <script src="assets/js/bob-angular.js"></script>
   <script src="libs/less/dist/less-1.7.0.min.js"></script>
 </head>
 <body>
@@ -128,11 +125,9 @@ less = {
 <script type="text/javascript">
   $(document).ready(function (){
     angular.bootstrap(document, ['bobApp']);
-  //  window.addEventListener('orientationchange', changeOrient, false);
-  //  window.addEventListener('resize', changeSize, false);  ng-include="'components/footer/footer.html'"
-  //  changeOrient();
   });  
-</script><script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script><script src="app.js"></script>
+</script><!-- script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script -->
+<script src="app.js"></script>
 
   </body>
 </html>

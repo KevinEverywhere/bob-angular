@@ -6,9 +6,6 @@
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-html2js":"0.2.x",
     "grunt-contrib-watch": "~0.4.0",
     "karma": "~0.10",
     "protractor": "^1.1.1",
@@ -17,51 +14,45 @@
     "shelljs": "^0.2.6",
     "karma-junit-reporter": "^0.2.2",
     "selenium-webdriver": "2.34.x",
-    "chromedriver":"2.12",
-    "wd":"0.3.x"
+    "chromedriver": "2.12",
+    "wd": "0.3.x"
   },
   "config": {
-    "unsafe-perm":true,
+    "unsafe-perm": true,
     "//": "Included to avoid 'cannot run in wd' error"
   },
   "dependencies": {
     "bower": "^1.3.1",
-    "curlrequest":"0.5.1",
+    "curlrequest": "0.5.1",
     "express": "^4.1.1",
     "morgan": "^1.0.0",
     "body-parser": "^1.0.2",
-    "method-override": "^1.0.0"
+    "method-override": "^1.0.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0"
   },
   "scripts": {
+    "gruntme": "",
     "prestart": "npm install",
     "start": "node index.js",
-    
-    "/* */":"Make sure that this matches the location of your terminal application..",
-    "open-window":"open -a /Applications/Utilities/Terminal.app/ ./",
-    "postopen-window":"npm run protractor",
-
+    "/* */": "For launch-selenium, change the file location to match your own.",
+    "open-window": "open -a /Applications/Utilities/Terminal.app/ ./",
+    "postopen-window": "npm run protractor",
     "pretest": "npm install",
     "test": "./node_modules/karma/bin/karma start",
-
     "prefulltest": "npm test",
     "fulltest": "node exports.index.js",
-
     "test-single-run": "./node_modules/karma/bin/karma start --single-run",
-
     "postinstall": "npm run bower",
-
     "prebowerf": "",
     "bower": "./node_modules/bower/bin/bower install",
-    
     "update-webdriver": "webdriver-manager update",
     "update-test-webdriver": "webdriver-manager update --standalone",
-
-    "/* */":"For launch-selenium, change the file location to match your own.",
-    "launch-selenium":"java -jar /Applications/adt-bundle-mac-x86_64-20140702/selenium/selenium-server-standalone-2.44.0.jar",
+    "launch-selenium": "java -jar /Applications/adt-bundle-mac-x86_64-20140702/selenium/selenium-server-standalone-2.44.0.jar",
     "iphone-protract": "protractor test/e2e/protractor.iphone.conf.js",
     "ipad-protract": "protractor test/e2e/protractor.ipad.conf.js",
     "protractor": "protractor test/e2e/protractor.conf.js",
-
     "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
   }
 }
