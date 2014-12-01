@@ -7,7 +7,7 @@ var express = require('express')
     , port = process.env.PORT || 3000
     , router = express.Router();
 
-app.use(express.static(__dirname + '/dist/app')); 
+app.use(express.static(__dirname + '/app')); 
 
 app.use(bodyParser.urlencoded({
   extended: true
