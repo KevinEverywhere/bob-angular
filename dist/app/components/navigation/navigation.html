@@ -1,0 +1,32 @@
+<div class="threeNav" id="navigation" ng-init="init('navigation','content');">
+	<div class="content">
+		<div class="navbar-wrapper">
+			<div class="container">
+				<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+					<div class="container">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#">bob-angular</a>
+						</div>
+						<div class="navbar-collapse collapse">
+							<div class="nav navbar-nav">
+								<ul class="nav navbar-nav alignLeft">
+									<li ng-class="{active: $state.includes('home'),inactive: !$state.includes('home')}"><a id="homeLink" href="#/">Home</a></li>
+									<li ng-class="{active: $state.includes('video'),inactive: !$state.includes('video')}"><a id="videoLink" href="#video">Video</a></li>
+									<li ng-class="{active: $state.includes('map'),inactive: !$state.includes('map')}"><a id="mapLink" href="#map">Map</a></li>
+									<li ng-class="{active: $state.includes('svg'),inactive: !$state.includes('svg')}"><a id="svgLink" href="#svg">SVG</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bob Angular: Three D Navigation Seed</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="libs/html5-boilerplate/css/normalize.css" />
+  <link rel="stylesheet" href="libs/html5-boilerplate/css/main.css" />
+  <!-- script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script -->
+
+  <meta name = "viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,width=device-width" />
+
+  <meta name="description" content="bob-angular is a set of JavaScript and CSS frameworks that enable rapid development of Web Content in a 3D metaphor.">
+  <script src="libs/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="libs/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css" />  <!--  Replace with .min.js-->
+  <script src="assets/js/startup.js"></script>
+  <script>
+var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, isMobile, mobileType, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
+
+if(userAgent.toLowerCase().indexOf("chrome")!=-1){
+    uaFont="Roboto";
+}else{
+    if(userAgent.toLowerCase().indexOf("firefox")!=-1){
+        uaFont='"Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue"';
+    }else if(userAgent.toLowerCase().indexOf("firefox")!=-1){
+        uaFont='"Helvetica Neue Interface m3"';
+    }
+}
+
+if (uaFont.length>0) {
+    uaFont+= ", ";
+}
+
+uaFont+="Arial, sans-serif";
+
+less = {
+    env: "development",
+    async: false,
+    fileAsync: false,
+    poll: 1000,
+    globalVars:{
+      isMobile:null,
+      mobileType:"starting",
+      userFont:uaFont,
+      bobAppX:null, 
+      bobAppY:null,
+      axis1L:null,
+      axis1T:null,
+      axis1R:null,
+      axis1B:null,
+      axis1W:null,
+      axis1H:null,
+      axis2L:null,
+      axis2T:null,
+      axis2R:null,
+      axis2B:null,
+      axis2W:null,
+      axis2H:null,
+      axis3L:null,
+      axis3T:null,
+      axis3R:null,
+      axis3B:null,
+      axis3W:null,
+      axis3H:null,
+      pageBottomL:null,
+      pageBottomT:null,
+      pageBottomR:null,
+      pageBottomB:null,
+      pageBottomW:null,
+      pageBottomH:null
+    },
+    dumpLineNumbers: "comments",
+    relativeUrls: false,
+    rootpath: ""
+};
+
+  </script>
+  <script src="https://www.youtube.com/player_api"></script>
+  <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="libs/angular/angular.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/angular-route/angular-route.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/d3/d3.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="libs/leaflet/dist/leaflet.js"></script>
+  <script src="libs/three.js/index.js"></script>
+  <script src="libs/TrackballControls/index.js"></script>
+  <script src="libs/css-3d-renderer/index.js"></script>
+
+  <script src="libs/ui-router/release/angular-ui-router.min.js"></script>  <!--  Replace with .min.js-->
+  <script src="libs/localCRUD/index.js"></script>
+  <script src="components/footer/footer.js"></script>
+  <script src="components/main/main.js"></script>
+  <script src="components/context/context.js"></script>
+  <script src="components/leaflet/leaflet.js"></script>
+  <script src="components/youtube/youtube.js"></script>
+  <script src="components/youtube/youtube_search.js"></script>
+  <script src="components/svg/svg.js"></script>
+  <script src="components/navigation/navigation.js"></script>
+  <script src="shared/d3_module.js"></script>
+  <script src="shared/three_module.js"></script>
+  <script src="shared/country_module.js"></script>
+
+  <link rel="stylesheet/less" type="text/css" href="assets/css/main.less" />
+  <link rel="stylesheet/less" type="text/css" href="libs/3l/3L/3L.less" />
+  <script src="libs/less/dist/less-1.7.0.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div id="bob-app">
+    <div id="axis1" class="padded" ng-include="'components/navigation/navigation.html'"></div>
+    <div ui-view="axis2" id="axis2" class="padded"></div>
+    <div ui-view="axis3" id="axis3" class="padded"></div>
+    <div ui-view="pageBottom" id="pageBottom" class="padded"></div>
+  </div>
+<script type="text/javascript">
+  $(document).ready(function (){
+    angular.bootstrap(document, ['bobApp']);
+  });  
+</script><!-- script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script -->
+<script src="app.js"></script>
+
+  </body>
+</html>

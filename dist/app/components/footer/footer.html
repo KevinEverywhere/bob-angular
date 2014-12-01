@@ -1,0 +1,11 @@
+<div ng-controller="ThreeFooterController" class="threeFooter" id="footer" ng-init="init('footer','footcontent');">
+	<div class="footcontent">
+		<div class="container">
+			<ul id="footerFeed">
+				<li ng-repeat="article in articles">
+					<a data-toggle="tooltip" data-toggle-delay="{'show':'50','hide':'2500'}" title="{{article.summary}}" href="{{article.url}}">{{article.title}}</a>
+				</li>
+			</ul>
+		</div>	
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="threeLeaflet" id="leaflet" ng-init="init('leaflet','content','leafletMap','leafletContext');">
+	<div class="content">
+		<div class="leafletMap" id="leafletMap"></div>
+		<div id="leafletContext">
+			<p>
+				This is a map which can have its coordinates set as you like. This is currently hardcoded in leaflet.js, but this will soon be updated to be dynamically accessible.
+			</p>
+			<p>
+				If you look at the file named 'leaflet.html' and view the div elements with the id "leafletMap" and "leafletContext", you will see where content is loaded into the main and context views. Notice also in main.less, how the context is cloaked from the view below the map. 
+			</p>
+<pre>
+#leaflet
+ #leafletContext{
+  display:none;
+}
+			</pre>
+		</div>
+	</div>
+</div>

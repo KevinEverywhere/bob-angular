@@ -1,0 +1,41 @@
+<div ng-controller="YouTubeSearchController" class="youTubeSearch" id="youtubeSearch" ng-init="init('youtubeSearch','content','ytContext');">
+	<div class="content">
+		<div id="ytSearch">
+			<form role="form">
+				<div class="form-group">
+					<label class="col-md-12 control-label"> Form Name </label>
+					<div class="col-md-10">
+						<input class='form-control field' data-type="input" type='text' name='name' id='name' value ='Search on Youtube' />
+					</div>
+				</div>
+				<legend>Search on Youtube</legend>
+				<div class="form-group">
+					<label class="col-md-12 control-label"> ID / Name </label>
+					<div class="col-md-10">
+						<input class='form-control field' data-type="input" type='text' name='id' id='id' value ='searchinput' />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-12 control-label"> Label Text </label>
+					<div class="col-md-10">
+						<input class='form-control field' data-type="input" type='text' name='label' id='label' value ='Keyword' />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-12 control-label"> Placeholder </label>
+					<div class="col-md-10">
+						<input class='form-control field' data-type="input" type='text' name='placeholder' id='placeholder' value ='Enter keyword.' />
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="ytContext">
+			<p>
+				repeat with statement here
+			</p>
+			<p>
+				If you look at the file named 'youtube.html' and view the div elements with the id "ytplayer" and "ytContext", you will see where content is loaded into the main and context views.
+			</p>
+		</div>
+	</div>
+</div>
