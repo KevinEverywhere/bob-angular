@@ -40,7 +40,7 @@
     "prefulltest": "npm test",
     "fulltest": "node exports.index.js",
     "test-single-run": "./node_modules/karma/bin/karma start --single-run",
-    "postinstall": "bower install && grunt",
+    "postinstall": "bower install && npm i -S grunt grunt-cli && grunt",
     "update-webdriver": "webdriver-manager update",
     "update-test-webdriver": "webdriver-manager update --standalone",
     "iphone-protract": "protractor test/e2e/protractor.iphone.conf.js",
