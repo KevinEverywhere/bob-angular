@@ -37,26 +37,28 @@
 <p><em>This is in development and is not recommended to develop with as a base until version 0.0.1. You can still look under the hood to see how things work by following the installation process.</em></p>
 
 <p>The sample application that is built from this code is viewable at 
-<a href="http://bob-angular.herokuapp.com/">bob-angular</a></p>
+<a href="http://bob-angular.herokuapp.com/">bob-angular</a>. The client-side
+code can be seen at the <a href="https://github.com/KevinEverywhere/bob-angular-app">bob-angular-app</a>
+repository.</p>
 
-<p>This project is an application skeleton, influenced by and forked from <a href="https://github.com/angular/angular-seed">angular-seed</a>. It uses <a href="http://threejs.org/">three.js</a> to provide a means to map 2D Web content to 3D space. </p>
+<p>This project is influenced by and borrows from <a href="https://github.com/angular/angular-seed">angular-seed</a>. It uses <a href="http://threejs.org/">three.js</a> to provide a means to map 2D Web content to 3D space. </p>
 
-<p>The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests.</p>
+<p>The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests. The application itself is built by grunt into the dist directory. It is built during the install process and can be seen at the bob-angular-app repository.</p>
 
 <h3>
 <a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequisites</h3>
 
 <p>You must have node.js and its package manager (npm) installed. All other dependencies
-are managed by node through package.json, and then bower through bower.json. You can 
-get node and npm from <a href="http://nodejs.org/">nodejs</a>.</p>
+are managed by node through package.json, and then bower through bower.json and grunt
+through Gruntfile. You can get node and npm from <a href="http://nodejs.org/">nodejs</a>.</p>
 
 <h3>
 <a id="clone-bob-angular" class="anchor" href="#clone-bob-angular" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone bob-angular</h3>
 
 <p>In the terminal, in the directory where you want to install the app, git clone the 
 bob-angular repository. Then, run <em>npm start</em> to install and launch the node 
-web server; or <em>npm install</em> and <em>bower install</em> to merely install the application
-dependencies. </p>
+web server; or <em>npm install</em> to merely install the application dependencies without
+launching the web server. </p>
 
 <p><em>Permission issues may occur if the directory permission and user permissions are different.</em></p>
 
@@ -86,9 +88,19 @@ and then populate them with imported code:</p>
 'bower install' is run.</p>
 
 <h3>
+<a id="distribute-code" class="anchor" href="#distribute-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Distribute Code</h3>
+
+<p>The next step is handled internally: through Gruntilfe, grunt selects the 
+necessary files from app/libs and creates a directory structure child to the 
+dist directory. The application run from app and dist/app are the same in 
+function, but dist/app files are less than a quarter the size.</p>
+
+<h3>
 <a id="run-the-application" class="anchor" href="#run-the-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run the Application</h3>
 
-<p>The application should be testable in localhost:3000 by running <em>npm start</em>. If that port is already being used, look at the console to see which port that the application found available.</p>
+<p>The application should be testable in localhost:3000 by running <em>npm start</em>. 
+If that port is already being used, look at the console to see which port 
+that the application found available.</p>
 
 <pre><code>npm start
 </code></pre>
@@ -98,12 +110,17 @@ and then populate them with imported code:</p>
 <h4>
 <a id="troubleshooting" class="anchor" href="#troubleshooting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Troubleshooting</h4>
 
-<p>The most typical problems in <em>npm start</em> involve permission issues, availability of port, and software availability. Ensure that you have the correct software installed to begin, and that the directory in which you are running npm start contains the bob-angular seed files. Consult your console, and Google, to take care of any issues unique to your system.</p>
+<p><em>The most common errors with installation require nothing more than running the start or install commands two or more times.</em> </p>
+
+<p>The most typical problems in <em>npm start</em> involve permission issues, availability of port, and software availability. The first thing I always try with node is running <em>npm start</em> or <em>npm install</em> more than once. If you are getting different errors when you install, it is because the installation process is still moving forward. Internal errors in a dependency can partially break an install. Try to avoid running as sudo, this is not usually required.</p>
+
+<p>Ensure that you have the correct software installed to begin, and that the directory in which you are running npm start contains the bob-angular seed files. Consult your console, and Google, to take care of any issues unique to your system.</p>
 
 <h2>
 <a id="directory-layout" class="anchor" href="#directory-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Directory Layout</h2>
 
-<pre><code>index.js                               --&gt; the file containing the webserver
+<pre><code>.bowercc                               --&gt; directs bower to load libs
+.gitignore                             --&gt; the files that are excluded
 app/                                   --&gt; application source files
   assets/                              --&gt; media, CSS JS, JSON assets
     css, js, media
@@ -117,9 +134,20 @@ app/                                   --&gt; application source files
     jquery, less, ui-router, others        'bower install' 
   app.js                               --&gt; main application module
   index.html                           --&gt; the entrace point to the app.
+bower.json                             --&gt; client-side libraries to install
+child.process.index.js                 --&gt; testing page, in development
+exports.index.js                       --&gt; express server for testing
+Gruntfile.js                           --&gt; Creates the files that go in dist
+index.js                               --&gt; express server 
 karma.conf.js                          --&gt; config file for Karma unit tests 
+package.json                           --&gt; instruction files for npm 
+Procfile                               --&gt; runs _node index.js_ on heroku
+dist/                                  --&gt; grunt-created after bower install
+node_modules/                          --&gt; created during install
 tests/                                 --&gt; supporting files for tests 
-e2e-tests/                             --&gt; end-to-end tests
+tests/e2e-tests/                       --&gt; end-to-end tests
+
+
 </code></pre>
 
 <h2>
@@ -170,9 +198,17 @@ e2e-tests/                             --&gt; end-to-end tests
 <pre><code>npm run protractor
 </code></pre>
 
-<p>The e2e testing will be expanded soon to iOS and other devices. </p>
+<p>Some other scripts you may find useful once it is installed are:</p>
 
-<p>This software is dynamic and will be evolving. As features are added, they will be associated with test files and methods as needed.</p>
+<pre><code>node index.js            (for starting express server)
+node exports.index.js    (express testing server, with instructions)
+npm run launch-selenium  (for starting selenium server)
+
+</code></pre>
+
+<p>The test section, like the other parts of this experiment, is incomplete. It will include device and server combinations as they are ready for publishing.</p>
+
+<p>bob-angular is currently under constant development. As features are added and content explored, additional tests will be added to those currently included.</p>
 
 <h2>
 <a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h2>
