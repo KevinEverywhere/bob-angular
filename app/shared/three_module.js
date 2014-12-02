@@ -212,8 +212,7 @@ var threeModule = angular.module('threeModule', [])
 			}
 			if(!service.isInitted){
 		        $window.hardcoded=function(){
-		        	console.log("window.hardcoded=window.hardcoded=window.hardcoded=window.hardcoded")
-		        	service.updateAllSizes();
+		        //	service.updateAllSizes();
 		        };
 		        service.isInitted=true;
 			}

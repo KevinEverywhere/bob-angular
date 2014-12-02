@@ -33,26 +33,22 @@
     "grunt-contrib-concat": "^0.5.0"
   },
   "scripts": {
-    "gruntme": "",
     "prestart": "npm install",
     "start": "node index.js",
-    "/* */": "For launch-selenium, change the file location to match your own.",
-    "open-window": "open -a /Applications/Utilities/Terminal.app/ ./",
-    "postopen-window": "npm run protractor",
     "pretest": "npm install",
     "test": "./node_modules/karma/bin/karma start",
     "prefulltest": "npm test",
     "fulltest": "node exports.index.js",
     "test-single-run": "./node_modules/karma/bin/karma start --single-run",
-    "postinstall": "npm run bower",
-    "prebowerf": "",
-    "bower": "./node_modules/bower/bin/bower install",
+    "postinstall": "bower install && grunt",
     "update-webdriver": "webdriver-manager update",
     "update-test-webdriver": "webdriver-manager update --standalone",
-    "launch-selenium": "java -jar /Applications/adt-bundle-mac-x86_64-20140702/selenium/selenium-server-standalone-2.44.0.jar",
     "iphone-protract": "protractor test/e2e/protractor.iphone.conf.js",
     "ipad-protract": "protractor test/e2e/protractor.ipad.conf.js",
     "protractor": "protractor test/e2e/protractor.conf.js",
-    "update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
+    "/* */": "For launch-selenium, change the file location to match your own.",
+    "launch-selenium": "java -jar /Applications/adt-bundle-mac-x86_64-20140702/selenium/selenium-server-standalone-2.44.0.jar",
+    "open-window": "open -a /Applications/Utilities/Terminal.app/ ./",
+    "postopen-window": "npm run protractor"
   }
 }
