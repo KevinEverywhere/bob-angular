@@ -42,6 +42,8 @@ module.exports=function(grunt){
 					'app/libs/bootstrap/dist/css/bootstrap.min.css',
 					'app/assets/css/main.less',
 					'app/libs/3l/3L/3L.less',
+					'app/assets/media/groupedWorld.svg',
+					'app/assets/media/cpi.csv',
 					'app/app.js' 
 		      	], dest: 'dist/'}
 
