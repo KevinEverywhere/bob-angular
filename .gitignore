@@ -43,4 +43,5 @@ node_modules/
 scripts/
 app/lib
 e2e-tests/
+dist/
 karma.conf.js

@@ -52,7 +52,7 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
             };
 			$scope.csvCall=function(csvURL){
 				// Original URL: "https://raw.githubusercontent.com/datasets/cpi/master/data/cpi.csv";
-				var _csv="assets/js/cpi.csv";
+				var _csv="assets/media/cpi.csv";
 				var rtn=d3.csv(_csv)
 				    .row(function(d) { 
 				    	var theYear=+d.Year;

@@ -11,7 +11,7 @@ module.exports=function(grunt){
 					'app/index.html',
 					'app/assets/js/startup.js',
 					'app/libs/jquery/dist/jquery.min.js',
-		      		'app/**/*.map',
+					'app/**/*.map',
 					'app/components/**/*.html',
 					'app/libs/angular/angular.min.js', 
 					'app/libs/angular-route/angular-route.min.js', 

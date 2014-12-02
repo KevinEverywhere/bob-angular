@@ -1,3 +1,5 @@
+/* this is in progress and used for internal testing. */
+
 // var child_process=require('child_process').spawn();
 
 // java -jar selenium-server-standalone-2.24.1.jar

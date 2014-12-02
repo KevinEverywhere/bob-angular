@@ -3,24 +3,26 @@
 *This is in development and is not recommended to develop with as a base until version 0.0.1. You can still look under the hood to see how things work by following the installation process.*
 
 The sample application that is built from this code is viewable at 
-[bob-angular](http://bob-angular.herokuapp.com/)
+[bob-angular](http://bob-angular.herokuapp.com/). The client-side
+code can be seen at the [bob-angular-app](https://github.com/KevinEverywhere/bob-angular-app)
+repository.
 
 This project is influenced by and borrows from [angular-seed](https://github.com/angular/angular-seed). It uses [three.js](http://threejs.org/) to provide a means to map 2D Web content to 3D space. 
 
-The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests.
+The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests. The application itself is built by grunt into the dist directory. It is built during the install process and can be seen at the bob-angular-app repository.
 
 ### Prerequisites
 
 You must have node.js and its package manager (npm) installed. All other dependencies
-are managed by node through package.json, and then bower through bower.json. You can 
-get node and npm from [nodejs](http://nodejs.org/).
+are managed by node through package.json, and then bower through bower.json and grunt
+through Gruntfile. You can get node and npm from [nodejs](http://nodejs.org/).
 
 ### Clone bob-angular
 
 In the terminal, in the directory where you want to install the app, git clone the 
 bob-angular repository. Then, run *npm start* to install and launch the node 
-web server; or *npm install* and *bower install* to merely install the application
-dependencies. 
+web server; or *npm install* to merely install the application dependencies without
+launching the web server. 
 
 *Permission issues may occur if the directory permission and user permissions are different.*
 
@@ -45,9 +47,18 @@ and then populate them with imported code:
 *The `libs` folder is put into the app folder  through the `.bowerrc` file when 
 'bower install' is run.
 
+### Distribute Code
+
+The next step is handled internally: through Gruntilfe, grunt selects the 
+necessary files from app/libs and creates a directory structure child to the 
+dist directory. The application run from app and dist/app are the same in 
+function, but dist/app files are less than a quarter the size.
+
 ### Run the Application
 
-The application should be testable in localhost:3000 by running _npm start_. If that port is already being used, look at the console to see which port that the application found available.
+The application should be testable in localhost:3000 by running _npm start_. 
+If that port is already being used, look at the console to see which port 
+that the application found available.
 
 ```
 npm start
@@ -56,12 +67,18 @@ npm start
 The app should now be running at <code>http://localhost:3000/</code> (or an alternative that was found to be available at runtime).
 
 ####Troubleshooting
-The most typical problems in _npm start_ involve permission issues, availability of port, and software availability. Ensure that you have the correct software installed to begin, and that the directory in which you are running npm start contains the bob-angular seed files. Consult your console, and Google, to take care of any issues unique to your system.
+
+_The most common errors with installation require nothing more than running the start or install commands two or more times._ 
+
+The most typical problems in _npm start_ involve permission issues, availability of port, and software availability. The first thing I always try with node is running _npm start_ or _npm install_ more than once. If you are getting different errors when you install, it is because the installation process is still moving forward. Internal errors in a dependency can partially break an install. Try to avoid running as sudo, this is not usually required.
+
+Ensure that you have the correct software installed to begin, and that the directory in which you are running npm start contains the bob-angular seed files. Consult your console, and Google, to take care of any issues unique to your system.
 
 ## Directory Layout
 
 ```
-index.js                               --> the file containing the webserver
+.bowercc                               --> directs bower to load libs
+.gitignore                             --> the files that are excluded
 app/                                   --> application source files
   assets/                              --> media, CSS JS, JSON assets
     css, js, media
@@ -75,9 +92,20 @@ app/                                   --> application source files
     jquery, less, ui-router, others        'bower install' 
   app.js                               --> main application module
   index.html                           --> the entrace point to the app.
+bower.json                             --> client-side libraries to install
+child.process.index.js                 --> testing page, in development
+exports.index.js                       --> express server for testing
+Gruntfile.js                           --> Creates the files that go in dist
+index.js                               --> express server 
 karma.conf.js                          --> config file for Karma unit tests 
+package.json                           --> instruction files for npm 
+Procfile                               --> runs _node index.js_ on heroku
+dist/                                  --> grunt-created after bower install
+node_modules/                          --> created during install
 tests/                                 --> supporting files for tests 
-e2e-tests/                             --> end-to-end tests
+tests/e2e-tests/                       --> end-to-end tests
+
+
 ```
 
 ## Testing
@@ -127,8 +155,18 @@ This will run the unit tests first and then launch the server for protractor e2e
 ```
 npm run protractor
 ```
+Some other scripts you may find useful once it is installed are:
 
-The e2e testing will be expanded soon to iOS and other devices.  bob-angular is currently under constant development. As features are added and content explored, additional tests will be added to those currently included.
+```
+node index.js            (for starting express server)
+node exports.index.js    (express testing server, with instructions)
+npm run launch-selenium  (for starting selenium server)
+
+```
+
+The test section, like the other parts of this experiment, is incomplete. It will include device and server combinations as they are ready for publishing.
+
+bob-angular is currently under constant development. As features are added and content explored, additional tests will be added to those currently included.
 
 ## Contact
 
@@ -138,6 +176,7 @@ For more information on bob-angular please contact kevin@planetkevin.com
 [three]: http://threejs.org/
 [express]: http://expressjs.com/
 [git]: http://git-scm.com/
+[grunt]: http://gruntjs.com/
 [bower]: http://bower.io
 [npm]: https://www.npmjs.org/
 [node]: http://nodejs.org
