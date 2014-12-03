@@ -3,19 +3,15 @@
 module.exports=function(grunt){
 	grunt.initConfig({
 		pkg:grunt.file.readJSON("package.json"),
-		copy: {
-		  main: {
-		    files: [
-		      // flattens results to a single level
-		      {expand: true,  src: [ 
-					'app/index.html',
+		uglify: {
+			options: {
+				mangle: false
+			},
+			my_target: {
+				files: [{
+					expand: true,
+					src: [
 					'app/assets/js/startup.js',
-					'app/libs/jquery/dist/jquery.min.js',
-					'app/**/*.map',
-					'app/components/**/*.html',
-					'app/libs/angular/angular.min.js', 
-					'app/libs/angular-route/angular-route.min.js', 
-					'app/libs/bootstrap/dist/js/bootstrap.min.js', 
 					'app/libs/css-3d-renderer/index.js', 
 					'app/libs/d3/d3.min.js', 
 					'app/libs/leaflet/dist/leaflet.js',  
@@ -35,7 +31,24 @@ module.exports=function(grunt){
 					'app/components/navigation/navigation.js',
 					'app/shared/d3_module.js',
 					'app/shared/three_module.js',
-					'app/shared/country_module.js',						
+					'app/shared/country_module.js'
+					],
+					dest: 'dist/'
+				}]
+			}
+		},
+		copy: {
+		  main: {
+		    files: [
+		      // flattens results to a single level
+		      {expand: true,  src: [ 
+					'app/index.html',
+					'app/**/*.map',
+					'app/libs/jquery/dist/jquery.min.js',
+					'app/libs/angular/angular.min.js', 
+					'app/libs/angular-route/angular-route.min.js', 
+					'app/libs/bootstrap/dist/js/bootstrap.min.js', 
+					'app/components/**/*.html',
 					'app/libs/leaflet/dist/leaflet.css',
 					'app/libs/html5-boilerplate/css/main.css',
 					'app/libs/html5-boilerplate/css/normalize.css',
@@ -53,7 +66,8 @@ module.exports=function(grunt){
 	});
 
 
+	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-copy");
-	grunt.registerTask("default", ["copy"]);
+	grunt.registerTask("default", ["uglify", "copy"]);
 };
 
