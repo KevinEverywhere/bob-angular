@@ -12,6 +12,9 @@ html, body{
 		display:block;
 	}
 }
+.em1{
+	font-size:1.25em;
+}
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus{
 	background:rgba(5, 5, 5, .55);
@@ -151,7 +154,7 @@ ul.alignLeft{
 	background-color:#eee;
 }
 
-#leaflet, #leaflet .content, #context, #context .content, #svgHolder, #main{
+#leaflet, #leaflet .content, #context, #context .content, #svgHolder, #main, #ytSearch{
 	position:absolute;
 	left:0px;
 	top:0px;
@@ -192,7 +195,18 @@ ul.alignLeft{
 	overflow:hidden;
 }
 
-#ytplayer{
+#ytSearchDiv{
+	padding:0em;
+	margin:0em;
+	width:@axis2W;
+	height:@axis2H;
+}
+
+#ytSearch{
+background:none;
+}
+
+#ytplayer, #ytSearch, #youtubeSearch{
 	padding:0em;
 	margin:0em;
 	width:@axis2W;
@@ -242,7 +256,7 @@ ul.alignLeft{
 	height:@axis2H;
 }
 
-#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext{
+#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext, #ytSearchContext{
   display:none;
 }
 
@@ -353,5 +367,4 @@ h3 li.active{
 	height:@pageBottomH;
 	vertical-align:top;
 }
-
 
