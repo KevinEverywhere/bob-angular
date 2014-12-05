@@ -1,41 +1,37 @@
-<div ng-controller="YouTubeSearchController" class="youTubeSearch" id="youtubeSearch" ng-init="init('youtubeSearch','content','ytContext');">
+<div class="youtubeSearch noBG" id="youtubeSearch" ng-init="init('youtubeSearch','content','ytSearchContext');">
 	<div class="content">
-		<div id="ytSearch">
-			<form role="form">
-				<div class="form-group">
-					<label class="col-md-12 control-label"> Form Name </label>
-					<div class="col-md-10">
-						<input class='form-control field' data-type="input" type='text' name='name' id='name' value ='Search on Youtube' />
+		<div class="jumbotron">
+			<div class="container" id="ytSearchDiv">
+				<form role="form" ng-submit>
+					<h3>YouTube Video Search</h3>
+					<p>
+						Enter a term to search. The first result will appear in this pane.  
+					</p>
+					<div class="form-group">
+						<br/>
+						<div class="col-md-10">
+						<input class='form-control field em1 auto-hint' 
+						       ng-model="q" 
+						       type='text'
+						       name="q" id="q"
+						       title="Enter keyword" 
+						       ng-keypress="testKeys($event)" />
+						</div>
 					</div>
-				</div>
-				<legend>Search on Youtube</legend>
-				<div class="form-group">
-					<label class="col-md-12 control-label"> ID / Name </label>
-					<div class="col-md-10">
-						<input class='form-control field' data-type="input" type='text' name='id' id='id' value ='searchinput' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-12 control-label"> Label Text </label>
-					<div class="col-md-10">
-						<input class='form-control field' data-type="input" type='text' name='label' id='label' value ='Keyword' />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-12 control-label"> Placeholder </label>
-					<div class="col-md-10">
-						<input class='form-control field' data-type="input" type='text' name='placeholder' id='placeholder' value ='Enter keyword.' />
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
-		<div id="ytContext">
-			<p>
-				repeat with statement here
-			</p>
-			<p>
-				If you look at the file named 'youtube.html' and view the div elements with the id "ytplayer" and "ytContext", you will see where content is loaded into the main and context views.
-			</p>
+		<div id="ytSearchContext">
+			<div class="noResults" ng-show="{true==false}">
+				Search results will appear here when they are returned.
+			</div> 
+			<div class="withResults" ng-show="{true==true}">
+				Search results appear here .
+				<p>
+					Search and the 
+					repeat with statement here
+				</p>
+			</div> 			
 		</div>
 	</div>
 </div>

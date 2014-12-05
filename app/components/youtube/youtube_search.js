@@ -5,7 +5,23 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 		 function($rootScope, $http, $httpBackend, $q, $state, $window) {
 			var _service={
 				init:function(){
-
+					$window.updateFormFieldHints();
+				},
+				findVideos:function(searchTerm, scope, callback){
+					var beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
+					endString='"&callback=';
+					var fullString=beginString + searchTerm + endString;
+					$http.get(fullString).
+						success(function(data) {
+							scope.currentData=data;
+							$window.cData=scope.currentData;
+						})
+						.error(function(data, status, headers, config) {
+							scope.currentData=null;
+						});
+					if(callback){ 
+						callback();
+					}
 				},
 				searchForFeed:function(feed, callback, scope, tester){
 					var passed=false;
@@ -111,38 +127,26 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 
 	.controller('YouTubeSearchController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "YouTubeSearchService", "threeCSSService", "$timeout",
 		function YouTubeSearchController($window, $scope, $rootScope, $state, $stateParams, YouTubeSearchService, threeCSSService, $timeout) {
+ 			$scope.currentData=null;
 			$scope._service=YouTubeSearchService;
 			$scope.name='YouTubeSearchController';
+			$scope.activeAnimations=[];
+			$scope.activeParams={};
+			$scope._dir=-1;
+			$scope.incr=.01;
+			$scope.currentRotate=180;
+			$scope.maxRotate=200;
+			$scope.minRotate=160;
 			$scope._position={
-				z:20
+				x:($scope._width/4),
+				y:0,
+				z:-120
 			};
 			$scope._rotation={
 				x:0,
-				y:threeCSSService.radianCalculator(200),
+				y:threeCSSService.radianCalculator(180),
 				z:threeCSSService.radianCalculator(180)
 			};
-			$scope.activeAnimations=["animate"];
-			$scope.activeParams={};
-			$scope.count=0;
-			$scope._dir=-1;
-			$scope.incr=.01;
-			$scope.currentRotate=199;
-			$scope.maxRotate=200;
-			$scope.minRotate=160;
-
-			$scope.init=function(elem, _content, _context){
-			//	$rootScope._context=$("#"+ _context).html();
-			//	if(!this.isInited){
-			//		threeCSSService.init(elem, $scope, _content);
-			//		this.isInited=true;
-			//		render();
-			//	}
-			}
-			$scope.searchForFeed=function(feed, callback){
-				console.log("controller.searchForFeed=" + feed);
-				return $scope._service.searchForFeed(feed, callback, $scope);
-				console.log("controller.afTER=");
-			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
 				if($scope.currentRotate<$scope.maxRotate){
@@ -158,30 +162,41 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr * 10);
 				$scope.renderer.render($scope.scene, $scope.camera);
 			}
+			$scope.findVideos=function(searchTerm, callback){
+				console.log("controller.searchForFeed=" + searchTerm);
+				return YouTubeSearchService.findVideos(searchTerm, this, callback);
+			}
+			$scope.init=function(elem, _content, _context){
+				YouTubeSearchService.init();
+				$rootScope._context=$("#"+ _context).html();
+				if(!this.isInited){
+					threeCSSService.init(elem, $scope, _content);
+					this.isInited=true;
+					render();
+				}
+			}
+			$scope.testKeys=function(what){
+				console.log("testKeys." + what);
+				for(var z in what){
+					console.log("testKeys." + z + "=" + what[z]);
+					// event.keyCode }}</p> event.altKey }}</p>
+				}
+
+			}
+			$scope.handshake=function(palm){
+				console.log("handshake with palm=" + palm);
+			}
+			$scope.searchForFeed=function(feed, callback){
+				console.log("controller.searchForFeed=" + feed);
+				return $scope._service.searchForFeed(feed, callback, $scope);
+				console.log("controller.afTER=");
+			}
 			var render=function() {
 				$scope.renderer.render($scope.scene, $scope.camera);
 				threeCSSService.render($scope);
 			}
 		}
 	])
-
-	.directive( "threeYouTube", [function( ) {
-		var threeObj = {
-			restrict: 'EA',
-			replace:false,
-	        transclude: true,
-			scope: true,
-			controller: "ThreeYouTubeController",
-			_scope: {
-				"id":"@",
-				"eventHandler": '&ngClick'
-			},
-			template: "<div class='threeYouTube'></div>"
-		};
-		return threeObj;
-	}
-	])
-
 
 	.directive( "youTubeSearch", [function() {
 		var threeObj = {
@@ -200,6 +215,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 	}]);
 
 	/*
+
 
 'use strict';
 
@@ -329,6 +345,28 @@ angular.module('bobApp.youtube', ["bobApp"])
 
 
 handleClientLoad displayResult
+
+				var vector = new THREE.Vector3();
+
+				for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+					var phi = Math.acos( -1 + ( 2 * i ) / l );
+					var theta = Math.sqrt( l * Math.PI ) * phi;
+
+					var object = new THREE.Object3D();
+
+					object.position.x = 800 * Math.cos( theta ) * Math.sin( phi );
+					object.position.y = 800 * Math.sin( theta ) * Math.sin( phi );
+					object.position.z = 800 * Math.cos( phi );
+
+					vector.copy( object.position ).multiplyScalar( 2 );
+
+					object.lookAt( vector );
+
+					targets.sphere.push( object );
+
+				}
+
 
 */
 

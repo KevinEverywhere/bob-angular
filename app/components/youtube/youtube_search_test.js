@@ -1,30 +1,77 @@
 'use strict';
 
 describe('bobApp.youtube.search module', function() {
-	beforeEach(module('bobApp.youtube.search'));
-		describe('YouTubeSearchController controller', function(){
-			it('should have the right name', inject(function($controller) {
-				var scope = {},
-				ctrl = $controller('YouTubeSearchController', {$scope:scope});
-				expect(scope.name).toBe("YouTubeSearchController");
-			}));
-			it('should have an init function', inject(function($controller) {
-				var scope = {},
-				ctrl = $controller('YouTubeSearchController', {$scope:scope});
-				expect(scope.init).toBeDefined();
-			}));
-			it('should call a URL and get a dataset back', inject(function($controller) {
-				var scope = {}, knownFeed="/feeds/http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Fsystem%2Flatest_published_content%2Frss.xml",
-				ctrl = $controller('YouTubeSearchController', {$scope:scope});
-				// $httpBackend.expectGET(knownFeed).respond(301);
-				// scope.searchForFeed(knownFeed)
-				expect(true).toBe(true);
-			}));
-	});
-});
+  var ctrl;
+	beforeEach(module('bobApp.youtube.search', 'youtube_search_sample'));
+  beforeEach(inject(function(
+    $http, $controller, $location, $httpBackend, $window, 
+    $rootScope, $state, $stateParams, YouTubeSearchService, 
+    threeCSSService, $timeout, defaultJSON){
+      this.$scope=$rootScope.$new();
+      this.$location=$location;
+      this.$httpBackend=$httpBackend;
+   //   this.defaultJSON=youtube_search_sample.defaultJSON;
+      this.controller=$controller("YouTubeSearchController",{
+      $scope:this.$scope,
+      $window:$window, 
+      $rootScope:$rootScope,
+      $state:$state, 
+      $stateParams:$stateParams,
+      _service:YouTubeSearchService, 
+      threeCSSService:threeCSSService, 
+      $timeout:$timeout
+    });
+    }));
+    describe('YouTubeSearchController controller', function(){
+      it('should have the right name', function($) {
+        expect(this.$scope.name).toBe("YouTubeSearchController");
+      });
+      it('should have an init function', function(){
+        expect(this.$scope.init).toBeDefined();
+      });
+      it('should call a URL and get a dataset back', 
+        inject(function($controller, YouTubeSearchService, $http, $httpBackend, defaultJSON) {
+        $httpBackend.expectGET(fullString).respond(defaultJSON);
+          var beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
+          endString='"&callback=', searchTerm="Kings of Leon";
+          var fullString=beginString + searchTerm + endString,
+          callback=function(){
+            expect(defaultJSON.query.results.video.length).toBeGreaterThan(1);
+            expect(defaultJSON.query.results.video[0].title.toLowerCase()).toContain(searchTerm.toLowerCase());
+            console.log("defaultJSON-" + defaultJSON);
+            YouTubeSearchService.findVideos(searchTerm, this.$scope, callback);
+            $httpBackend.flush();
+          };
+
+   //       $httpBackend.flush();
+
 
 /*
 
+
+        console.log(this.controller.scope._service + " = this.controller.scope._service; defaultJSON.video.length=" + defaultJSON.query.results.video.length);
+        $http.get(_callback)
+          .success(function(data) {
+            console.log("successdata=" + data);
+            $httpBackend.whenJSONP(knownURL).respond(data);
+            var test=$http.jsonp(knownURL);
+            console.log("$http.jsonp(knownURL)=" + test);
+            expect(test.query).toBeDefined();
+            $httpBackend.flush();
+          })
+          .error(function(data, status, headers, config) {console.log("boo boo")}).
+          then(function(data){console.log("data=" + data)});
+
+          */
+  }));
+
+});
+
+});
+
+/*
+1494b1c8-dab6-43a8-a415-f4ffa472df6e
+youtube_search_sample
 			beforeEach(inject(function (_$httpBackend_, _feedMock_, _mockConfig_) {
 			    _$httpBackend_.when('GET', _mockConfig_.FEED_URL).respond(_feedMock_);
 			}));
