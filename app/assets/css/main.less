@@ -1,6 +1,9 @@
 html, body{
 	overflow:hidden;
 }
+
+.auto-hint { color: #AAAAAA; }
+
 @media (max-width: 239px)  and (orientation:landscape){
 	#doesnotWork{
 		display:block;
@@ -256,7 +259,11 @@ background:none;
 	height:@axis2H;
 }
 
-#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext, #ytSearchContext{
+.isVisible{
+  display:block;
+}
+
+#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext, #ytSearchContext, .isHidden{
   display:none;
 }
 
