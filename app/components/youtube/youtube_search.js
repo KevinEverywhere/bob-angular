@@ -1,27 +1,45 @@
 'use strict';
 
 angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
-	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window",
-		 function($rootScope, $http, $httpBackend, $q, $state, $window) {
+	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window", "$timeout",
+		 function($rootScope, $http, $httpBackend, $q, $state, $window, $timeout) {
 			var _service={
-				init:function(){
+				init:function(_context){
 					$window.updateFormFieldHints();
+					this._context=_context;
 				},
-				findVideos:function(searchTerm, scope, callback){
-					var beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
+				search_update:function(data, scope){
+					$window._data=data;
+					scope.currentData=data;
+					$timeout(function(){
+						console.log("$timeout.search_update=" + scope.getContextHTML());
+						$("#sectionBody").html(scope.getContextHTML());
+					}, 1000);
+				},
+				findVideos:function(searchTerm, scopeArg, callback){
+					var scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
 					endString='"&callback=';
+					scope.callback=callback;
 					var fullString=beginString + searchTerm + endString;
-					$http.get(fullString).
-						success(function(data) {
+					console.log("fullString=" + fullString);
+					$http({method: 'GET', url: fullString}).
+						success(function(data, status, headers, config) {
 							scope.currentData=data;
 							$window.cData=scope.currentData;
+							$rootScope.currentData=data;
+							try{
+								callback();
+							}
+							catch(oops){}
+							$rootScope.$broadcast("youtube_search_update", data, scope);
 						})
 						.error(function(data, status, headers, config) {
+							console.log("data=" + data);
+							console.log("status=" + status);
+							console.log("headers=" + headers);
+								
 							scope.currentData=null;
 						});
-					if(callback){ 
-						callback();
-					}
 				},
 				searchForFeed:function(feed, callback, scope, tester){
 					var passed=false;
@@ -164,15 +182,31 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 			}
 			$scope.findVideos=function(searchTerm, callback){
 				console.log("controller.searchForFeed=" + searchTerm);
-				return YouTubeSearchService.findVideos(searchTerm, this, callback);
+				YouTubeSearchService.findVideos(searchTerm, this, callback);
+			
+			}
+			$scope.search_update=function(data){
+				console.log("search_update")
+				$rootScope._context=$("#"+ YouTubeSearchService._context).html(data);
+			}
+			$scope.getContextHTML=function(){
+				return(this._context.html())
 			}
 			$scope.init=function(elem, _content, _context){
-				YouTubeSearchService.init();
-				$rootScope._context=$("#"+ _context).html();
+				YouTubeSearchService.init(_context);
+				this._context=$("#"+ _context);
+				$rootScope._context=this.getContextHTML();
 				if(!this.isInited){
-					threeCSSService.init(elem, $scope, _content);
 					this.isInited=true;
-					render();
+					console.log("init------")
+					var callback=function(){
+						console.log("callback.created by findVideos");
+						console.log("remndereds");
+						threeCSSService.init(elem, $scope, _content);
+				 		render();
+					};
+					this.findVideos("Kings of Leon", callback);
+
 				}
 			}
 			$scope.testKeys=function(what){
@@ -191,15 +225,28 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				return $scope._service.searchForFeed(feed, callback, $scope);
 				console.log("controller.afTER=");
 			}
-			var render=function() {
+			var render=function(scopeArg) {
 				$scope.renderer.render($scope.scene, $scope.camera);
 				threeCSSService.render($scope);
 			}
 		}
 	])
+	.directive( "youTubeSearchResults", [function($scope) {
+		$scope.name="youTubeSearch";
+		var _video={
+			replace:false,
+			template: 'Name: {{name}} Address: '
+		}
+		// 
+		return _video;
+	}])
 
-	.directive( "youTubeSearch", [function() {
-		var threeObj = {
+	.directive( "youTubeSearch", [function($scope) {
+		$scope.name="youTubeSearch";
+		var ytSearch={
+			link:function(scope, elem, attrs, ctrl){
+				scope.currentData=null
+			},
 			restrict: 'EA',
 			replace:false,
 	        transclude: true,
@@ -207,11 +254,11 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 			controller: "YouTubeSearchController",
 			_scope: {
 				"id":"@",
-				"eventHandler": '&ngClick'
+				currentData:null
 			},
-			templateURL: "youtube_search.html"
+			template: "<div class='youtubeSearch'></div>"
 		};
-		return threeObj;
+		return ytSearch;
 	}]);
 
 	/*

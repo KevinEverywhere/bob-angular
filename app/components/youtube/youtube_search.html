@@ -21,17 +21,21 @@
 				</form>
 			</div>
 		</div>
-		<div id="ytSearchContext">
-			<div class="noResults" ng-show="{true==false}">
-				Search results will appear here when they are returned.
-			</div> 
-			<div class="withResults" ng-show="{true==true}">
-				Search results appear here .
-				<p>
-					Search and the 
-					repeat with statement here
-				</p>
-			</div> 			
-		</div>
+		<div id="ytSearchContext" youTubeSearchResults ="true">
+			<div class="container contextPanel">
+				<ul class="image_text row"> 
+					<li ng-repeat="video in currentData.query.results.video" class="clearfix">
+							<div class="hf-image">
+								<a href="{{video.url}}" class="image-link article-link"><img 
+								height="{{video.thumbnails.thumbnail[0].height}}" 
+								width="{{video.thumbnails.thumbnail[0].width}}" 
+								src="{{video.thumbnails.thumbnail[0].content}}" alt="{{video.title}}" title="{{video.title}}"></a></div>
+								<div class="hf-info">
+								<h4 class="hf-title" class="article-link">{{video.title}}</h4>
+								</div>
+							</div>
+					</li>
+				</ul>
+			</div>			 
 	</div>
 </div>
