@@ -4,6 +4,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window", "$timeout",
 		 function($rootScope, $http, $httpBackend, $q, $state, $window, $timeout) {
 			var _service={
+				videos:[],
 				init:function(_context){
 					$window.updateFormFieldHints();
 					this._context=_context;
@@ -12,132 +13,51 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					$window._data=data;
 					scope.currentData=data;
 					$timeout(function(){
-						console.log("$timeout.search_update=" + scope.getContextHTML());
 						$("#sectionBody").html(scope.getContextHTML());
 					}, 1000);
 				},
+				currentVideo:-1,
+				getCurrentVideo:function(){
+					return (this.currentVideo!=-1) ? this.getVideo(this.currentVideo) : null;
+				},
+				getVideo:function(which){
+					var rtn=null;
+					for(var v in this.videos){
+						if(this.videos[v].id==which){
+							rtn=this.videos[v];
+							break;
+						}
+					}
+					return rtn;
+				},
 				findVideos:function(searchTerm, scopeArg, callback){
-					var scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
+					var timeoutLength=500, me=this, scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
 					endString='"&callback=';
-					scope.callback=callback;
 					var fullString=beginString + searchTerm + endString;
 					console.log("fullString=" + fullString);
 					$http({method: 'GET', url: fullString}).
 						success(function(data, status, headers, config) {
-							scope.currentData=data;
-							$window.cData=scope.currentData;
-							$rootScope.currentData=data;
-							try{
-								callback();
+							if(data && data.query && data.query.results && data.query.results.video && data.query.results.video.length>0){
+								scope.currentData=data;
+								$rootScope.currentData=data;
+								console.log("inner success");
+								try{
+									me.videos=data.query.results.video;
+									callback();
+								}
+								catch(oops){}
+								$rootScope.$broadcast("youtube_search_update", data, scope);
+					//		}else{
+					//			$timeout(me.findVideos(searchTerm, scopeArg, callback),timeoutLength)
 							}
-							catch(oops){}
-							$rootScope.$broadcast("youtube_search_update", data, scope);
 						})
 						.error(function(data, status, headers, config) {
 							console.log("data=" + data);
 							console.log("status=" + status);
 							console.log("headers=" + headers);
-								
 							scope.currentData=null;
 						});
-				},
-				searchForFeed:function(feed, callback, scope, tester){
-					var passed=false;
-					console.log("searchForFeed:function("+feed+", "+callback+", scope)")
-					$http.get(feed)
-					.success(function(data, status, headers, config) {
-						passed=true;
-						console.log("callback=" + callback)
-						// scope.articles=data.articles;
-						console.log(data);
-						return passed;
-					})
-					.error(function(data, status, headers, config) {
-						passed=false;
-						console.log('error=' + data);
-						return passed;
-					});
-					// nothing
 				}
-				/*
-					query:["query","results","video"],
-					apiKey:"AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU",
-					returnObj:null,
-					handleClientLoad:function() {
-						gapi.client.setApiKey(this.apiKey);
-						gapi.client.load('youtube', 'v3', loadPlaylist);
-					},
-					loadPlaylist:function() {
-						this.requestVideoPlaylist("UU2SIfmttUkqIHbn_DBLSygw");
-						// PL51DF3E41144EE869 PL5080DB2DA76A9CFE
-					},
-					requestVideoPlaylist:function(playlistId, pageToken) {
-						var elem=$('#video-container')
-						elem.html('');
-						var requestOptions = {
-							playlistId: playlistId,
-							part: 'snippet',
-							maxResults: 10
-						};
-						if (pageToken) {
-							requestOptions.pageToken = pageToken;
-						}
-						var request = gapi.client.youtube.playlistItems.list(requestOptions);
-						request.execute(function(response) {
-						// Only show pagination buttons if there is a pagination token for the
-						// next or previous page of results.
-						nextPageToken = response.result.nextPageToken;
-						var nextVis = nextPageToken ? 'visible' : 'hidden';
-						$('#next-button').css('visibility', nextVis);
-						prevPageToken = response.result.prevPageToken
-						var prevVis = prevPageToken ? 'visible' : 'hidden';
-						$('#prev-button').css('visibility', prevVis);
-						var playlistItems = response.result.items;
-						if (playlistItems) {
-						$.each(playlistItems, function(index, item) {
-						displayResult(item.snippet);
-						});
-						} else {
-						elem.html('Sorry you have no uploaded videos');
-						}
-						});
-					},
-					displayResult:function(videoSnippet) {
-					  var title = videoSnippet.title;
-					  var videoId = videoSnippet.resourceId.videoId;
-					  $('#list-container').append('<li><a href="' + "javascript:selectVideo('" + videoId +"')" + '">' + title + '</a></li>');
-					},
-					nextPage:function() {
-					  requestVideoPlaylist(playlistId, nextPageToken);
-					},
-					previousPage:function() {
-					  requestVideoPlaylist(playlistId, prevPageToken);
-					},
-					selectVideo:function(id){
-						$('#video-container').html(videoWrapper(id));
-					},
-					videoWrapper:function(id, _width, _height){
-						return('<iframe title="YouTube video player" width="'+_width+'" height="'+_height+
-							'" src="http://www.youtube.com/embed/'+id + 
-							'?hd=1&html5=1&autoplay=1" autoplay frameborder="0" allowfullscreen></iframe>');
-					},
-					searchVideos:function(searchTerm){
-					$.ajax( { 
-						url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22eminem%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&",
-						type: 'POST', 
-						dataType: 'jsonp',
-						success: function(data) {
-							window.theData=data.query.results.video;
-							init();
-							animate();
-						},
-						error: function() {
-							console.log("ujojo");
-						}
-					})
-						// fields
-					}
-				*/
 			}
 			return _service;
 		}
@@ -193,6 +113,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				return(this._context.html())
 			}
 			$scope.init=function(elem, _content, _context){
+				$scope.ytSearchText="Enter keyword";
 				YouTubeSearchService.init(_context);
 				this._context=$("#"+ _context);
 				$rootScope._context=this.getContextHTML();
@@ -201,22 +122,32 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					console.log("init------")
 					var callback=function(){
 						console.log("callback.created by findVideos");
-						console.log("remndereds");
 						threeCSSService.init(elem, $scope, _content);
 				 		render();
 					};
+					console.log("PRE callback.created by findVideos");
+				//	callback();
 					this.findVideos("Kings of Leon", callback);
-
 				}
 			}
-			$scope.testKeys=function(what){
-				console.log("testKeys." + what);
+			$scope.testKeys=function(item){
+				console.log("testKeys.");
 				for(var z in what){
 					console.log("testKeys." + z + "=" + what[z]);
 					// event.keyCode }}</p> event.altKey }}</p>
 				}
+					var callback=function(){
+						console.log("callback.created by findVideos");
+				 		render();
+					};
+					console.log("PRE callback.created by findVideos");
+					callback();
+					this.findVideos("Kings of Leon", callback);
 
 			}
+			$scope.getItemValue = function (item){
+			      return("getItemState(" + item)
+			};
 			$scope.handshake=function(palm){
 				console.log("handshake with palm=" + palm);
 			}
@@ -231,16 +162,24 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 			}
 		}
 	])
-	.directive( "youTubeSearchResults", [function($scope) {
-		$scope.name="youTubeSearch";
-		var _video={
-			replace:false,
-			template: 'Name: {{name}} Address: '
+	.directive( "youTubSearchResults", function() {
+		return function (scope, element, attrs) {
+			var restrict="EA";
+			element.bind("keydown keypress", function (event) {
+				console.log("event.which=" + event.which);
+			if(event.which === 13) {
+				scope.$apply(function (){
+					// 
+					scope.$eval(attrs.youTubSearchResults);
+					console.log("apply");
+				});e
+				event.preventDefault();
+			}
+			});
 		}
-		// 
-		return _video;
-	}])
+	});
 
+	/*
 	.directive( "youTubeSearch", [function($scope) {
 		$scope.name="youTubeSearch";
 		var ytSearch={
@@ -261,7 +200,6 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 		return ytSearch;
 	}]);
 
-	/*
 
 
 'use strict';

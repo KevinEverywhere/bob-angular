@@ -1,41 +1,51 @@
-<div class="youtubeSearch noBG" id="youtubeSearch" ng-init="init('youtubeSearch','content','ytSearchContext');">
-	<div class="content">
-		<div class="jumbotron">
-			<div class="container" id="ytSearchDiv">
-				<form role="form" ng-submit>
-					<h3>YouTube Video Search</h3>
-					<p>
-						Enter a term to search. The first result will appear in this pane.  
-					</p>
-					<div class="form-group">
-						<br/>
-						<div class="col-md-10">
-						<input class='form-control field em1 auto-hint' 
-						       ng-model="q" 
-						       type='text'
-						       name="q" id="q"
-						       title="Enter keyword" 
-						       ng-keypress="testKeys($event)" />
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div id="ytSearchContext" youTubeSearchResults ="true">
-			<div class="container contextPanel">
-				<ul class="image_text row"> 
-					<li ng-repeat="video in currentData.query.results.video" class="clearfix">
-							<div class="hf-image">
-								<a href="{{video.url}}" class="image-link article-link"><img 
-								height="{{video.thumbnails.thumbnail[0].height}}" 
-								width="{{video.thumbnails.thumbnail[0].width}}" 
-								src="{{video.thumbnails.thumbnail[0].content}}" alt="{{video.title}}" title="{{video.title}}"></a></div>
-								<div class="hf-info">
-								<h4 class="hf-title" class="article-link">{{video.title}}</h4>
-								</div>
+<div ng-controller="YouTubeSearchController" class="youtubeSearch noBG" id="youtubeSearch" ng-init="init('youtubeSearch','content','ytSearchContext');">
+	<div class="content" id="ytSearchPlayer">
+			<div class="jumbotron">
+				<div class="container" id="ytSearchDiv">
+					<form ng-submit="testKeys();" id="ytForm" role="form">
+						<h3>YouTube Video Search</h3>
+						<p>
+							Enter a term to search. The first result will appear in this pane.  
+						</p>
+						<div class="form-group">
+							<br/>
+							<div class="col-md-10">
+							<input youTubeSearchResults="alert('this.value')" class='form-control field em1 auto-hint' 
+							       ng-model="ytSearchTextValue" 
+							       type='text'
+							       name="ytSearchText" id="ytSearchText"
+							       title="Enter keyword" 
+							       ng-keypress="testKeys()" /> 
 							</div>
-					</li>
-				</ul>
-			</div>			 
+							<button>click me</button> 
+						</div>
+					</form>
+				</div>
+			</div>
+		<div id="ytSearchContext" youTubeSearchResults ="true">
+			<div class="contextPanel">
+				<div ng-show="currentData!=null">
+					<ul class="image_text row"> 
+						<li ng-repeat="video in currentData.query.results.video">
+								<div class="hf-image">
+									<a href="{{video.url}}"><img 
+									height="{{video.thumbnails.thumbnail[0].height}}" 
+									width="{{video.thumbnails.thumbnail[0].width}}" 
+									src="{{video.thumbnails.thumbnail[0].content}}" alt="{{video.title}}" title="{{video.title}}"></a></div>
+									<div class="hf-info">
+									<p class="hf-title" class="article-link">
+										{{
+											(video.title.length>25) ? video.title.substring(0, 22) + "..." : video.title
+										}}
+									</p>
+									</div>
+								</div>
+						</li>
+					</ul>
+				</div>
+				<div ng-show="currentData==null">
+					Enter text to search Youtube Videos, then press ENTER.
+				</div>
+		</div>
 	</div>
 </div>
