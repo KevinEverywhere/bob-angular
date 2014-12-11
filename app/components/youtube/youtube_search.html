@@ -1,5 +1,9 @@
 <div ng-controller="YouTubeSearchController" class="youtubeSearch noBG" id="youtubeSearch" ng-init="init('youtubeSearch','content','ytSearchContext');">
 	<div class="content" id="ytSearchPlayer">
+		<div ng-show="currentData==null" >
+			<div id="ytplayer"></div>
+		</div>
+		<div ng-show="currentData!=null">
 			<div class="jumbotron">
 				<div class="container" id="ytSearchDiv">
 					<form ng-submit="testKeys();" id="ytForm" role="form">
@@ -13,7 +17,7 @@
 							<input youTubeSearchResults="alert('this.value')" class='form-control field em1 auto-hint' 
 							       ng-model="ytSearchTextValue" 
 							       type='text'
-							       name="ytSearchText" id="ytSearchText"
+							       name="v" id="v"
 							       title="Enter keyword" 
 							       ng-keypress="testKeys()" /> 
 							</div>
@@ -21,6 +25,7 @@
 						</div>
 					</form>
 				</div>
+			</div>
 			</div>
 		<div id="ytSearchContext" youTubeSearchResults ="true">
 			<div class="contextPanel">

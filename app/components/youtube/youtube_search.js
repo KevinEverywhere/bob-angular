@@ -40,7 +40,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 							if(data && data.query && data.query.results && data.query.results.video && data.query.results.video.length>0){
 								scope.currentData=data;
 								$rootScope.currentData=data;
-								console.log("inner success");
+								// console.log("inner.success" + searchTerm + ":" +  scopeArg + ":" + callback);
 								try{
 									me.videos=data.query.results.video;
 									callback();
@@ -112,22 +112,41 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 			$scope.getContextHTML=function(){
 				return(this._context.html())
 			}
+			$scope.callback=function(){
+				threeCSSService.init(
+					this.elem,
+					this._scope, 
+					this._content);
+				render();
+				
+			}
+			$scope.setCallback=function(elem, _scope, _content){
+				this.elem=elem;
+				this._scope=_scope;
+				this._content=_content;
+			}
+			$scope.control=this;
 			$scope.init=function(elem, _content, _context){
 				$scope.ytSearchText="Enter keyword";
 				YouTubeSearchService.init(_context);
 				this._context=$("#"+ _context);
+				var me=this;
 				$rootScope._context=this.getContextHTML();
 				if(!this.isInited){
 					this.isInited=true;
-					console.log("init------")
+					this.setCallback(elem, $scope, _content)
 					var callback=function(){
-						console.log("callback.created by findVideos");
 						threeCSSService.init(elem, $scope, _content);
-				 		render();
-					};
+					}
+					console.log("scop.init.$stateParams=" + $stateParams)
+					if($stateParams && $stateParams.video){
+						this.findVideos($stateParams.video, callback);
+					}else{
+						callback();
+					}
 					console.log("PRE callback.created by findVideos");
-				//	callback();
-					this.findVideos("Kings of Leon", callback);
+				//	this.findVideos("Kings of Leon", callback);
+			//	http://localhost/bobAngular/bestOfBreed/app/?v=Enter+keyword#/video $stateParams
 				}
 			}
 			$scope.testKeys=function(item){
