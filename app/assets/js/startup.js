@@ -97,12 +97,13 @@ function changeSize(evt){
         "@isMobile":isMobile().any(),
         "@mobileType":isMobile().type(),
         "@rowTrim":pixelWrap("rowTrim"),
-        "@columnTrim":pixelWrap("columnTrim")
+        "@columnTrim":pixelWrap("columnTrim"),
+        "@trimmedBox":pixelWrap("trimmedBox")
     });
     if(window.hardcoded){window.hardcoded()}
 }    
 
-var rowTrim=50, columnTrim=200, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
+var rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
     gapi.client.setApiKey(apiKey);
 };
 
@@ -168,5 +169,27 @@ function getCurrentDimensions(){
     pageBottomW=(theOrientation=="horizontal") ? theLarge : theSmall;
     bobAppX=(theOrientation=="horizontal") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
     bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
+}
 
+// and jQuery help for element defaults. (http://www.ajaxblender.com/howto-add-hints-form-auto-focus-using-javascript.html)
+function updateFormFieldHints(){
+    $('INPUT.auto-hint, TEXTAREA.auto-hint').focus(function(){
+        if($(this).val() == $(this).attr('title')){
+            $(this).val('');
+            $(this).removeClass('auto-hint');
+        }
+    });
+
+    $('INPUT.auto-hint, TEXTAREA.auto-hint').blur(function(){
+        if($(this).val() == '' && $(this).attr('title') != ''){
+           $(this).val($(this).attr('title'));
+           $(this).addClass('auto-hint');
+        }
+    });
+
+    $('INPUT.auto-hint, TEXTAREA.auto-hint').each(function(){
+        if($(this).attr('title') == ''){ return; }
+        if($(this).val() == ''){ $(this).val($(this).attr('title')); }
+        else { $(this).removeClass('auto-hint'); }
+    });    
 }

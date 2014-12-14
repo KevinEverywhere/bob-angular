@@ -17,6 +17,7 @@ html, body{
 }
 .em1{
 	font-size:1.25em;
+	width:10em;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus{
@@ -209,7 +210,7 @@ ul.alignLeft{
 background:none;
 }
 
-#ytplayer, #ytSearch, #youtubeSearch{
+#ytDiv #ytplayer, #ytSearch, #youtubeSearch{
 	padding:0em;
 	margin:0em;
 	width:@axis2W;
@@ -261,13 +262,23 @@ background:none;
 
 .isVisible{
   display:block;
+  visibility:visible;
 }
 
-#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext, #ytSearchContext, .isHidden{
+#leaflet #leafletContext, .svgDiv #svgContext, #youtube #ytContext, #ytSearchContext, .isHidden, #ytSearchPlayer #ytplayer .isHidden{
   display:none;
+  visibility:hidden;
 }
 
-#context .content{
+.image_text {
+	width:@trimmedBox;
+	list-style-type: none;
+	list-style-position:inside;
+	margin:0em;
+	padding:0em;
+}
+
+#context .content, .contextPanel .ytSearchContext{
 	position:absolute;
 	left:0px;
 	top:0px;

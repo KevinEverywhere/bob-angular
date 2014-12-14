@@ -1,13 +1,19 @@
 <div ng-controller="ThreeYouTubeController" class="threeYouTube" id="youtube" ng-init="init('youtube','content','ytContext');">
-	<div class="content">
+	<div class="content" id="ytDiv">
 		<div id="ytplayer"></div>
 		<div id="ytContext">
-			<p>
-				The video here is a Dutch astronaut's guided view of the ISS. This will soon be updated to be a feed-based component. Now, it merely shows interactive video content to be mapped live to an animating 3D element.
-			</p>
-			<p>
-				If you look at the file named 'youtube.html' and view the div elements with the id "ytplayer" and "ytContext", you will see where content is loaded into the main and context views.
-			</p>
+		<form novalidate id="ytForm">
+				<p>
+					A Dutch astronaut's guided view of the ISS. Enter a search term below to load a live feed from Youtube.
+				</p>
+
+				<input class='form-control field em1 auto-hint' 
+				       type='text'
+				       name="v" id="v"
+				       title="Enter keyword" /> 
+				<br/>
+				<input type="submit" value="Search" /> 
+			</form>
 		</div>
 	</div>
 </div>

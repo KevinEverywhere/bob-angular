@@ -1,24 +1,52 @@
 'use strict';
 
 angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
-	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window", "$timeout",
-		 function($rootScope, $http, $httpBackend, $q, $state, $window, $timeout) {
+	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window", "$timeout", "YouTubeService", "threeCSSService",
+		 function($rootScope, $http, $httpBackend, $q, $state, $window, $timeout, YouTubeService, threeCSSService) {
 			var _service={
 				videos:[],
 				init:function(_context){
 					$window.updateFormFieldHints();
 					this._context=_context;
 				},
+				render:function(scopeArg) {
+					scopeArg.renderer.render(scopeArg.scene, scopeArg.camera);
+					threeCSSService.render(scopeArg);
+				},
 				search_update:function(data, scope){
 					$window._data=data;
 					scope.currentData=data;
+					if(data!=null){
+						var a=0;
+						try{
+							a++;
+							_service.videos=data.query.results.video;
+							a++;
+							_service.setCurrentVideo(0, scope);
+							a++;
+						}catch(oops){
+							console.log(a + " times - data.query.results.videoE=" + oops)
+						}
+					}
+					console.log("this.getCurrentVideo().id=");
 					$timeout(function(){
 						$("#sectionBody").html(scope.getContextHTML());
 					}, 1000);
 				},
+				incrementCurrentVideo:function(){
+					this.currentVideo++;
+				},
 				currentVideo:-1,
 				getCurrentVideo:function(){
 					return (this.currentVideo!=-1) ? this.getVideo(this.currentVideo) : null;
+				},
+				setCurrentVideo:function(toWhat, scope){
+					_service.currentVideo=toWhat;
+					threeCSSService.init('youtubeSearch', scope, "content");
+					_service.render(scope);
+					YouTubeService.activePlayer={height: scope._height,width: scope._width};
+					var service=YouTubeService;
+					YouTubeService.startMedia(_service.videos[_service.currentVideo].id,YouTubeService);
 				},
 				getVideo:function(which){
 					var rtn=null;
@@ -28,10 +56,14 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 							break;
 						}
 					}
+					rtn=this.videos[which];
 					return rtn;
 				},
+				counter:0,
+				maxCount:10,
+				timeoutLength:800,
 				findVideos:function(searchTerm, scopeArg, callback){
-					var timeoutLength=500, me=this, scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
+					var  me=this, scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
 					endString='"&callback=';
 					var fullString=beginString + searchTerm + endString;
 					console.log("fullString=" + fullString);
@@ -40,21 +72,26 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 							if(data && data.query && data.query.results && data.query.results.video && data.query.results.video.length>0){
 								scope.currentData=data;
 								$rootScope.currentData=data;
-								// console.log("inner.success" + searchTerm + ":" +  scopeArg + ":" + callback);
 								try{
 									me.videos=data.query.results.video;
 									callback();
 								}
 								catch(oops){}
-								$rootScope.$broadcast("youtube_search_update", data, scope);
-					//		}else{
-					//			$timeout(me.findVideos(searchTerm, scopeArg, callback),timeoutLength)
+								me.search_update(data, scope)
+							}else{
+								me.counter++;
+								if(me.counter<me.maxCount){
+									console.log("already tried " + me.counter)
+									$timeout(me.findVideos(searchTerm, scope, callback),me.timeoutLength);
+								}else{
+									console.log("too many tries")
+								}
 							}
 						})
 						.error(function(data, status, headers, config) {
-							console.log("data=" + data);
-							console.log("status=" + status);
-							console.log("headers=" + headers);
+							console.log("ERROR.data=" + data);
+							console.log("ERROR.status=" + status);
+							console.log("ERROR.headers=" + headers);
 							scope.currentData=null;
 						});
 				}
@@ -68,7 +105,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
  			$scope.currentData=null;
 			$scope._service=YouTubeSearchService;
 			$scope.name='YouTubeSearchController';
-			$scope.activeAnimations=[];
+			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
 			$scope._dir=-1;
 			$scope.incr=.01;
@@ -100,10 +137,12 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr * 10);
 				$scope.renderer.render($scope.scene, $scope.camera);
 			}
+			$scope.setCurrentVideo=function(idx){
+				YouTubeSearchService.setCurrentVideo(idx, $scope);
+			}
 			$scope.findVideos=function(searchTerm, callback){
 				console.log("controller.searchForFeed=" + searchTerm);
 				YouTubeSearchService.findVideos(searchTerm, this, callback);
-			
 			}
 			$scope.search_update=function(data){
 				console.log("search_update")
@@ -118,7 +157,6 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					this._scope, 
 					this._content);
 				render();
-				
 			}
 			$scope.setCallback=function(elem, _scope, _content){
 				this.elem=elem;
@@ -139,30 +177,17 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 						threeCSSService.init(elem, $scope, _content);
 					}
 					console.log("scop.init.$stateParams=" + $stateParams)
-					if($stateParams && $stateParams.video){
-						this.findVideos($stateParams.video, callback);
+					if($stateParams && $stateParams.videofeed){
+						console.log("$stateParams.videofeed=" + $stateParams.videofeed)
+						this.findVideos($stateParams.videofeed, callback);
 					}else{
+						console.log("$stateParams.video=" + $stateParams.video)
 						callback();
 					}
 					console.log("PRE callback.created by findVideos");
 				//	this.findVideos("Kings of Leon", callback);
 			//	http://localhost/bobAngular/bestOfBreed/app/?v=Enter+keyword#/video $stateParams
 				}
-			}
-			$scope.testKeys=function(item){
-				console.log("testKeys.");
-				for(var z in what){
-					console.log("testKeys." + z + "=" + what[z]);
-					// event.keyCode }}</p> event.altKey }}</p>
-				}
-					var callback=function(){
-						console.log("callback.created by findVideos");
-				 		render();
-					};
-					console.log("PRE callback.created by findVideos");
-					callback();
-					this.findVideos("Kings of Leon", callback);
-
 			}
 			$scope.getItemValue = function (item){
 			      return("getItemState(" + item)

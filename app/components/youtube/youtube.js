@@ -4,10 +4,35 @@ angular.module('bobApp.youtube', ["bobApp"])
 	.service("YouTubeService",['$rootScope', "$http", "$q", "$state", "$window",
 		 function($rootScope, $http, $q, $state, $window) {
 			var _service={
+				activePlayer:null,
 				feedStart:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22",
 				feedEnd:"%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK",
 				query:["query","results","video"],
 				returnObj:null,
+				startMedia:function(which, obj){
+					var me=obj;
+					console.log("YouTubeService-$scope.startMedia=function(" + which);
+					this.player = new $window.YT.Player('ytplayer', {
+				      height: this.activePlayer.height,
+				      width: this.activePlayer.width,
+				      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
+	                events: {
+	                        'onReady': me.onPlayerReady,
+	                        'onStateChange': me.onPlayerStateChange
+	                }});
+				},
+				onPlayerReady:function(evt){
+					console.log("$....onPlayerReady...");
+					$window.player=evt.target;
+					console.log("$window.player.onPlayerReady=" + $window.player);
+				},
+				onPlayerStateChange:function(evt){
+					console.log("onPlayerStateChange=" + evt);
+				},
+				playCurrent:function(){
+					this.startMedia();
+				},
+
 				videoWrapper:function(id, _width, _height){
 					return('<iframe title="YouTube video player" width="'+_width+'" height="'+_height+
 						'" src="http://www.youtube.com/embed/'+id + 
@@ -20,8 +45,8 @@ angular.module('bobApp.youtube', ["bobApp"])
 			return _service;
 		}
 	])
-	.controller('ThreeYouTubeController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$timeout",
-		function ThreeYouTubeController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout) {
+	.controller('ThreeYouTubeController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "$timeout", "YouTubeSearchService",  "YouTubeService",
+		function ThreeYouTubeController($window, $scope, $rootScope, $state, $stateParams, threeCSSService, $timeout, YouTubeSearchService, YouTubeService) {
 			$scope.name='ThreeYouTubeController';
 			$scope._position={
 				z:20
@@ -40,8 +65,20 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.currentRotate=199;
 			$scope.maxRotate=200;
 			$scope.minRotate=160;
+			$scope.control=this;
+/*
+			var init=function
+			*/
 
+			$scope.startMedia=function(which){
+				YouTubeService.activePlayer={
+			      height: $scope._height,
+			      width: $scope._width};
+				YouTubeService.startMedia(which, YouTubeService);
+			}
 			$scope.init=function(elem, _content, _context){
+				console.log("$scope.this.control." + this.control.name + "=" + $state.name)
+
 				$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
@@ -54,28 +91,29 @@ angular.module('bobApp.youtube', ["bobApp"])
 					}
 				}
 			}
-			$scope.startMedia=function(which){
-				var me=$scope;
-				$scope.player = new $window.YT.Player('ytplayer', {
-			      height: $scope._height,
-			      width: $scope._width,
-			      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
-                events: {
-                        'onReady': me.onPlayerReady,
-                        'onStateChange': me.onPlayerStateChange
-                }});
-			}
-			$scope.onPlayerReady=function(evt){
-				console.log("$....onPlayerReady...");
-				for(var z in evt.target){
-					console.log(z + ":" + evt.target[z]);
-				}
+			$scope.testKeys=function(){
+				console.log("testKeys.");
+				/*
+					try{
+						$scope.startMedia($scope.youtubeId);
+					}catch(oops){
+						$timeout(function(){$scope.startMedia($scope.youtubeId);},1000)
+					}
 
-				$window.player=$scope.player;
-				console.log("$window.player.onPlayerReady=" + $window.player);
-			}
-			$scope.onPlayerStateChange=function(evt){
-				console.log("onPlayerStateChange=" + evt);
+				for(var z in what){
+					console.log("testKeys." + z + "=" + what[z]);
+					// event.keyCode }}</p> event.altKey }}</p>
+				}
+					var callback=function(){
+						console.log("callback.created by findVideos");
+				 		render();
+					};
+					console.log("PRE callback.created by findVideos");
+					callback();
+					this.findVideos("Kings of Leon", callback);
+
+
+				*/
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);

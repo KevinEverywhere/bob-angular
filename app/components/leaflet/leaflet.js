@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router"])
-	.service('leafletService', ['$rootScope', "$http", "$q", "$state", "$window",
-	 function($rootScope, $http, $q, $state, $window) {
+	.service('leafletService', ['$rootScope', "$http", "$q", "$state", "$window", "$location",
+	 function($rootScope, $http, $q, $state, $window, $location) {
 		var service={
 			numTries:0,
 			maxTries:5,
 			leafletMap:null,
 			leafletDiv:null,
+			currentData:null,
 			buildMap:function(_content){
 				var me=service;
 				console.log('me.leafletDiv=' + me.leafletDiv);
@@ -20,12 +21,10 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 					var plotlayers=[];
 					// set up the map
 					map = new $window.L.map(me.leafletDiv);
-
 					// create the tile layer with correct attribution
 					var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 					var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-					var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib});		
-
+					var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib});
 					// start the map in South-East England
 					map.setView(new $window.L.LatLng(45.438, 12.33),5);
 					map.addLayer(osm);

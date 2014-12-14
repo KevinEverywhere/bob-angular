@@ -16,12 +16,13 @@ var bobApp=angular.module("bobApp",  [
 	'localCRUD',
 	'ui.router'
 ])
-	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService) {
+	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService, YouTubeSearchService, $location) {
 		$rootScope.googleReady=false;
 		$rootScope.sectionTitle="Testing";
 		$rootScope.$state = $state;
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.hasOpened=true;
+		$rootScope.currentData=null;
 		$rootScope.interstitialized={done:false};
 		var redraw=function () {
 			console.log('redraw');
@@ -47,15 +48,48 @@ var bobApp=angular.module("bobApp",  [
 			$rootScope.$broadcast("onlineStatusUpdate");
 		}, false);
 
- 		$rootScope.$on('navigatingToSection',function(toWhat, toWhich){
+ 		$rootScope.$on('navigatingToSection',function(event, toWhich){
 			$state.go(toWhich);
+ 		});
+ 		$rootScope.$on("youtube_search_update",function(event, data, scope){
+ 			console.log("youtube_search_update" + event + ":" + data)
+			YouTubeSearchService.search_update(data, scope);
  		});
 		$rootScope.$on('$stateChangeStart', 
 		function(event, toState, toParams, fromState, fromParams){ 
-			switch(toState){
+			switch(toState.name){
 				case "video":
+					var q=$location.absUrl().indexOf("?");
+					if(q!=-1){
+						var cutString=$location.absUrl().substr(q),
+						_start=cutString.indexOf("=")+1,_end=cutString.indexOf("#");
+						console.log("going to cutString.substring(_start,_end)=" + cutString.substring(_start,_end));
+					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
+						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end);
+					}
 					break;
 				case "map":
+					console.log("statechange.mapy=");
+					var q=$location.absUrl().indexOf("?");
+					if(q!=-1){
+						var searchString="", searchObj=$window.location.search.substring(1).split("&");
+						for(var s=0;s<searchObj.length;s++){
+							if(
+								searchObj[s].split("=")[1] &&
+								searchObj[s].split("=")[1].length>0
+								) {
+								searchString+="&"+searchObj[s];
+							}
+						}
+						$window.searchObj=searchObj;
+						console.log("searchObj,=" + searchObj);
+					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
+						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString;
+					}
+					break;
+				case "mapfeed":
+					var prefix="http://nominatim.openstreetmap.org/search?format=json&limit=5";//  + $stateParams.details;
+					console.log("mapfeed == " + prefix);
 					break;
 				case "home":
 					break;
@@ -66,12 +100,12 @@ var bobApp=angular.module("bobApp",  [
 			console.log("toState=" + toState);
 		})
 		$rootScope.$on('$stateChangeSuccess', 
-		function(event, toState, toParams, fromState, fromParams){ 
-			switch(toState){
+		function(event, toState, toParams, fromState, fromParams){
+			switch(toState.name){
 				case "video":
-				//	$("#sectionTitle").html("You Tube");
 					break;
-				case "map":
+				case "mapfeed":
+
 				//	$("#sectionTitle").html("Leaflet Map");
 					break;
 				case "home":
@@ -82,7 +116,7 @@ var bobApp=angular.module("bobApp",  [
 					break;
 			}
 			$window['stated']=toState;
-			console.log("stateChangeSuccess=" + toState);
+			console.log("stateChangeS000uccess=" + toState);
 		});
 		resize();
 	})
@@ -106,10 +140,85 @@ var bobApp=angular.module("bobApp",  [
 				}
 			}
 		  })
+		  .state('videofeed', {
+			url: '/videofeed',
+			views:{
+				"axis2":{
+					templateUrl: 'components/youtube/youtube_search.html'
+					, controller: 'YouTubeSearchController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					template: '<p>{{$location}}</p>',
+					controller: 'ThreeFooterController'
+				}
+			}
+		  })
+
+		  .state('mapfeed', {
+			url: '/mapfeed',
+			views:{
+				"axis2":{
+					templateUrl: 'components/leaflet/leaflet.html',
+					controller: 'ThreeLeafletController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
+
+		  })
+
+		  .state('mapfeed.details', {
+			url: '/:details',
+			views:{
+				"axis2":{
+					templateUrl: 'components/leaflet/leaflet.html',
+					controller: 'ThreeLeafletController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
+
+		  })
+		  .state('videofeed.videofeed', {
+			url: '/:videofeed',
+			views:{
+				"axis2":{
+					templateUrl: 'components/youtube/youtube.html',
+					controller: 'ThreeYouTubeController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
+
+		  })
 		  .state('video', {
 			url: '/video',
 			views:{
 				"axis2":{
+				//	templateUrl: 'components/youtube/youtube_search.html'
+				//	, controller: 'YouTubeSearchController'
 					templateUrl: 'components/youtube/youtube.html',
 					controller: 'ThreeYouTubeController'
 				},
