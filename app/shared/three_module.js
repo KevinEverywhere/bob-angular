@@ -1,9 +1,10 @@
 'use strict';
 
 var threeModule = angular.module('threeModule', [])
-	.service('threeCSSService', ["$window", "$rootScope", "$http", "$state",
-		function threeCSSService($window, $rootScope, $http, $state) {
+	.service('threeCSSService', ["$window", "$rootScope", "$http", "$state", "$timeout",
+		function threeCSSService($window, $rootScope, $http, $state, $timeout) {
 			var service={
+				_oldContent:{},
 				isInitted:false,
 				childObjects:[],
 				"globalPositioning":{
@@ -49,8 +50,26 @@ var threeModule = angular.module('threeModule', [])
 						this.childObjects[z].rerender();
 					}
 				},
-				init:function(_elem, scope, _content){
-					scope._service=this;
+				getContextDiv:function(){
+					return $('#' + service.contextElement)
+				},
+				swapContext:function(_context){
+					if(_context){
+						for(var z in service._oldContent){
+							service._oldContent[z].toggleClass("isHidden", true);
+						}
+						if(!service._oldContent[_context]){
+							service._oldContent[_context] = $('#'+_context).detach();
+						}else{
+							service._oldContent[_context].toggleClass("isHidden", false);
+						}
+						console.log("swapContext=" + _context)
+						var me=service,__context=_context;
+						$timeout(function(){me.getContextDiv().html(me._oldContent[__context]);},1);
+					};
+				},
+				init:function(_elem, scope, _content, _context){
+					scope._service=service;
 					scope.elem = document.getElementById(_elem);
 					scope._content=_content;
                     scope._name="#" + _elem + " > ." + _content;
@@ -156,6 +175,7 @@ var threeModule = angular.module('threeModule', [])
 					scope.scene.add( scope.css3DObject );
                     service.postinit(scope, true);
 					service.mapScopeObject(scope, true);
+					service.swapContext(_context);
 				},
 				postinit:function(scope, init){
 					if(!init){
@@ -208,6 +228,10 @@ var threeModule = angular.module('threeModule', [])
 				},
 				render:function(scope){
 					scope.startAnimation();
+				},
+				runOnce:function(){
+					service.contextElement="sectionBody";
+					console.log("runOnce.service.contextElement=" + service.contextElement);
 				}
 			}
 			if(!service.isInitted){
@@ -216,6 +240,7 @@ var threeModule = angular.module('threeModule', [])
 		        };
 		        service.isInitted=true;
 			}
+			service.runOnce();
 			return service;
 		}
 	]);

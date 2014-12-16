@@ -76,12 +76,12 @@ angular.module('bobApp.youtube', ["bobApp"])
 			      width: $scope._width};
 				YouTubeService.startMedia(which, YouTubeService);
 			}
+
 			$scope.init=function(elem, _content, _context){
 				console.log("$scope.this.control." + this.control.name + "=" + $state.name)
-
-				$rootScope._context=$("#"+ _context).html();
+			//	$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
-					threeCSSService.init(elem, $scope, _content);
+					threeCSSService.init(elem, $scope, _content, _context);
 					this.isInited=true;
 					render();
 					try{
@@ -90,30 +90,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 						$timeout(function(){$scope.startMedia($scope.youtubeId);},1000)
 					}
 				}
-			}
-			$scope.testKeys=function(){
-				console.log("testKeys.");
-				/*
-					try{
-						$scope.startMedia($scope.youtubeId);
-					}catch(oops){
-						$timeout(function(){$scope.startMedia($scope.youtubeId);},1000)
-					}
-
-				for(var z in what){
-					console.log("testKeys." + z + "=" + what[z]);
-					// event.keyCode }}</p> event.altKey }}</p>
-				}
-					var callback=function(){
-						console.log("callback.created by findVideos");
-				 		render();
-					};
-					console.log("PRE callback.created by findVideos");
-					callback();
-					this.findVideos("Kings of Leon", callback);
-
-
-				*/
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);

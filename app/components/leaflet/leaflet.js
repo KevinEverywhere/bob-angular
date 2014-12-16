@@ -58,12 +58,27 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope._rotation={
 				x:threeCSSService.radianCalculator(1)
 			};
+			$scope.test=function(val, div){
+					console.log("functionDSVOPR.forms.leafletForm[val]" + val +" "+ document.forms.leafletForm[val])
+					if(val.value.length==0){
+						$(div).parent().addClass("isHidden");
+					}else{
+						$(div).parent().removeClass("isHidden");
+					}
+/*
+var element = $('#childNode').detach();
+$('#parentNode').append(element);
+*/
+
+				}
+
+
 			$scope.init=function(elem, _content, map, _context){
-				$rootScope._context=$("#"+ _context).html();
+			//	$rootScope._context=$("#"+ _context).html();
 				console.log("init-" + elem + " and " + _content);
 				var me=$scope;
 				if(!me.isInited){
-					threeCSSService.init(elem, me, _content);
+					threeCSSService.init(elem, me, _content, _context);
 					me.isInited=true;
 					$scope.postinit(elem, _content);
 					render();

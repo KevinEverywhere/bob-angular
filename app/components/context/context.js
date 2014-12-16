@@ -13,21 +13,25 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope.maxPosition=5;
 			$scope.minPosition=-10;
 			$scope.init=function(elem, _content){
+				/*
+				var element = $('#childNode').detach();
+				$('#parentNode').append(element);
+				*/
 				switch($state.current.name){
 					case "video":
 						$("#sectionTitle").html("You Tube");
-						$("#sectionBody").html($rootScope._context);
+				//		$("#sectionBody").html($rootScope._context);
 						break;
 					case "map":
 						$("#sectionTitle").html("Leaflet Map");
-						$("#sectionBody").html($rootScope._context);
+				//		$("#sectionBody").html($rootScope._context);
 						break;
 					case "home":
 						$("#sectionTitle").html("About this App");
 						break;
 					case "svg":
 						$("#sectionTitle").html("SVG Example");
-						$("#sectionBody").html($rootScope._context);
+				//		$("#sectionBody").html($rootScope._context);
 						break;
 				}
 				if(!this.isInited){

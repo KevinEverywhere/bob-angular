@@ -46,7 +46,7 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
         		try{
 					$scope.importedNode = document.importNode(xml.documentElement, true);
 					$window.d3.select("#" + $scope._svgDiv).node().appendChild($scope.importedNode);
-					$scope.threeCSSService.init($scope.elem, $scope, $scope.__content);
+					$scope.threeCSSService.init($scope.elem, $scope, $scope.__content, $scope._context);
 					render();
 				}catch(oops){}
             };
@@ -98,6 +98,7 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 				var me=$scope;
 				$scope.elem=elem;
 				$scope.__content=_content;
+				$scope._context=_context;
 				$scope._svgDiv=_svgDiv;
 				$scope.svgURL=svgURL;
 				$scope.d3World=d3.xml($scope.svgURL, "image/svg+xml",function(xml) {

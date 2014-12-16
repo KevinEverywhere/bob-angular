@@ -84,7 +84,7 @@ var bobApp=angular.module("bobApp",  [
 						$window.searchObj=searchObj;
 						console.log("searchObj,=" + searchObj);
 					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
-						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString;
+						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
 					}
 					break;
 				case "mapfeed":
@@ -152,7 +152,7 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeContextController'
 				},
 				"pageBottom":{
-					template: '<p>{{$location}}</p>',
+					templateUrl: 'components/footer/footer.html',
 					controller: 'ThreeFooterController'
 				}
 			}

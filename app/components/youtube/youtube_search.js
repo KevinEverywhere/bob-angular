@@ -169,12 +169,12 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				YouTubeSearchService.init(_context);
 				this._context=$("#"+ _context);
 				var me=this;
-				$rootScope._context=this.getContextHTML();
+			//	$rootScope._context=this.getContextHTML();
 				if(!this.isInited){
 					this.isInited=true;
 					this.setCallback(elem, $scope, _content)
 					var callback=function(){
-						threeCSSService.init(elem, $scope, _content);
+						threeCSSService.init(elem, $scope, _content, _context);
 					}
 					console.log("scop.init.$stateParams=" + $stateParams)
 					if($stateParams && $stateParams.videofeed){

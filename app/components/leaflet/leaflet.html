@@ -1,4 +1,4 @@
-<div class="threeLeaflet" id="leaflet" ng-init="init('leaflet','content','leafletMap','leafletContext');">
+<div class="threeLeaflet" id="leaflet" ng-init="init('leaflet','content','leafletMap','leafletContext');country='';city='';street='';latlong=''">
 	<div class="content">
 		<div class="leafletMap" id="leafletMap"></div>
 		<div id="leafletContext" class="contextPanel">
@@ -22,34 +22,42 @@
 						Enter one or more search terms, or Latitude and Longitude separated by a comma (,).
 					</p>
 
-					<p>
+					<div>
 						<label>Country</label>
 						<input class='form-control field em1 auto-hint' 
-						type='text'
+						type='text' ng-model="country"
 						name="country" id="country"
-						title="country" /><br/>
+						title="country" ng-change="test(this,'cityDiv')"></input><br/>
+					</div>
 
+					<div class="cityDiv">
 						<label>City</label>
-						<input class='form-control field em1 auto-hint' 
-						type='text'
+						<input class='form-control field em1 auto-hint'
+						type='text' ng-model="city"
 						name="city" id="city"
-						title="city" /><br/>
+						title="city"></input><br/>
+					</div>
 
+					<div class="isHidden" id="streetDiv">
 						<label>Street Address</label>
 						<input class='form-control field em1 auto-hint' 
-						type='text'
+						type='text' ng-model="street"
 						name="street" id="street"
-						title="street address" /><br/>
+						title="street address"></input><br/>
+					</div>
 
+					<div>
 						<label>Latitude, Longitude</label>
 						<input class='form-control field em1 auto-hint' 
-						type='text'
+						type='text' ng-model="latlong"
 						name="latlong" id="latlong"
-						title="Lat, Long" />
-					</p>
-					<p>
+						title="Lat, Long"></input><br/>
+					</div>
+
+					<div>
 						<input type="submit" value="Search" /> 
-					</p>
+					</div>
+
 
 				</form>
 
