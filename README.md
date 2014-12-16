@@ -49,7 +49,7 @@ and then populate them with imported code:
 
 ### Distribute Code
 
-The next step is handled internally: through Gruntilfe, grunt selects the 
+The next step is handled internally: through Gruntfile, grunt selects the 
 necessary files from app/libs and creates a directory structure child to the 
 dist directory. The application run from app and dist/app are the same in 
 function, but dist/app files are less than a quarter the size.
