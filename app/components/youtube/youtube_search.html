@@ -14,34 +14,35 @@
 						<div class="form-group">
 							<br/>
 							<div class="col-md-10">
-							<input youTubeSearchResults="alert('this.value')" class='form-control field em1 auto-hint' 
-							       ng-model="ytSearchTextValue" 
-							       type='text'
-							       name="v" id="v"
-							       title="Enter keyword" /> 
+								<input youTubeSearchResults="alert('this.value')" class='form-control field em1 auto-hint' 
+								       ng-model="ytSearchTextValue" 
+								       type='text'
+								       name="v" id="v"
+								       title="Enter keyword" /> 
+								</div>
+								<input type="button" value="Search " /> 
 							</div>
-							<input type="button" value="Search " /> 
 						</div>
 					</form>
 				</div>
 			</div>
-			</div>
+		</div>
 		<div id="ytSearchContext" youTubeSearchResults ="true">
 			<div class="contextPanel">
 				<div ng-show="currentData!=null">
 					<ul class="image_text row"> 
 						<li ng-repeat="video in currentData.query.results.video">
 								<div class="hf-image">
-									<a href="{{video.url}}" ><img 
+									<a ui-sref="videofeed.videofeed.index({idx:$index})"><img 
 									height="{{video.thumbnails.thumbnail[0].height}}" 
 									width="{{video.thumbnails.thumbnail[0].width}}" 
 									src="{{video.thumbnails.thumbnail[0].content}}" alt="{{video.title}}" title="{{video.title}}"></a></div>
 									<div class="hf-info">
-									<p class="hf-title" class="article-link">
+									<p class="hf-title" class="article-link"><a ui-sref="video.youtubeid({youtubeid:video.id})" ng-click="$rootScope.youtubeid=video.id;setCurrentVideo($index)">
 										{{
 											(video.title.length>25) ? video.title.substring(0, 22) + "..." : video.title
 										}}
-									</p>
+									</a></p>
 									</div>
 								</div>
 						</li>

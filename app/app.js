@@ -16,7 +16,7 @@ var bobApp=angular.module("bobApp",  [
 	'localCRUD',
 	'ui.router'
 ])
-	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService, YouTubeSearchService, $location) {
+	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService, YouTubeService, YouTubeSearchService, $location) {
 		$rootScope.googleReady=false;
 		$rootScope.sectionTitle="Testing";
 		$rootScope.$state = $state;
@@ -64,8 +64,7 @@ var bobApp=angular.module("bobApp",  [
 						var cutString=$location.absUrl().substr(q),
 						_start=cutString.indexOf("=")+1,_end=cutString.indexOf("#");
 						console.log("going to cutString.substring(_start,_end)=" + cutString.substring(_start,_end));
-					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
-						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end);
+						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
 					}
 					break;
 				case "map":
@@ -104,6 +103,11 @@ var bobApp=angular.module("bobApp",  [
 			switch(toState.name){
 				case "video":
 					break;
+				case "videofeed.videofeed.index":
+					YouTubeSearchService.currentVideo=toParams.idx;
+					YouTubeService.startMedia(YouTubeSearchService.videos[YouTubeSearchService.currentVideo].id,YouTubeService);
+					console.log("P{AST YouTubeService")
+					break;
 				case "mapfeed":
 
 				//	$("#sectionTitle").html("Leaflet Map");
@@ -116,6 +120,8 @@ var bobApp=angular.module("bobApp",  [
 					break;
 			}
 			$window['stated']=toState;
+			$window['toParams']=toParams;
+
 			console.log("stateChangeS000uccess=" + toState);
 		});
 		resize();
@@ -129,6 +135,40 @@ var bobApp=angular.module("bobApp",  [
 				"axis2":{
 					templateUrl: 'components/main/main.html',
 					controller: 'ThreeCSSController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
+		  })
+		  .state('mapfeed', {
+			url: '/mapfeed',
+			views:{
+				"axis2":{
+					templateUrl: 'components/leaflet/leaflet.html',
+					controller: 'ThreeLeafletController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
+		  })
+		  .state('mapfeed.details', {
+			url: '/:details',
+			views:{
+				"axis2":{
+					templateUrl: 'components/leaflet/leaflet.html',
+					controller: 'ThreeLeafletController'
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',
@@ -157,44 +197,6 @@ var bobApp=angular.module("bobApp",  [
 				}
 			}
 		  })
-
-		  .state('mapfeed', {
-			url: '/mapfeed',
-			views:{
-				"axis2":{
-					templateUrl: 'components/leaflet/leaflet.html',
-					controller: 'ThreeLeafletController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',
-					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
-				}
-			}
-
-		  })
-
-		  .state('mapfeed.details', {
-			url: '/:details',
-			views:{
-				"axis2":{
-					templateUrl: 'components/leaflet/leaflet.html',
-					controller: 'ThreeLeafletController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',
-					controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',
-					controller: 'ThreeFooterController'
-				}
-			}
-
-		  })
 		  .state('videofeed.videofeed', {
 			url: '/:videofeed',
 			views:{
@@ -211,14 +213,45 @@ var bobApp=angular.module("bobApp",  [
 					controller: 'ThreeFooterController'
 				}
 			}
-
+		  })
+		  .state('videofeed.videofeed.index', {
+			url: '/:idx',
+			views:{
+				"axis2":{
+					templateUrl: 'components/youtube/youtube.html',
+					controller: 'ThreeYouTubeController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
+		  })
+		  .state('video.youtubeid', {
+			url: '/:youtubeid',
+			views:{
+				"axis2":{
+					templateUrl: 'components/youtube/youtube.html',
+					controller: 'ThreeYouTubeController'
+				},
+				"axis3":{
+ 					templateUrl: 'components/context/context.html',
+					controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',
+					controller: 'ThreeFooterController'
+				}
+			}
 		  })
 		  .state('video', {
 			url: '/video',
 			views:{
 				"axis2":{
-				//	templateUrl: 'components/youtube/youtube_search.html'
-				//	, controller: 'YouTubeSearchController'
 					templateUrl: 'components/youtube/youtube.html',
 					controller: 'ThreeYouTubeController'
 				},

@@ -12,14 +12,20 @@ angular.module('bobApp.youtube', ["bobApp"])
 				startMedia:function(which, obj){
 					var me=obj;
 					console.log("YouTubeService-$scope.startMedia=function(" + which);
-					this.player = new $window.YT.Player('ytplayer', {
-				      height: this.activePlayer.height,
-				      width: this.activePlayer.width,
-				      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
-	                events: {
-	                        'onReady': me.onPlayerReady,
-	                        'onStateChange': me.onPlayerStateChange
-	                }});
+					if(!me.player){
+						console.log("NO PLAYER .WHICH=" + which )
+						me.player = new $window.YT.Player('ytplayer', {
+					      height: this.activePlayer.height,
+					      width: this.activePlayer.width,
+					      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
+		                events: {
+		                        'onReady': me.onPlayerReady,
+		                        'onStateChange': me.onPlayerStateChange
+		                }});
+					}else{
+						console.log("exists.WHICH=" + which )
+						me.player.loadVideoById(which);
+					}
 				},
 				onPlayerReady:function(evt){
 					console.log("$....onPlayerReady...");
@@ -59,7 +65,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.activeAnimations=["animate"];
 			$scope.activeParams={};
 			$scope.count=0;
-			$scope.youtubeId="afBm0Dpfj_k";// "Pkaq0_qOx0E" "RF0HhrwIwp0"; 
 			$scope._dir=-1;
 			$scope.incr=.01;
 			$scope.currentRotate=199;
@@ -78,16 +83,21 @@ angular.module('bobApp.youtube', ["bobApp"])
 			}
 
 			$scope.init=function(elem, _content, _context){
-				console.log("$scope.this.control." + this.control.name + "=" + $state.name)
+				console.log("$$scope.youtubeId." +  $scope.youtubeId+ "=" + $stateParams.youtubeid);
 			//	$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
+					if($rootScope.youtubeid){
+						$scope.youtubeid=$rootScope.youtubeid;
+					}else{
+						$scope.youtubeid= $scope.youtubeid || $stateParams.youtubeid || "afBm0Dpfj_k";// "Pkaq0_qOx0E" "RF0HhrwIwp0"; 
+					}
 					threeCSSService.init(elem, $scope, _content, _context);
 					this.isInited=true;
 					render();
 					try{
-						$scope.startMedia($scope.youtubeId);
+						$scope.startMedia($scope.youtubeid);
 					}catch(oops){
-						$timeout(function(){$scope.startMedia($scope.youtubeId);},1000)
+						$timeout(function(){$scope.startMedia($scope.youtubeid);},1000)
 					}
 				}
 			}

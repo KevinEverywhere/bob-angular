@@ -13,25 +13,20 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope.maxPosition=5;
 			$scope.minPosition=-10;
 			$scope.init=function(elem, _content){
-				/*
-				var element = $('#childNode').detach();
-				$('#parentNode').append(element);
-				*/
-				switch($state.current.name){
-					case "video":
+				switch($state.current.name.substring(0,3)){
+					case "vid":
 						$("#sectionTitle").html("You Tube");
-				//		$("#sectionBody").html($rootScope._context);
 						break;
 					case "map":
 						$("#sectionTitle").html("Leaflet Map");
-				//		$("#sectionBody").html($rootScope._context);
+						$window.scope=$scope;
+						console.log("$scope.name=" + $scope.name);
 						break;
-					case "home":
+					case "hom":
 						$("#sectionTitle").html("About this App");
 						break;
 					case "svg":
 						$("#sectionTitle").html("SVG Example");
-				//		$("#sectionBody").html($rootScope._context);
 						break;
 				}
 				if(!this.isInited){
@@ -60,17 +55,46 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			}
 		}
 	])
-	.directive('threeContext', function () {
-		var threeObj = {
-			restrict: 'EA',
-			replace:false,
-			scope: {},
-			controller: "ThreeContextController",
-			_scope: {
-				"id":"@",
-				"eventHandler": '&ngClick'
+
+
+	.directive('threeLeafletElement', function threeLeafletElement(){
+		var leafletObj = {
+			restrict: 'EAC',
+			replace:true,
+			scope: {
+				"type":"=",
+				"label":"=",
+				"title":"=",
+				"name":"=",
+				"dependency":"="
 			},
-			template: "<div class='threeContext'></div>"
+			controller: "ThreeLeafletController",
+			link:function (scope, elem, attrs) {
+			    this.scope = scope;
+			    this.elem = elem;
+			    this.attrs = attrs;
+			},
+			template: buildDiv(),
+			buildDiv:function(){
+				var mystring="dsfasfsd";
+				/*
+				switch($scope.type){
+					case "submit":
+						mystring='<div><input type="submit" value="'+$scope.title+'" /></div>';
+						break;
+					case "text":
+						mystring="<div><label>"+$scope.label+"</label><input class='form-control field em1 auto-hint' title='"+
+						$scope.title+ "' change='test(this,\'cityDiv\')' type='"+ $scope.type+"' ng-model='"+
+						$scope.name+"' name='"+$scope.name+"' id='"+$scope.name+"'></input><br/></div>";
+						break;
+				}
+						*/
+				return mystring;
+			}
 		};
-		return threeObj;
+		return leafletObj;
 	});
+
+
+
+

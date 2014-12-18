@@ -41,6 +41,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					return (this.currentVideo!=-1) ? this.getVideo(this.currentVideo) : null;
 				},
 				setCurrentVideo:function(toWhat, scope){
+					console.log("setCurrentVideo:function("+toWhat +"; " + scope+")")
 					_service.currentVideo=toWhat;
 					threeCSSService.init('youtubeSearch', scope, "content");
 					_service.render(scope);

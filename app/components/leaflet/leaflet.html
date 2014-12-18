@@ -1,4 +1,4 @@
-<div class="threeLeaflet" id="leaflet" ng-init="init('leaflet','content','leafletMap','leafletContext');country='';city='';street='';latlong=''">
+<div class="threeLeaflet" id="leaflet" ng-init="init('leaflet','content','leafletMap','leafletContext');">
 	<div class="content">
 		<div class="leafletMap" id="leafletMap"></div>
 		<div id="leafletContext" class="contextPanel">
@@ -16,23 +16,22 @@
 					</li>
 				</ul>
 			</div>
-			<div ng-show="currentData==null">
+			<div ng-show="currentData==null" class="three-leaflet-element">
 				<form novalidate id="leafletForm">
 					<p>
 						Enter one or more search terms, or Latitude and Longitude separated by a comma (,).
 					</p>
 
 					<div>
-						<label>Country</label>
-						<input class='form-control field em1 auto-hint' 
-						type='text' ng-model="country"
+						<label>Address, city or country</label>
+						<input value='' class='form-control field em1 auto-hint' 
+						type='text' ng-model="country" ng-change="change()"
 						name="country" id="country"
-						title="country" ng-change="test(this,'cityDiv')"></input><br/>
+						title="country"></input><br/>
 					</div>
-
-					<div class="cityDiv">
+					<!-- div id="cityDiv" ng-show="country!=''">
 						<label>City</label>
-						<input class='form-control field em1 auto-hint'
+						<input value='' class='form-control field em1 auto-hint'
 						type='text' ng-model="city"
 						name="city" id="city"
 						title="city"></input><br/>
@@ -40,15 +39,15 @@
 
 					<div class="isHidden" id="streetDiv">
 						<label>Street Address</label>
-						<input class='form-control field em1 auto-hint' 
+						<input value='' class='form-control field em1 auto-hint' 
 						type='text' ng-model="street"
 						name="street" id="street"
 						title="street address"></input><br/>
-					</div>
+					</div -->
 
 					<div>
 						<label>Latitude, Longitude</label>
-						<input class='form-control field em1 auto-hint' 
+						<input value='' class='form-control field em1 auto-hint' 
 						type='text' ng-model="latlong"
 						name="latlong" id="latlong"
 						title="Lat, Long"></input><br/>

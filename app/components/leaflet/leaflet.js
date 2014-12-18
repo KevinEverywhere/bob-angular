@@ -58,11 +58,16 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope._rotation={
 				x:threeCSSService.radianCalculator(1)
 			};
+			$scope.change=function(){
+				console.log("$scope.change!!!!!!!")
+			};
 			$scope.test=function(val, div){
-					console.log("functionDSVOPR.forms.leafletForm[val]" + val +" "+ document.forms.leafletForm[val])
+					console.log("functionDSVOPR.forms.leafletForm[val]" + val); // +" "+ document.forms.leafletForm[val])
 					if(val.value.length==0){
+					console.log("HIDEME")
 						$(div).parent().addClass("isHidden");
 					}else{
+					console.log("SHOWME")
 						$(div).parent().removeClass("isHidden");
 					}
 /*
@@ -120,5 +125,4 @@ $('#parentNode').append(element);
 			template: "<div class='leaflet'></div>"
 		};
 		return leafletObj;
-	});
-
+	});	
