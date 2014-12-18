@@ -38,7 +38,7 @@
 									width="{{video.thumbnails.thumbnail[0].width}}" 
 									src="{{video.thumbnails.thumbnail[0].content}}" alt="{{video.title}}" title="{{video.title}}"></a></div>
 									<div class="hf-info">
-									<p class="hf-title" class="article-link"><a ui-sref="video.youtubeid({youtubeid:video.id})" ng-click="$rootScope.youtubeid=video.id;setCurrentVideo($index)">
+									<p class="hf-title" class="article-link"><a ui-sref="videofeed.videofeed.index({idx:$index})">
 										{{
 											(video.title.length>25) ? video.title.substring(0, 22) + "..." : video.title
 										}}

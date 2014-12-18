@@ -9,23 +9,25 @@ angular.module('bobApp.youtube', ["bobApp"])
 				feedEnd:"%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK",
 				query:["query","results","video"],
 				returnObj:null,
+				youTubeController:null,
 				startMedia:function(which, obj){
 					var me=obj;
-					console.log("YouTubeService-$scope.startMedia=function(" + which);
-					if(!me.player){
-						console.log("NO PLAYER .WHICH=" + which )
+					console.log("$($state.$current != )=" + ($state.$current != "video"));
+					if(me.player && ($state.$current != "video")){
+						console.log("me.player.loadVideoById(" + which);
+						me.player.loadVideoById(which);
+					}else{
+						console.log("me.player.virgin(" + which);
 						me.player = new $window.YT.Player('ytplayer', {
-					      height: this.activePlayer.height,
-					      width: this.activePlayer.width,
-					      videoId: which  + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
+					      height: _service.activePlayer.height,
+					      width: _service.activePlayer.width,
+					      videoId: which + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
 		                events: {
 		                        'onReady': me.onPlayerReady,
 		                        'onStateChange': me.onPlayerStateChange
 		                }});
-					}else{
-						console.log("exists.WHICH=" + which )
-						me.player.loadVideoById(which);
 					}
+					$window.Player=me.player;
 				},
 				onPlayerReady:function(evt){
 					console.log("$....onPlayerReady...");
@@ -86,6 +88,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 				console.log("$$scope.youtubeId." +  $scope.youtubeId+ "=" + $stateParams.youtubeid);
 			//	$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
+					YouTubeService.youTubeController=this;
 					if($rootScope.youtubeid){
 						$scope.youtubeid=$rootScope.youtubeid;
 					}else{
