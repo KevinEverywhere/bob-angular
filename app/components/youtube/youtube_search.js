@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
-	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q", "$state", "$window", "$timeout", "YouTubeService", "threeCSSService",
-		 function($rootScope, $http, $httpBackend, $q, $state, $window, $timeout, YouTubeService, threeCSSService) {
+	.service("YouTubeSearchService",['$rootScope', "$http", "$httpBackend", "$q","$stateParams", "$state", "$window", "$timeout", "YouTubeService", "threeCSSService",
+		 function($rootScope, $http, $httpBackend, $q, $stateParams, $state, $window, $timeout, YouTubeService, threeCSSService) {
 			var _service={
 				videos:[],
 				init:function(_context){
@@ -14,21 +14,13 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					threeCSSService.render(scopeArg);
 				},
 				search_update:function(data, scope){
-					$window._data=data;
 					scope.currentData=data;
 					if(data!=null){
-						var a=0;
 						try{
-							a++;
 							_service.videos=data.query.results.video;
-							a++;
-							_service.setCurrentVideo(0, scope);
-							a++;
-						}catch(oops){
-							console.log(a + " times - data.query.results.videoE=" + oops)
-						}
+							_service.setCurrentVideo($stateParams.idx || 0, scope);
+						}catch(oops){}
 					}
-					console.log("this.getCurrentVideo().id=");
 					$timeout(function(){
 						$("#sectionBody").html(scope.getContextHTML());
 					}, 1000);
@@ -41,7 +33,6 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					return (this.currentVideo!=-1) ? this.getVideo(this.currentVideo) : null;
 				},
 				setCurrentVideo:function(toWhat, scope){
-					console.log("setCurrentVideo:function("+toWhat +"; " + scope+")")
 					_service.currentVideo=toWhat;
 					threeCSSService.init('youtubeSearch', scope, "content");
 					_service.render(scope);
@@ -139,6 +130,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				$scope.renderer.render($scope.scene, $scope.camera);
 			}
 			$scope.setCurrentVideo=function(idx){
+				console.log("CALLED IN SCOPE")
 				YouTubeSearchService.setCurrentVideo(idx, $scope);
 			}
 			$scope.findVideos=function(searchTerm, callback){

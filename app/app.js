@@ -100,10 +100,12 @@ var bobApp=angular.module("bobApp",  [
 		})
 		$rootScope.$on('$stateChangeSuccess', 
 		function(event, toState, toParams, fromState, fromParams){
+			console.log("CURRENT STEATE IS " + toState.name);
 			switch(toState.name){
 				case "video":
 					break;
 				case "videofeed.videofeed.index":
+			//	console.log("toParams.idx=" + toParams.idx)
 					YouTubeSearchService.currentVideo=toParams.idx;
 					YouTubeService.startMedia(YouTubeSearchService.videos[YouTubeSearchService.currentVideo].id,YouTubeService);
 

@@ -3,30 +3,6 @@
 		<div ng-show="currentData!=null" >
 			<div id="ytplayer"></div>
 		</div>
-		<div ng-show="currentData==null" style="display:none;">
-			<div class="jumbotron">
-				<div class="container" id="ytSearchDiv">
-					<form novalidate id="ytForm">
-						<h3>YouTube Video Search</h3>
-						<p>
-							Enter a term to search. The first result will appear in this pane.  
-						</p>
-						<div class="form-group">
-							<br/>
-							<div class="col-md-10">
-								<input youTubeSearchResults="alert('this.value')" class='form-control field em1 auto-hint' 
-								       ng-model="ytSearchTextValue" 
-								       type='text'
-								       name="v" id="v"
-								       title="Enter keyword" /> 
-								</div>
-								<input type="button" value="Search " /> 
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
 		<div id="ytSearchContext" youTubeSearchResults ="true">
 			<div class="contextPanel">
 				<div ng-show="currentData!=null">
