@@ -19,7 +19,7 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 				// create the tile layer with correct attribution
 				var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 				var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-				var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib});
+				var osm = new $window.L.TileLayer(osmUrl, {minZoom:1, maxZoom: 18, attribution: osmAttrib});
 				// start the map in South-East England
 				map.setView(new $window.L.LatLng(45.438, 12.33),5);
 				map.addLayer(osm);
@@ -35,19 +35,23 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 					if(_content){me.leafletDiv=_content}
 					switch($state.$current.name){
 						case "mapfeed.geolocation":
-							var _url=service.osmPrefix + $stateParams.geoLocation;
+							var _url=service.osmPrefix + $stateParams.geoLocation,_maxZoom=18;
 							$http({method: 'GET', url: _url})
 								.success(function(data, status, headers, config) {
 									if(data.length>0){
 										map = new $window.L.map(me.leafletDiv);
-										var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: data[0].licence});
+										var osm = new $window.L.TileLayer(osmUrl, {minZoom:1, maxZoom: _maxZoom, attribution: data[0].licence});
 										map.setView(new $window.L.LatLng(
 											data[0].lat,
-											data[0].lon),2);
+											data[0].lon),_maxZoom);
 										map.fitBounds([
 										    [data[0].boundingbox[0], data[0].boundingbox[2]],
 										    [data[0].boundingbox[1], data[0].boundingbox[3]]]);
 										map.addLayer(osm);
+										if(map.getZoom()>_maxZoom){map.setZoom(map.getMaxZoom());};
+										console.log("map.getMinZoom=" + map.getMinZoom());
+										console.log("map.getZoom=" + map.getZoom());
+										console.log("map.getMaxZoom=" + map.getMaxZoom());
 									}else{
 										console.log('no data');
 									}
@@ -70,14 +74,14 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 							break;
 						case "mapfeed.latlong":
 							map = new $window.L.map(me.leafletDiv);
-							var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib}),
+							var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 18, attribution: osmAttrib}),
 							_view=me.processLL($stateParams.latlong);
 							map.setView(new $window.L.LatLng(_view.lat,_view.lon),5);
 							map.addLayer(osm);
 							break;
 						case "map":
 							map = new $window.L.map(me.leafletDiv);
-							var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib});
+							var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 18, attribution: osmAttrib});
 							map.setView(new $window.L.LatLng(45.438, 12.33),5);
 							map.addLayer(osm);
 							break;

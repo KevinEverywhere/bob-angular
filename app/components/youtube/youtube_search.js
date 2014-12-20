@@ -52,8 +52,8 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					return rtn;
 				},
 				counter:0,
-				maxCount:10,
-				timeoutLength:800,
+				maxCount:20,
+				timeoutLength:1000,
 				findVideos:function(searchTerm, scopeArg, callback){
 					var  me=this, scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
 					endString='"&callback=';
