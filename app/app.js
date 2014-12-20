@@ -81,6 +81,42 @@ var bobApp=angular.module("bobApp",  [
 									(searchObj[s].split("=")[0] == "geo-location" || searchObj[s].split("=")[0] == "latlong") ?
 										"/"+ searchObj[s].split("=")[0] + "/" + searchObj[s].split("=")[1] : 
 										"/" + searchObj[s].split("=")[1];
+							}
+						}
+						console.log("searchObj,=" + searchObj);
+						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
+					}
+					break;
+				case "mapfeed.geolocation":
+					var q=$location.absUrl().indexOf("?");
+					if(q!=-1){
+						var searchString="", searchObj=$window.location.search.substring(1).split("&");
+						for(var s=0;s<searchObj.length;s++){
+							if(
+								searchObj[s].split("=")[1] &&
+								searchObj[s].split("=")[1].length>0
+								) {
+								searchString+= 
+									(searchObj[s].split("=")[0] == "geo-location" || searchObj[s].split("=")[0] == "latlong") ?
+										"/"+ searchObj[s].split("=")[0] + "/" + searchObj[s].split("=")[1] : 
+										"/" + searchObj[s].split("=")[1];
+							}
+						}
+						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
+					}
+					break;
+				case "mapfeed.latlong":
+					console.log("statechange.mapy=");
+					var q=$location.absUrl().indexOf("?");
+					if(q!=-1){
+						var searchString="", searchObj=$window.location.search.substring(1).split("&");
+						for(var s=0;s<searchObj.length;s++){
+							if(searchObj[s].split("=")[0]=="latlong") {
+								var ll=leafletService.processLL(searchObj[s].split("=")[1])
+								searchString="/latlong/"+ ll.lat +"," + ll.lon;
+								//	(searchObj[s].split("=")[0] == "geo-location" || searchObj[s].split("=")[0] == "latlong") ?
+								//		"/"+ searchObj[s].split("=")[0] + "/" + searchObj[s].split("=")[1] : 
+								//		"/" + searchObj[s].split("=")[1];
 
 							// searchObj[s];
 							}
@@ -90,21 +126,13 @@ var bobApp=angular.module("bobApp",  [
 					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
 						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed" + searchString; // .substring(1);
 
+					//	_lat=(lat.replace(/[^0-9]+/g, '').replace("°",""))*mult[0];
+					//	_lon=(lon.replace(/[^0-9]+/g, '').replace("°",""))*mult[1]; 
 
 						// var i="this and that and those";do{i=i.replace("h","k")}while(i.indexOf("h")!=-1);console.log(i);
 
 					}
-					break;
-				case "mapfeed.latlong":
-					if(toParams.latlong && toParams.latlong.length>0){
-						console.log("toParams.latlong == " + toParams.latlong);
-						rootScope.lat=36;
-						rootScope.lon=126;
-					}else{
-						console.log("NO.latlong == ");
-						rootScope.lat=46;
-						rootScope.lon=126;
-					}
+
 					break;
 				case "mapfeed":
 					var prefix="http://nominatim.openstreetmap.org/search?format=json&limit=5";//  + $stateParams.details;

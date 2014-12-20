@@ -67,13 +67,12 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 							.error(function(data, status, headers, config) {
 								console.log('error=' + data);
 							});
-/*
-x*/
 							break;
 						case "mapfeed.latlong":
 							map = new $window.L.map(me.leafletDiv);
-							var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib});
-							map.setView(new $window.L.LatLng($rootScope.lat, $rootScope.lon),5);
+							var osm = new $window.L.TileLayer(osmUrl, {minZoom:4, maxZoom: 15, attribution: osmAttrib}),
+							_view=me.processLL($stateParams.latlong);
+							map.setView(new $window.L.LatLng(_view.lat,_view.lon),5);
 							map.addLayer(osm);
 							break;
 						case "map":
@@ -93,7 +92,22 @@ x*/
 						console.log("failed maxTries=");
 					}
 				}
+			},
+			processLL:function(stringLatLong){
+				var ll={lat:0,lon:0}, mult=[1,1];
+				if(stringLatLong.split(",").length==2){
+					var _lat, lat=stringLatLong.split(",")[0];
+					var _lon, lon=stringLatLong.split(",")[1];
+					if(lat.toLowerCase().indexOf("s")!=-1){mult[0]=-1;}
+					if(lon.toLowerCase().indexOf("w")!=-1){mult[1]=-1;}
+					_lat=(lat.replace(/[^0-9,°]+/g, ''))*mult[0];
+					_lon=(lon.replace(/[^0-9,°]+/g, ''))*mult[1]; 
+					ll.lat=_lat;
+					ll.lon=_lon;
+				}
+				return ll;
 			}
+
 		}
 		return service;
 	}])
