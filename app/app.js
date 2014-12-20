@@ -77,13 +77,33 @@ var bobApp=angular.module("bobApp",  [
 								searchObj[s].split("=")[1] &&
 								searchObj[s].split("=")[1].length>0
 								) {
-								searchString+="&"+searchObj[s];
+								searchString+= 
+									(searchObj[s].split("=")[0] == "geo-location" || searchObj[s].split("=")[0] == "latlong") ?
+										"/"+ searchObj[s].split("=")[0] + "/" + searchObj[s].split("=")[1] : 
+										"/" + searchObj[s].split("=")[1];
+
+							// searchObj[s];
 							}
 						}
 						$window.searchObj=searchObj;
-						console.log("searchObj,=" + searchObj);
+						console.log("searchObj,=" + searchObj);				
 					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
-						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
+						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed" + searchString; // .substring(1);
+
+
+						// var i="this and that and those";do{i=i.replace("h","k")}while(i.indexOf("h")!=-1);console.log(i);
+
+					}
+					break;
+				case "mapfeed.latlong":
+					if(toParams.latlong && toParams.latlong.length>0){
+						console.log("toParams.latlong == " + toParams.latlong);
+						rootScope.lat=36;
+						rootScope.lon=126;
+					}else{
+						console.log("NO.latlong == ");
+						rootScope.lat=46;
+						rootScope.lon=126;
 					}
 					break;
 				case "mapfeed":
@@ -257,8 +277,22 @@ var bobApp=angular.module("bobApp",  [
 				}
 			}
 		  })
-		  .state('mapfeed.details', {
-			url: '/:details',
+		  .state('mapfeed.latlong', {
+			url: '/latlong/:latlong',
+			views:{
+				"axis2":{
+					templateUrl: 'components/leaflet/leaflet.html',			controller: 'ThreeLeafletController'
+				},
+				"axis3":{
+					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
+				}
+			}
+		  })
+		  .state('mapfeed.geolocation', {
+			url: '/geo-location/:geoLocation',
 			views:{
 				"axis2":{
 					templateUrl: 'components/leaflet/leaflet.html',			controller: 'ThreeLeafletController'
