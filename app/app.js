@@ -25,19 +25,16 @@ var bobApp=angular.module("bobApp",  [
 		$rootScope.currentData=null;
 		$rootScope.interstitialized={done:false};
 		var redraw=function () {
-			console.log('redraw');
 			resize();
 		};
 		var resize=function (evt) {
 			$window.changeSize(evt);
 			try{
 				$state.reload();
-				console.log("$state.reload()");
 			}catch(oops){}
 		};
 		$window.googleApiClientReady = function($rootScope) {
 			$rootScope.googleReady=true;
-			console.log("ggole googleReady");
 		}
 		$window.addEventListener('orientationchange', redraw, false);
 		$window.addEventListener('resize', resize, false);
@@ -52,13 +49,7 @@ var bobApp=angular.module("bobApp",  [
 			$state.go(toWhich);
  		});
  		$rootScope.$on('incrementCurrentVideo',function(event){
-			console.log("app.INCREMENT CALLED");
 			YouTubeSearchService.incrementCurrentVideo();
- 		});
-
- 		$rootScope.$on("youtube_search_update",function(event, data, scope){
- 			console.log("youtube_search_update" + event + ":" + data)
-			YouTubeSearchService.search_update(data, scope);
  		});
 		$rootScope.$on('$stateChangeStart', 
 		function(event, toState, toParams, fromState, fromParams){ 
@@ -68,12 +59,10 @@ var bobApp=angular.module("bobApp",  [
 					if(q!=-1){
 						var cutString=$location.absUrl().substr(q),
 						_start=cutString.indexOf("=")+1,_end=cutString.indexOf("#");
-						console.log("going to cutString.substring(_start,_end)=" + cutString.substring(_start,_end));
 						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
 					}
 					break;
 				case "map":
-					console.log("statechange.mapy=");
 					var q=$location.absUrl().indexOf("?");
 					if(q!=-1){
 						var searchString="", searchObj=$window.location.search.substring(1).split("&");
@@ -88,7 +77,6 @@ var bobApp=angular.module("bobApp",  [
 										"/" + searchObj[s].split("=")[1];
 							}
 						}
-						console.log("searchObj,=" + searchObj);
 						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
 					}
 					break;
@@ -111,7 +99,6 @@ var bobApp=angular.module("bobApp",  [
 					}
 					break;
 				case "mapfeed.latlong":
-					console.log("statechange.mapy=");
 					var q=$location.absUrl().indexOf("?");
 					if(q!=-1){
 						var searchString="", searchObj=$window.location.search.substring(1).split("&");
@@ -119,79 +106,32 @@ var bobApp=angular.module("bobApp",  [
 							if(searchObj[s].split("=")[0]=="latlong") {
 								var ll=leafletService.processLL(searchObj[s].split("=")[1])
 								searchString="/latlong/"+ ll.lat +"," + ll.lon;
-								//	(searchObj[s].split("=")[0] == "geo-location" || searchObj[s].split("=")[0] == "latlong") ?
-								//		"/"+ searchObj[s].split("=")[0] + "/" + searchObj[s].split("=")[1] : 
-								//		"/" + searchObj[s].split("=")[1];
-
-							// searchObj[s];
 							}
 						}
-						$window.searchObj=searchObj;
-						console.log("searchObj,=" + searchObj);				
-					//	$state.go("videofeed",{videofeed:cutString.substring(_start,_end)})
-						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed" + searchString; // .substring(1);
-
-					//	_lat=(lat.replace(/[^0-9]+/g, '').replace("°",""))*mult[0];
-					//	_lon=(lon.replace(/[^0-9]+/g, '').replace("°",""))*mult[1]; 
-
-						// var i="this and that and those";do{i=i.replace("h","k")}while(i.indexOf("h")!=-1);console.log(i);
-
+						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed" + searchString;
 					}
-
-					break;
-				case "mapfeed":
-					var prefix="http://nominatim.openstreetmap.org/search?format=json&limit=5";//  + $stateParams.details;
-					console.log("mapfeed == " + prefix);
-					break;
-				case "home":
 					break;
 				case "svg":
 					break;
 			}
-			$window['stated']=toState;
-			console.log("toState=" + toState);
 		})
 		$rootScope.$on('$stateChangeSuccess', 
 		function(event, toState, toParams, fromState, fromParams){
-			console.log("CURRENT STEATE IS " + toState.name);
+			console.log("CURRENT STATE IS " + toState.name);
 			switch(toState.name){
 				case "video":
 					break;
 				case "videofeed.videofeed.index":
-			//	console.log("toParams.idx=" + toParams.idx)
 					YouTubeSearchService.currentVideo=toParams.idx;
 					YouTubeService.startMedia(YouTubeSearchService.videos[YouTubeSearchService.currentVideo].id,YouTubeService);
-
-					/*
-				setCurrentVideo:function(toWhat, scope){
-					console.log("setCurrentVideo:function("+toWhat +"; " + scope+")")
-					_service.currentVideo=toWhat;
-					threeCSSService.init('youtubeSearch', scope, "content");
-					_service.render(scope);
-					YouTubeService.activePlayer={height: scope._height,width: scope._width};
-					var service=YouTubeService;
-					YouTubeService.startMedia(_service.videos[_service.currentVideo].id,YouTubeService);
-				},
-
-					*/
-
-					console.log("P{AST YouTubeService")
 					break;
 				case "mapfeed":
-
-				//	$("#sectionTitle").html("Leaflet Map");
 					break;
 				case "home":
-				//	$("#sectionTitle").html("About this App");
 					break;
 				case "svg":
-				//	$("#sectionTitle").html("SVG Example");
 					break;
 			}
-			$window['stated']=toState;
-			$window['toParams']=toParams;
-
-			console.log("stateChangeS000uccess=" + toState);
 		});
 		resize();
 	})

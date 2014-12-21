@@ -10,52 +10,32 @@ angular.module('bobApp.youtube', ["bobApp"])
 				query:["query","results","video"],
 				returnObj:null,
 				youTubeController:null,
-				currentScope:null,
 				startMedia:function(which, obj){
 					var me=obj;
-					console.log("$($state.$current != )=" + ($state.$current != "video"));
 					if(me.player && ($state.$current != "video")){
-						console.log("me.player.loadVideoById(" + which);
 						me.player.loadVideoById(which);
 					}else{
-						console.log("me.player.virgin(" + which);
 						me.player = new $window.YT.Player('ytplayer', {
-					      height: _service.activePlayer.height,
-					      width: _service.activePlayer.width,
-					      videoId: which + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
-		                events: {
-		                        'onReady': me.onPlayerReady,
-		                        'onStateChange': me.onPlayerStateChange
-		                }});
+							height: _service.activePlayer.height,
+							width: _service.activePlayer.width,
+							videoId: which + "?autoplay=1&html5=1&autostart=1&enablejsapi=1&",
+							events: {
+								'onReady': me.onPlayerReady,
+								'onStateChange': me.onPlayerStateChange
+							}
+						});
 					}
 					$window.Player=me.player;
 				},
 				onPlayerReady:function(evt){
-					console.log("$...youtube.js..onPlayerReady...");
 					$window.player=evt.target;
-					console.log("youtube.js.$window.player.onPlayerReady=" + $window.player);
 				},
 				onPlayerStateChange:function(evt){
-					$window.evt=evt;
 					if(_service.player.getPlayerState()==2){
 						if($state.$current.name=="videofeed.videofeed.index"){
-							console.log("youtube.onPlayerStateChange");
 							$rootScope.$broadcast("incrementCurrentVideo");
 						}
 					}
-					console.log("$onPlayerStateChange.$current.name=" + $state.$current.name);
-				},
-				playCurrent:function(){
-					this.startMedia();
-				},
-
-				videoWrapper:function(id, _width, _height){
-					return('<iframe title="YouTube video player" width="'+_width+'" height="'+_height+
-						'" src="http://www.youtube.com/embed/'+id + 
-						'?hd=1&html5=1&autoplay=1" autoplay frameborder="0" allowfullscreen></iframe>');
-				},
-				searchVideos:function(searchTerm){
-					// fields
 				}
 			}
 			return _service;
@@ -81,9 +61,6 @@ angular.module('bobApp.youtube', ["bobApp"])
 			$scope.maxRotate=200;
 			$scope.minRotate=160;
 			$scope.control=this;
-/*
-			var init=function
-			*/
 
 			$scope.startMedia=function(which){
 				YouTubeService.activePlayer={
@@ -93,14 +70,12 @@ angular.module('bobApp.youtube', ["bobApp"])
 			}
 
 			$scope.init=function(elem, _content, _context){
-				console.log("$$scope.youtubeId." +  $scope.youtubeId+ "=" + $stateParams.youtubeid);
-			//	$rootScope._context=$("#"+ _context).html();
 				if(!this.isInited){
 					YouTubeService.youTubeController=this;
 					if($rootScope.youtubeid){
 						$scope.youtubeid=$rootScope.youtubeid;
 					}else{
-						$scope.youtubeid= $scope.youtubeid || $stateParams.youtubeid || "afBm0Dpfj_k";// "Pkaq0_qOx0E" "RF0HhrwIwp0"; 
+						$scope.youtubeid= $scope.youtubeid || $stateParams.youtubeid || "afBm0Dpfj_k";
 					}
 					threeCSSService.init(elem, $scope, _content, _context);
 					this.isInited=true;
@@ -132,21 +107,4 @@ angular.module('bobApp.youtube', ["bobApp"])
 				threeCSSService.render($scope);
 			}
 		}
-	])
-
-	.directive( "threeYouTube", [function( ) {
-		var threeObj = {
-			restrict: 'EA',
-			replace:false,
-	        transclude: true,
-			scope: true,
-			controller: "ThreeYouTubeController",
-			_scope: {
-				"id":"@",
-				"eventHandler": '&ngClick'
-			},
-			template: "<div class='threeYouTube'></div>"
-		};
-		return threeObj;
-	}
 	]);

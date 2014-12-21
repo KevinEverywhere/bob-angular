@@ -10,25 +10,8 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 			leafletDiv:null,
 			currentData:null,
 			osmPrefix:"http://nominatim.openstreetmap.org/search?format=json&q=",
-			buildMapCallback:function(_content){
-				console.log('me.leafletDiv=' + me.leafletDiv);
-				if(_content){me.leafletDiv=_content}
-				console.log("me.leafletDiv=" + me.leafletDiv);
-				// set up the map
-				map = new $window.L.map(me.leafletDiv);
-				// create the tile layer with correct attribution
-				var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-				var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-				var osm = new $window.L.TileLayer(osmUrl, {minZoom:1, maxZoom: 18, attribution: osmAttrib});
-				// start the map in South-East England
-				map.setView(new $window.L.LatLng(45.438, 12.33),5);
-				map.addLayer(osm);
-				// me.leafletMap = , {center: [51.505, -0.09], zoom: 13});
-			},
 			buildMap:function(_content){
-				console.log("$state.$current=" + $state.$current.name + " and " + $stateParams.geoLocation) ;
 				try{
-					$window._state=$state;
 					var me=service, map, ajaxRequest, plotlist, plotlayers=[];
 					var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 					var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -49,24 +32,7 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 										    [data[0].boundingbox[1], data[0].boundingbox[3]]]);
 										map.addLayer(osm);
 										if(map.getZoom()>_maxZoom){map.setZoom(map.getMaxZoom());};
-										console.log("map.getMinZoom=" + map.getMinZoom());
-										console.log("map.getZoom=" + map.getZoom());
-										console.log("map.getMaxZoom=" + map.getMaxZoom());
-									}else{
-										console.log('no data');
 									}
-									$window._data=data;
-									console.log("SUCCESS DATA=" + data);
-									
-									//	$scope.articles=data.articles;
-									//	threeCSSService.init(elem, me, _content);
-									//	render();
-									/*
-									data[0].boundingBox[0] // bottom   S
-									data[0].boundingBox[1] // top      N
-									data[0].boundingBox[2] // left     W
-									data[0].boundingBox[3] // right    E
-									*/
 								})
 							.error(function(data, status, headers, config) {
 								console.log('error=' + data);
@@ -93,7 +59,7 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 						me.numTries++;
 						console.log("failed from service=" + me.numTries);
 					}else{
-						console.log("failed maxTries=");
+						console.log("failed maxTries=" + me.maxTries);
 					}
 				}
 			},
@@ -131,35 +97,14 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope._rotation={
 				x:threeCSSService.radianCalculator(1)
 			};
-			$scope.change=function(){
-				console.log("$scope.change!!!!!!!")
-			};
-			$scope.test=function(val, div){
-				console.log("functionDSVOPR.forms.leafletForm[val]" + val); // +" "+ document.forms.leafletForm[val])
-				if(val.value.length==0){
-				console.log("HIDEME")
-					$(div).parent().addClass("isHidden");
-				}else{
-				console.log("SHOWME")
-					$(div).parent().removeClass("isHidden");
-				}
-			}
-
 			$scope.init=function(elem, _content, map, _context){
-			//	$rootScope._context=$("#"+ _context).html();
-				console.log("init-" + elem + " and " + _content);
 				var me=$scope;
 				if(!me.isInited){
 					threeCSSService.init(elem, me, _content, _context);
 					me.isInited=true;
-					$scope.postinit(elem, _content);
 					render();
 				}
 				leafletService.buildMap(map);
-				// insert JSON call to get scope navs.
-			}
-			$scope.postinit=function(elem, _content){
-				// insert JSON call to get scope navs.
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
@@ -181,15 +126,4 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 				threeCSSService.render($scope);
 			}
 		}
-	])
-
-	.directive('threeLeaflet', function () {
-		var leafletObj = {
-			restrict: 'EA',
-			replace:false,
-			scope: true,
-			controller: "ThreeLeafletController",
-			template: "<div class='leaflet'></div>"
-		};
-		return leafletObj;
-	});	
+	]);	

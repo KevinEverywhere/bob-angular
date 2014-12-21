@@ -45,7 +45,6 @@ var threeModule = angular.module('threeModule', [])
 					return obj;
 				},
 				updateAllSizes:function(){
-					console.log("updateAllSizes CALLED.");
 					for(var z in this.childObjects){
 						this.childObjects[z].rerender();
 					}
@@ -63,7 +62,6 @@ var threeModule = angular.module('threeModule', [])
 						}else{
 							service._oldContent[_context].toggleClass("isHidden", false);
 						}
-						console.log("swapContext=" + _context)
 						var me=service,__context=_context;
 						$timeout(function(){me.getContextDiv().html(me._oldContent[__context]);},1);
 					};
@@ -157,7 +155,6 @@ var threeModule = angular.module('threeModule', [])
 					}
 					scope.updateSize=function(){
 						this.renderer.setSize( this._width, this._height);
-						console.log("updateSize=" + this._width + " and " + this._height);
 					}
 					scope.scene = new THREE.Scene();
 					scope.renderer = new THREE.CSS3DRenderer();
@@ -231,7 +228,6 @@ var threeModule = angular.module('threeModule', [])
 				},
 				runOnce:function(){
 					service.contextElement="sectionBody";
-					console.log("runOnce.service.contextElement=" + service.contextElement);
 				}
 			}
 			if(!service.isInitted){
