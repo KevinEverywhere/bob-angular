@@ -19,6 +19,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 						try{
 							_service.videos=data.query.results.video;
 							_service.setCurrentVideo($stateParams.idx || 0, scope);
+							YouTubeService.currentScope=scope;
 						}catch(oops){}
 					}
 					$timeout(function(){
@@ -26,13 +27,20 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 					}, 1000);
 				},
 				incrementCurrentVideo:function(){
-					this.currentVideo++;
+					console.log("_service.INCREMENT CALLED" + _service.currentVideo + " of " + _service.videos.length);
+					if(_service.currentVideo<_service.videos.length-1){
+						// _service.currentVideo++;
+						$state.go("videofeed.videofeed.index",{idx:(_service.currentVideo * 1) + 1})
+				//		YouTubeService.startMedia(_service.videos[_service.currentVideo].id,YouTubeService);
+				//		_service.setCurrentVideo((_service.currentVideo*1) +1, YouTubeService.currentScope);
+					}
 				},
 				currentVideo:-1,
 				getCurrentVideo:function(){
 					return (this.currentVideo!=-1) ? this.getVideo(this.currentVideo) : null;
 				},
 				setCurrentVideo:function(toWhat, scope){
+					console.log("_service.setCurrentVideo(" + toWhat);
 					_service.currentVideo=toWhat;
 					threeCSSService.init('youtubeSearch', scope, "content");
 					_service.render(scope);

@@ -10,6 +10,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 				query:["query","results","video"],
 				returnObj:null,
 				youTubeController:null,
+				currentScope:null,
 				startMedia:function(which, obj){
 					var me=obj;
 					console.log("$($state.$current != )=" + ($state.$current != "video"));
@@ -30,12 +31,19 @@ angular.module('bobApp.youtube', ["bobApp"])
 					$window.Player=me.player;
 				},
 				onPlayerReady:function(evt){
-					console.log("$....onPlayerReady...");
+					console.log("$...youtube.js..onPlayerReady...");
 					$window.player=evt.target;
-					console.log("$window.player.onPlayerReady=" + $window.player);
+					console.log("youtube.js.$window.player.onPlayerReady=" + $window.player);
 				},
 				onPlayerStateChange:function(evt){
-					console.log("onPlayerStateChange=" + evt);
+					$window.evt=evt;
+					if(_service.player.getPlayerState()==2){
+						if($state.$current.name=="videofeed.videofeed.index"){
+							console.log("youtube.onPlayerStateChange");
+							$rootScope.$broadcast("incrementCurrentVideo");
+						}
+					}
+					console.log("$onPlayerStateChange.$current.name=" + $state.$current.name);
 				},
 				playCurrent:function(){
 					this.startMedia();

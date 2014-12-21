@@ -51,6 +51,11 @@ var bobApp=angular.module("bobApp",  [
  		$rootScope.$on('navigatingToSection',function(event, toWhich){
 			$state.go(toWhich);
  		});
+ 		$rootScope.$on('incrementCurrentVideo',function(event){
+			console.log("app.INCREMENT CALLED");
+			YouTubeSearchService.incrementCurrentVideo();
+ 		});
+
  		$rootScope.$on("youtube_search_update",function(event, data, scope){
  			console.log("youtube_search_update" + event + ":" + data)
 			YouTubeSearchService.search_update(data, scope);
