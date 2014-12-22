@@ -6,6 +6,18 @@
 		<div id="ytSearchContext" youTubeSearchResults ="true">
 			<div class="contextPanel">
 				<div ng-show="currentData!=null">
+					<form novalidate id="ytForm">
+					Enter text to begin a new search
+					<br/>
+
+				<input class='form-control field em1 auto-hint' 
+				       type='text'
+				       name="v" id="v"
+				       title="Enter keyword" />
+		       <input type="submit" value="Search" /> 
+					<br/>
+
+
 					<ul class="image_text row"> 
 						<li ng-repeat="video in currentData.query.results.video">
 								<div class="hf-image">
@@ -23,6 +35,7 @@
 								</div>
 						</li>
 					</ul>
+				</form>
 				</div>
 				<div ng-show="currentData==null">
 					Enter text to search Youtube Videos, then press ENTER.

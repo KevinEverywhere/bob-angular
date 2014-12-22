@@ -51,8 +51,7 @@ var bobApp=angular.module("bobApp",  [
  		$rootScope.$on('incrementCurrentVideo',function(event){
 			YouTubeSearchService.incrementCurrentVideo();
  		});
-		$rootScope.$on('$stateChangeStart', 
-		function(event, toState, toParams, fromState, fromParams){ 
+		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 			switch(toState.name){
 				case "video":
 					var q=$location.absUrl().indexOf("?");
@@ -62,6 +61,8 @@ var bobApp=angular.module("bobApp",  [
 					//	$state.go("videofeed.videofeed",{videofeed:cutString.substring(_start,_end)})
 						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
 					}
+					break;
+				case "video.videofeed.index":
 					break;
 				case "map":
 					var q=$location.absUrl().indexOf("?");
@@ -116,7 +117,7 @@ var bobApp=angular.module("bobApp",  [
 				case "svg":
 					break;
 			}
-		})
+		});
 		$rootScope.$on('$stateChangeSuccess', 
 		function(event, toState, toParams, fromState, fromParams){
 			console.log("CURRENT STATE IS " + toState.name);
@@ -124,8 +125,17 @@ var bobApp=angular.module("bobApp",  [
 				case "video":
 					break;
 				case "videofeed.videofeed.index":
-					YouTubeSearchService.currentVideo=toParams.idx;
-					YouTubeService.startMedia(YouTubeSearchService.videos[YouTubeSearchService.currentVideo].id,YouTubeService);
+				console.log("everything is right");
+					var q=$location.absUrl().indexOf("?");
+					if(q!=-1){
+						var cutString=$location.absUrl().substr(q),
+						_start=cutString.indexOf("=")+1,_end=cutString.indexOf("#");
+						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
+					}else{
+						YouTubeSearchService.currentVideo=toParams.idx;
+						YouTubeService.startMedia(YouTubeSearchService.videos[YouTubeSearchService.currentVideo].id,YouTubeService);
+					}
+
 					break;
 				case "mapfeed":
 					break;
