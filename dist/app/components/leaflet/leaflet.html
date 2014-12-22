@@ -1,0 +1,36 @@
+<div class="threeLeaflet" id="leaflet" ng-init="init('leaflet','content','leafletMap','leafletContext');">
+	<div class="content">
+		<div class="leafletMap" id="leafletMap"></div>
+		<div id="leafletContext" class="contextPanel">
+			<div ng-show="currentData!=null">
+				<ul class="image_text row"> 
+					<li ng-repeat="video in currentData">
+						<div class="hf-image">
+								<p class="hf-title" class="article-link">
+									test
+								</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div ng-show="currentData==null" class="three-leaflet-element">
+				<form novalidate id="leafletForm">
+					<p>
+						Enter a street address, city or country.
+					</p>
+
+					<div>
+						<label>Location</label>
+						<input value='' class='form-control field em1 auto-hint' 
+						type='text' ng-model="geo-location" ng-change="change()"
+						name="geo-location" id="geo-location"
+						title="Enter location"></input><br/>
+					</div>
+					<div>
+						<input type="submit" value="Search" /> 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

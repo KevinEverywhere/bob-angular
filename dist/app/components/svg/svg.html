@@ -1,0 +1,21 @@
+<div ng-controller="ThreeSVGController" class="threeSphere" id="svgHolder" ng-init="init('svgHolder','svgDiv','svgWrapper','svgContext','assets/media/groupedWorld.svg');">
+	<div class="svgDiv">
+		<div id="svgWrapper">
+		</div>
+			<div id="svgContext">
+			<p>
+				This svg map of the world has individual country elements named using 2 character ISO country codes. It can be used as a navigation control, or as a presentation graphic. This will be updated soon to demonstrate using the SVG elements with D3 for statistical presentation.
+			</p>
+			<p>
+				If you look at the file named 'svg.html' and view the div elements with the id "svgWrapper" and "svgContext", you will see where content is loaded into the main and context views. Notice also in main.less, how the context is cloaked from the view below the map. 
+			</p>
+<pre>
+.svgDiv
+ #svgContext{
+  display:none;
+}
+			</pre>
+		</div>
+	</div>
+
+</div>
