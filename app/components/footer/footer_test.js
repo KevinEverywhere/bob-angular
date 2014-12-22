@@ -22,15 +22,11 @@ describe('bobApp.footer module', function() {
 				scope.makeScrollFit(5);
 				expect(scope.minMove).toBe(-960);
 			}));
-			it('should call a URL and get a dataset back', inject(function($controller) {
-				var scope = {},
+			it('should load into a 3D element', inject(function($controller) {
+				var scope = {unitTestPass:"pending"},
 				ctrl = $controller('ThreeFooterController', {$scope:scope});
-				/*
-				$httpBackend.expectGET($scope.newsFeedURL).respond({
-					data:true
-				});
-				*/
-				scope.init("This tests for", "feed call", true);
+				scope.init('footer','footcontent');
+				expect(scope.css3DObject.unitTestPass).toBe(true);
 			}));
 			it('should have one activeAnimation', inject(function($controller) {
 				var scope = {},

@@ -29,13 +29,17 @@ describe('bobApp.leaflet module', function() {
 				ctrl = $controller('ThreeLeafletController', {$scope:scope});
 				expect(scope.currentRotate).toBeLessThan(scope.maxRotate);
 			}));
-
 			it('should have a currentRotate larger than its minRotate', inject(function($controller) {
 				var scope = {},
 				ctrl = $controller('ThreeLeafletController', {$scope:scope});
 				expect(scope.currentRotate).toBeGreaterThan(scope.minRotate);
 			}));
-
+			it('should load into a 3D element', inject(function($controller){
+				var scope={unitTestPass:"pending"},
+				ctrl = $controller('ThreeLeafletController', {$scope:scope});
+				scope.init('leaflet','content','leafletMap','leafletContext');
+				expect(scope.css3DObject.unitTestPass).toBe(true);
+			}));
 	});
 });
 

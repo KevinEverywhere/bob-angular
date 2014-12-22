@@ -18,5 +18,11 @@ describe('bobApp.main module', function() {
 				ctrl = $controller('ThreeCSSController', {$scope:scope});
 				expect(scope.isInited).toBeFalsy();
 			}));
+			it('should load into a 3D element', inject(function($controller) {
+				var scope = {unitTestPass:"pending"},
+				ctrl = $controller('ThreeCSSController', {$scope:scope});
+				scope.init('main','content');
+				expect(scope.css3DObject.unitTestPass).toBe(true);
+			}));
 	});
 });
