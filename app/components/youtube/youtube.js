@@ -4,19 +4,40 @@ angular.module('bobApp.youtube', ["bobApp"])
 	.service("YouTubeService",['$rootScope', "$http", "$q", "$state", "$window",
 		 function($rootScope, $http, $q, $state, $window) {
 			var _service={
+				currentPosition:0,
+				currentMedia:"",
 				activePlayer:null,
 				feedStart:"https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20youtube.search%20where%20query%3D%22",
 				feedEnd:"%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK",
 				query:["query","results","video"],
 				returnObj:null,
 				youTubeController:null,
+				timer:function(){
+					try{
+						console.log("_service.timee.currentPosition=" + _service.currentPosition || YouTubeService.currentPosition);
+						console.log("_service.player=" + _service.player);
+						if(_service.player && _service.player.getCurrentTime()>0){
+							_service.currentPosition=$rootScope.currentPosition=_service.player.getCurrentTime();
+						}
+					}catch(oops){
+						console.log("not ready");
+					}
+				},
 				startMedia:function(which, obj){
 					if(!which){
 						$window.Player="Connected for unit testing.";
 					}else{
+						if((_service.currentMedia==which) && (_service.currentPosition!=0)){
+							//
+						}else{
+							_service.currentMedia=which;
+							_service.currentPosition=0;
+						}
 						var me=obj;
+			//			if(me.player && ($state.$current.indexOf("video") != -1)){
 						if(me.player && ($state.$current != "video")){
 							me.player.loadVideoById(which);
+							me.player.seekTo(_service.currentPosition);
 						}else{
 							me.player = new $window.YT.Player('ytplayer', {
 								height: _service.activePlayer.height,
@@ -33,6 +54,14 @@ angular.module('bobApp.youtube', ["bobApp"])
 				},
 				onPlayerReady:function(evt){
 					$window.player=evt.target;
+					try{
+						console.log("_service.currentPosition=" + _service.currentPosition);
+						if(_service.currentPosition!=0){
+							_service.player.seekTo(_service.currentPosition);
+						}
+					}catch(oops){
+						console.log("onPlayerReady=" + evt);
+					}
 				},
 				onPlayerStateChange:function(evt){
 					if(_service.player.getPlayerState()==2){
@@ -56,7 +85,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 				y:threeCSSService.radianCalculator(200),
 				z:threeCSSService.radianCalculator(180)
 			};
-			$scope.activeAnimations=["animate"];
+			$scope.activeAnimations=["animate","timer"];
 			$scope.activeParams={};
 			$scope.count=0;
 			$scope._dir=-1;
@@ -83,10 +112,14 @@ angular.module('bobApp.youtube', ["bobApp"])
 				}else{
 					if(!this.isInited){
 						YouTubeService.youTubeController=this;
-						if($rootScope.youtubeid){
-							$scope.youtubeid=$rootScope.youtubeid;
+						if((YouTubeService.currentMedia=="") &&(YouTubeService.currentPosition==0)) {
+							if($rootScope.youtubeid){
+								$scope.youtubeid=$rootScope.youtubeid;
+							}else{
+								$scope.youtubeid= $scope.youtubeid || $stateParams.youtubeid || "afBm0Dpfj_k";
+							}
 						}else{
-							$scope.youtubeid= $scope.youtubeid || $stateParams.youtubeid || "afBm0Dpfj_k";
+							$scope.youtubeid=YouTubeService.currentMedia; 							
 						}
 						threeCSSService.init(elem, $scope, _content, _context);
 						this.isInited=true;
@@ -99,9 +132,12 @@ angular.module('bobApp.youtube', ["bobApp"])
 							}
 						}catch(oops){
 							console.log("youtube.js rendering bypassed for unit tests.")
-						}
+						}							
 					}
 				}
+			}
+			$scope.timer=function(){
+				YouTubeService.timer();
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);

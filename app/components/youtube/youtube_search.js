@@ -74,7 +74,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 								me.counter++;
 								if(me.counter<me.maxCount){
 									console.log("try #" + me.counter)
-									$timeout(me.findVideos(searchTerm, scope, callback),me.timeoutLength);
+									$timeout(me.findVideos(searchTerm, scope, callback),me.timeoutLength + (me.count * 200));
 								}else{
 									console.log("too many tries")
 								}
@@ -87,12 +87,12 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 		}
 	])
 
-	.controller('YouTubeSearchController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "YouTubeSearchService", "threeCSSService", "$timeout",
-		function YouTubeSearchController($window, $scope, $rootScope, $state, $stateParams, YouTubeSearchService, threeCSSService, $timeout) {
+	.controller('YouTubeSearchController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "YouTubeService", "YouTubeSearchService", "threeCSSService", "$timeout",
+		function YouTubeSearchController($window, $scope, $rootScope, $state, $stateParams, YouTubeService, YouTubeSearchService, threeCSSService, $timeout) {
  			$scope.currentData=null;
 			$scope._service=YouTubeSearchService;
 			$scope.name='YouTubeSearchController';
-			$scope.activeAnimations=["animate"];
+			$scope.activeAnimations=["animate", "timer"];
 			$scope.activeParams={};
 			$scope._dir=-1;
 			$scope.incr=.01;
@@ -109,6 +109,10 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				y:threeCSSService.radianCalculator(180),
 				z:threeCSSService.radianCalculator(180)
 			};
+			$scope.timer=function(){
+				YouTubeService.timer();
+				console.log("YouTubeService.timer(); called");
+			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
 				if($scope.currentRotate<$scope.maxRotate){

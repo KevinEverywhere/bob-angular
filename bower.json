@@ -1,6 +1,6 @@
 {
   "name": "bob-angular",
-  "description": "A visual best of breed solution for AngularJS using Less, Three, and d3 frameworks.",
+  "description": "An AngularJS seed that includes working examples of several client-side technlogies integrated with angular.",
   "version": "0.0.0",
   "homepage": "https://github.com/KevinEverywhere/bob-angular",
   "license": "MIT",
@@ -29,7 +29,11 @@
   "keywords": [
     "angular",
     "d3",
+    "youtube",
+    "leaflet",
+    "svg",
     "three",
+    "three.js",
     "css3",
     "less",
     "mixins"

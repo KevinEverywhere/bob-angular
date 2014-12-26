@@ -1,9 +1,29 @@
 {
   "name": "bob-angular",
   "version": "0.0.0",
-  "description": "A visual best of breed solution for AngularJS using Less, Three, and d3 frameworks.",
-  "repository": "https://github.com/KevinEverywhere/bob-angular",
+  "description": "An AngularJS seed that includes an express server, and working examples of an integration of several client-side frameworks.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KevinEverywhere/bob-angular.git"
+  },
   "license": "MIT",
+  "authors": [
+    "Kevin Ready",
+    "Kevin Ready <kevin@planetkevin.com>"
+  ],
+  "keywords": [
+    "angular",
+    "d3",
+    "youtube",
+    "leaflet",
+    "svg",
+    "express",
+    "three",
+    "three.js",
+    "css3",
+    "less",
+    "mixins"
+  ],
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-watch": "~0.4.0",

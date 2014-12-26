@@ -254,13 +254,26 @@ var countryModule = angular.module('countryModule', [])
 					service.countries.push(new country("Timor-Leste", "TL", "TLS", "626"));
 					service.countries.push(new country("United States Minor Outlying Islands", "UM", "UMI", "581"));
 					service.countries.push(new country("Antarctica", "AQ", "ATA", "010"));
-					console.log("countryService loaded")
+					console.log("countryService loaded + " + service.countries[56].name)
+				},
+				getNameFrom2:function(value){
+					return service.getFrom("iso2", value)
 				},
 				get3From2:function(value){
-					return this.getFromTo("iso2","iso3",value)
+					return service.getFromTo("iso2","iso3",value)
 				},
 				get2From3:function(value){
-					return this.getFromTo("iso3","iso2",value)
+					return service.getFromTo("iso3","iso2",value)
+				},
+				getFrom:function(fromProp, value){
+					var rtn="no name";
+					for(var o=0;o<service.countries.length;o++){
+						if(service.countries[o][fromProp].toLowerCase()==value.toLowerCase()){
+							rtn=service.countries[o].name;
+							break;
+						}
+					}
+					return rtn;
 				},
 				getFromTo:function(fromProp, toProp, value){
 					var n = value ? null : [];
@@ -279,6 +292,7 @@ var countryModule = angular.module('countryModule', [])
 					return n;
 				}
 			}
+			service.init();
 			return service;
 		}
 	]);

@@ -40,7 +40,10 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 					d3.select("#" + $scope.currentItem).attr('opacity',1);
 				}
 				$scope.currentItem=evt.target.parentNode.id;
+				console.log("$scope.currentItem=" + $scope.currentItem + "; " + countryService.getNameFrom2($scope.currentItem));
 				d3.select("#" + evt.target.parentNode.id).attr('opacity',0.);
+				// $state.go("map.geoLocation",{})
+				$window.location.href = "#/mapfeed/geo-location/" + countryService.getNameFrom2($scope.currentItem);
 			};
 			$scope.loadSVG=function(xml){
         		try{
