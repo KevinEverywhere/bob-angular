@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg height="574" version="1.1" width="1117" xmlns="http://www.w3.org/2000/svg" id="theWorld" style="overflow: hidden; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-user-select: none; cursor: default; position: relative; background-color: rgb(0, 0, 0);">
+<svg height="574" version="1.1" width="1117" xmlns="http://www.w3.org/2000/svg" id="theWorld" style="overflow: hidden; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-user-select: none; cursor: default; position: relative; background-color: rgb(51, 51, 51);">
 	<style>
 		.fmt{
 			fill: rgb(52, 255, 52); 
 			stroke: rgb(51, 51, 51); 
 			stroke-opacity: 1; 
+			fill-opacity: 1;
+		}
+		.whiten{
+			fill:rgb(255, 255, 255);
 			fill-opacity: 1;
 		}
 		.pointer :hover{
@@ -22,10 +26,10 @@
 			cursor: pointer;
 		}
 		.pointer{
-			fill: rgb(121, 155, 152); 
-			stroke: rgb(51, 51, 51); 
+			fill: rgb(255, 255, 255); 
+			stroke: rgb(21, 21, 21); 
 			stroke-opacity: 1; 
-			fill-opacity: 0.5; 
+			fill-opacity: 1; 
 			cursor: pointer;
 		}
 		path{
@@ -35,26 +39,40 @@
 			transform:matrix(1,0,0,1,0,0);
 		}
 		#africa .pointer{
-			fill: rgb(204, 255, 255);
+			/*
+				fill: rgb(204, 255, 255);
+			*/
 		}
 		#asia .pointer{
-			fill: rgb(255, 204, 255);
+			/*
+				fill: rgb(255, 204, 255);
+			*/
 		}
 		#eurasia .pointer{
-			fill: rgb(102, 104, 204);
+			/*
+				fill: rgb(102, 104, 204);
+			*/
 		}
 		#europe .pointer{
-			fill: rgb(255, 255, 204);
+			/*
+				fill: rgb(255, 255, 204);
+			*/
 		}
 		#northAmerica .pointer{
-			fill: rgb(204, 255, 204);
+			/*
+				fill: rgb(204, 255, 204);
+			*/
 		}
 		#southAmerica .pointer{
-			fill: rgb(204, 204, 255);
+			/*
+				fill: rgb(204, 204, 255);
+			*/
 		}
 		#pacific .pointer{
-			fill: rgb(204, 204, 103);
-			fill-opacity:0.15;
+			/*
+				fill: rgb(204, 204, 103);
+				fill-opacity:0.15;
+			*/
 		}
 	</style>
 	<g transform="matrix(0.0495,0,0,0.0495,17.3607,10)" stroke-width="20">

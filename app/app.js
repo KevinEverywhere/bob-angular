@@ -16,7 +16,7 @@ var bobApp=angular.module("bobApp",  [
 	'localCRUD',
 	'ui.router'
 ])
-	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService, YouTubeService, YouTubeSearchService, $location) {
+	.run(function ($rootScope, $state, $stateParams, $window, threeCSSService, YouTubeService, YouTubeSearchService, $location, svgD3Data) {
 		$rootScope.googleReady=false;
 		$rootScope.sectionTitle="Testing";
 		$rootScope.$state = $state;
@@ -115,6 +115,7 @@ var bobApp=angular.module("bobApp",  [
 					}
 					break;
 				case "svg":
+					console.log("state is svg inside switch ");
 					break;
 			}
 		});
@@ -142,6 +143,11 @@ var bobApp=angular.module("bobApp",  [
 				case "home":
 					break;
 				case "svg":
+					break;
+				case "svg.detail":
+					console.log("svg.detail  inside switch ");
+					svgD3Data.mapWBStats($stateParams.detail)
+					// 
 					break;
 			}
 		});
@@ -292,6 +298,20 @@ var bobApp=angular.module("bobApp",  [
 		  })
 		  .state('svg', {
 			url: '/svg',
+			views:{
+				"axis2":{
+					templateUrl: 'components/svg/svg.html',					controller: 'ThreeSVGController'
+				},
+				"axis3":{
+ 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
+				},
+				"pageBottom":{
+					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
+				}
+			}
+		  })
+		  .state('svg.detail', {
+			url: '/:detail',
 			views:{
 				"axis2":{
 					templateUrl: 'components/svg/svg.html',					controller: 'ThreeSVGController'

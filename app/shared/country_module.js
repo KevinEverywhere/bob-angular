@@ -254,7 +254,6 @@ var countryModule = angular.module('countryModule', [])
 					service.countries.push(new country("Timor-Leste", "TL", "TLS", "626"));
 					service.countries.push(new country("United States Minor Outlying Islands", "UM", "UMI", "581"));
 					service.countries.push(new country("Antarctica", "AQ", "ATA", "010"));
-					console.log("countryService loaded + " + service.countries[56].name)
 				},
 				getNameFrom2:function(value){
 					return service.getFrom("iso2", value)
@@ -274,6 +273,9 @@ var countryModule = angular.module('countryModule', [])
 						}
 					}
 					return rtn;
+				},
+				getCountries:function(){
+					return service.countries;
 				},
 				getFromTo:function(fromProp, toProp, value){
 					var n = value ? null : [];

@@ -1,8 +1,79 @@
 'use strict';
 
-angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
-	.controller('ThreeSVGController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "LocalCRUDService", "threeCSSService", "countryService",  
-		function ThreeSVGController($window, $scope, $rootScope, $state, $stateParams, LocalCRUDService, threeCSSService, countryService) {
+angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router", "ng"])
+	.service("svgD3Data",['$rootScope', "$http", "$q", "$state", "$window", "countryService",
+		 function($rootScope, $http, $q, $state, $window, countryService) {
+		 	var service={
+		 		d3Data:null,
+		 		wrapURL:function(str){
+		 			var _str="assets/media/" + str + ".json";
+		 			return _str;
+		 		},
+		 		mapWBStats:function(whichStat){
+		 			var me=service;
+					d3.json(service.wrapURL(whichStat),function(err, d){
+						if(!err){
+							me.d3Data=d[1].sort(function(a,b){return (b.value*1) > (a.value*1)  });
+							$window.d3Data=me.d3Data;
+							angular.forEach(d3Data, function(value, key){
+								var countryLength=230;
+								console.log("countryLength=" + countryLength);
+								try{
+									var key1=(key/countryLength), key2=(255 * key1);
+									var _color="rgba("+key2/5+", "+key2/4+", "+key2+", "+key1+")",
+									country=value.country.id.toLowerCase();
+									console.log("key1=" + key1 + ",key2=" + key2 +"; .country=" + country);
+									//
+									d3.select("#" + country).attr(
+										'opacity', key1
+										);
+									d3.select("#" + country).attr(
+										'fill',_color
+										);
+									d3.select("#" + country).selectAll('g').attr(
+										'fill',_color
+										);
+									d3.select("#" + country).selectAll('g').selectAll('path').attr(
+										'fill',_color
+										);
+
+
+
+
+//									$("#" + value.country.id.toLowerCase()).attr('fill','rgba(244, 244, 244, 1)');
+					//				$("#" + value.country.id.toLowerCase()).attr('fill',rgba(key2, key2, key2, key1);
+								}catch(oops){
+									console.log("bad opacity attempt.");
+								}
+					//			getCountries
+							});
+							// 
+				//			console.log("success=" + d);
+						}else{
+							console.log("ERR("+err);
+						}
+					});
+		 		}
+/*
+countryService.getCountries()
+var countryModule = angular.module('countryModule', [])
+	.service('countryService', [
+		function countryService() {
+			var country=function(name, iso2, iso3, isoNumeric){
+				this.name=name;
+				this.iso2=iso2;
+				this.iso3=iso3;
+				this.isoNumeric=isoNumeric;
+			}
+			*/
+
+		 	}
+		 	return service;
+		}
+	])
+	.controller('ThreeSVGController', ["$window", "$scope", "$rootScope", "$state", "$stateParams", "LocalCRUDService", "threeCSSService", 
+		"countryService", "svgD3Data", 
+		function ThreeSVGController($window, $scope, $rootScope, $state, $stateParams, LocalCRUDService, threeCSSService, countryService, svgD3Data) {
 			$scope.name='ThreeSVGController';
 			$scope._position={
 				z:-70
@@ -52,6 +123,15 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 					$scope.threeCSSService.init($scope.elem, $scope, $scope.__content, $scope._context);
 					render();
 				}catch(oops){}
+			};
+			$scope.loadWBData=function(indicator){
+				var _startURL="http://api.worldbank.org/countries/all/indicators/",
+				_endURL="?date=2010:2010&per_page=248&format=json",
+				fullURL=_startURL + indicator + _endURL;
+
+			//	 SH.DYN.MORT,  SP.DYN.IMRT.IN, NY.GDP.MKTP.CD
+
+			
             };
 			$scope.csvCall=function(csvURL){
 				// Original URL: "https://raw.githubusercontent.com/datasets/cpi/master/data/cpi.csv";
