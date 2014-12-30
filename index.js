@@ -19,14 +19,28 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/db/:id', function(req, res) {
-	switch(req.param("id")){
-		case "iso2":
-			break;
-		case "iso3":
-			break;
-		case "iso_numeric":
-			break;
-		}
+	if(req.host=="bob-angular.herokuapp.com"){
+		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+			try{
+				var _id=req.param("id");
+				client.query('SELECT ' + _id + ' FROM country', function(err, result) {
+					done();
+					if (err){
+						console.error(err); 
+						res.send("Error " + err); 
+					}else{
+						res.send(result.rows); 
+					}
+				});
+			}catch(oops){
+			    res.set({'Content-Type': 'text/xml'});
+				res.send("<xml version='1.0'><nocontent /></xml>");
+			}
+		});
+	 }else{
+	    res.set({'Content-Type': 'text/xml'});
+		res.send("<xml version='1.0'><nocontent /></xml>");
+	 }
 });
 
 router.get('/db/:id/:val', function(req, res) {
@@ -35,7 +49,8 @@ router.get('/db/:id/:val', function(req, res) {
 			try{
 				var _id=req.param("id");
 				var _val=(_id=="id") ? req.param("val") : "'" + req.param("val") + "'";
-				client.query('SELECT * FROM country where ' + _id + '=' + _val, function(err, result) {
+				var _str= (_val!= "*") ? ' where ' + _id + '=' + _val : ''; 
+				client.query('SELECT * FROM country' + str, function(err, result) {
 					done();
 					if (err){
 						console.error(err); 
