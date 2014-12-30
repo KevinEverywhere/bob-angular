@@ -53,7 +53,7 @@ router.get('/db/:id/:val', function(req, res) {
 			try{
 				var _id=req.param("id"), val=req.param("val");
 				var _val=(_id=="id") ? val : "'" + val + "'";
-				var _str=' where ' + _id + '=' + _val; 
+				var _str= _id.indexOf("iso")!=-1 ? ' where ' + _id + '=' + _val : ' where ' + _id + '=' + _val.toUpperCase(); 
 				client.query('SELECT * FROM country' + _str, function(err, result) {
 					done();
 					if (err){
