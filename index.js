@@ -54,7 +54,7 @@ router.get('/db/:id/:val', function(req, res) {
 				var _id=req.param("id"), val=req.param("val");
 				var _val=(_id=="id") ? val : "'" + val + "'";
 				var _str=' where ' + _id + '=' + _val; 
-				client.query('SELECT * FROM country' + str, function(err, result) {
+				client.query('SELECT * FROM country' + _str, function(err, result) {
 					done();
 					if (err){
 						console.error(err); 
