@@ -18,15 +18,10 @@ var countryModule = angular.module('countryModule', [])
 					$http({method: 'GET', url: countryURL})
 						.success(function(data, status, headers, config) {
 							me.countries=$window.d3Data=data;
-							console.log("countries loaded=" + data);
 						
 					})
 					.error(function(data, status, headers, config) {
 						console.log('error loading countries=' + data);
-					});
-
-					}catch(oops){
-						console.log("Loading local countries.");
 						service.countries.push(new country("Afghanistan", "AF", "AFG", "004"));
 						service.countries.push(new country("Albania", "AL", "ALB", "008"));
 						service.countries.push(new country("Algeria", "DZ", "DZA", "012"));
@@ -269,7 +264,8 @@ var countryModule = angular.module('countryModule', [])
 						service.countries.push(new country("Timor-Leste", "TL", "TLS", "626"));
 						service.countries.push(new country("United States Minor Outlying Islands", "UM", "UMI", "581"));
 						service.countries.push(new country("Antarctica", "AQ", "ATA", "010"));
-					}
+					});
+				}catch(oops){}
 				},
 				getNameFrom2:function(value){
 					return service.getFrom("iso2", value)
