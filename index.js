@@ -53,7 +53,7 @@ router.get('/db/:id/:val', function(req, res) {
 			try{
 				var _id=req.param("id");
 				var _val=(_id=="id") ? req.param("val") : "'" + req.param("val").toUpperCase() + "'";
-				var _str= (_val!= "*") ? ' where UPPER(' + _id + ')=' + _val : ''; 
+				var _str= (_val!= "*") ? ' where ' + _id + '=' + _val : ''; 
 				client.query('SELECT * FROM country' + str, function(err, result) {
 					done();
 					if (err){
@@ -65,12 +65,12 @@ router.get('/db/:id/:val', function(req, res) {
 				});
 			}catch(oops){
 			    res.set({'Content-Type': 'text/xml'});
-				res.send("<xml version='1.0'><nocontent /></xml>");
+				res.send("<xml version='1.0'><nocontent reason='trycatch' /></xml>");
 			}
 		});
 	 }else{
 	    res.set({'Content-Type': 'text/xml'});
-		res.send("<xml version='1.0'><nocontent /></xml>");
+		res.send("<xml version='1.0'><nocontent reason='badHost'/></xml>");
 	 }
 });
 
