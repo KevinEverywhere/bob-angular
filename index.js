@@ -18,6 +18,10 @@ router.get('/', function(req, res, next) {
     res.render('/app/index.html');
 });
 
+router.get('/db', function(req, res, next) {
+    res.render('/app/index.html');
+});
+
 router.get('/db/:id', function(req, res) {
 	if(req.host=="bob-angular.herokuapp.com"){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
