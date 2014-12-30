@@ -48,8 +48,8 @@ router.get('/db/:id/:val', function(req, res) {
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			try{
 				var _id=req.param("id");
-				var _val=(_id=="id") ? req.param("val") : "'" + req.param("val") + "'";
-				var _str= (_val!= "*") ? ' where ' + _id + '=' + _val : ''; 
+				var _val=(_id=="id") ? req.param("val") : "'" + req.param("val").toUpperCase() + "'";
+				var _str= (_val!= "*") ? ' where UPPER(' + _id + ')=' + _val : ''; 
 				client.query('SELECT * FROM country' + str, function(err, result) {
 					done();
 					if (err){
