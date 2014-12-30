@@ -73,23 +73,6 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			    this.scope = scope;
 			    this.elem = elem;
 			    this.attrs = attrs;
-			},
-			template: buildDiv(),
-			buildDiv:function(){
-				var mystring="dsfasfsd";
-				/*
-				switch($scope.type){
-					case "submit":
-						mystring='<div><input type="submit" value="'+$scope.title+'" /></div>';
-						break;
-					case "text":
-						mystring="<div><label>"+$scope.label+"</label><input class='form-control field em1 auto-hint' title='"+
-						$scope.title+ "' change='test(this,\'cityDiv\')' type='"+ $scope.type+"' ng-model='"+
-						$scope.name+"' name='"+$scope.name+"' id='"+$scope.name+"'></input><br/></div>";
-						break;
-				}
-						*/
-				return mystring;
 			}
 		};
 		return leafletObj;
