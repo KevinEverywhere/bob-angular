@@ -18,12 +18,14 @@ router.get('/', function(req, res, next) {
     res.render('/app/index.html');
 });
 
-router.get('/db', function(req, res, next) {
-    
-});
+	// The /db routes require an independently configured database with a table named 
+	// "country" and fields named "name", "id", "iso2", "iso3", and "iso_numeric".
+	// The file, app/assets/media/countries.sql, can be used to create and populate the table.
+
+router.get('/db', function(req, res, next) {});
 
 router.get('/db/:id', function(req, res) {
-	if(req.host=="bob-angular.herokuapp.com"){
+	if(req.hostname=="bob-angular.herokuapp.com"){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			try{
 				var _id=req.param("id");
@@ -38,17 +40,17 @@ router.get('/db/:id', function(req, res) {
 				});
 			}catch(oops){
 			    res.set({'Content-Type': 'text/xml'});
-				res.send("<xml version='1.0'><nocontent /></xml>");
+				res.send("<xml version='1.0'><nocontent reason='trycatch' /></xml>");
 			}
 		});
 	 }else{
 	    res.set({'Content-Type': 'text/xml'});
-		res.send("<xml version='1.0'><nocontent /></xml>");
+		res.send("<xml version='1.0'><nocontent reason='badHost'/></xml>");
 	 }
 });
 
 router.get('/db/:id/:val', function(req, res) {
-	if(req.host=="bob-angular.herokuapp.com"){
+	if(req.hostname=="bob-angular.herokuapp.com"){
 		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			try{
 				var _id=req.param("id"), val=req.param("val");
