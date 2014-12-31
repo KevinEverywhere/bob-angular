@@ -16,12 +16,12 @@ var countryModule = angular.module('countryModule', [])
 					var me=service;
 					try{
 					$http({method: 'GET', url: countryURL})
-						.success(function(data, status, headers, config) {
-							me.countries=$window.d3Data=data;
-						
+					.success(function(data, status, headers, config) {
+						me.countries=$window.d3Data=data;
 					})
 					.error(function(data, status, headers, config) {
-						console.log('error loading countries=' + data);
+						console.log('error loading countries=' + data); 
+						// Back up data for sites with no database access.
 						service.countries.push(new country("Afghanistan", "AF", "AFG", "004"));
 						service.countries.push(new country("Albania", "AL", "ALB", "008"));
 						service.countries.push(new country("Algeria", "DZ", "DZA", "012"));
