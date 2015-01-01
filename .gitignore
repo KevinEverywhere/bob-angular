@@ -23,7 +23,7 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
+# *.sql
 *.sqlite
  
 # OS generated files #
@@ -42,6 +42,4 @@ examples/
 node_modules/
 scripts/
 app/lib
-e2e-tests/
 dist/
-karma.conf.js

@@ -1,0 +1,268 @@
+CREATE TABLE country(
+  name character varying(50), -- Country name.
+  iso2 character(2), -- ISO 2 character country code.
+  iso3 character(3), -- ISO 3 character country code.
+  iso_numeric character(3), -- ISO 3 digit country code.
+  id serial NOT NULL, -- Unique country ID.
+  CONSTRAINT id PRIMARY KEY (id)
+)
+
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Afghanistan', 'AF', 'AFG', '004', 1);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Albania', 'AL', 'ALB', '008', 2);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Algeria', 'DZ', 'DZA', '012', 3);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('American Samoa', 'AS', 'ASM', '016', 4);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Andorra', 'AD', 'AND', '020', 5);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Angola', 'AO', 'AGO', '024', 6);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Anguilla', 'AI', 'AIA', '660', 7);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Antigua and Barbuda', 'AG', 'ATG', '028', 8);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Argentina', 'AR', 'ARG', '032', 9);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Armenia', 'AM', 'ARM', '051', 10);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Aruba', 'AW', 'ABW', '533', 11);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Australia', 'AU', 'AUS', '036', 12);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Austria', 'AT', 'AUT', '040', 13);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Azerbaijan', 'AZ', 'AZE', '031', 14);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bahamas', 'BS', 'BHS', '044', 15);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bahrain', 'BH', 'BHR', '048', 16);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bangladesh', 'BD', 'BGD', '050', 17);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Barbados', 'BB', 'BRB', '052', 18);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Belarus', 'BY', 'BLR', '112', 19);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Belgium', 'BE', 'BEL', '056', 20);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Belize', 'BZ', 'BLZ', '084', 21);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Benin', 'BJ', 'BEN', '204', 22);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bermuda', 'BM', 'BMU', '060', 23);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bhutan', 'BT', 'BTN', '064', 24);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bolivia', 'BO', 'BOL', '068', 25);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bosnia and Herzegovina', 'BA', 'BIH', '070', 26);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Botswana', 'BW', 'BWA', '072', 27);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Brazil', 'BR', 'BRA', '076', 28);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('British Virgin Islands', 'VG', 'VGB', '092', 29);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Brunei Darussalam', 'BN', 'BRN', '096', 30);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Bulgaria', 'BG', 'BGR', '100', 31);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Burkina Faso', 'BF', 'BFA', '854', 32);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Myanmar', 'MM', 'MMR', '104', 33);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Burundi', 'BI', 'BDI', '108', 34);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cambodia', 'KH', 'KHM', '116', 35);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cameroon', 'CM', 'CMR', '120', 36);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Canada', 'CA', 'CAN', '124', 37);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cape Verde', 'CV', 'CPV', '132', 38);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cayman Islands', 'KY', 'CYM', '136', 39);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Central African Republic', 'CF', 'CAF', '140', 40);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Chad', 'TD', 'TCD', '148', 41);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Chile', 'CL', 'CHL', '152', 42);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('China', 'CN', 'CHN', '156', 43);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Christmas Island', 'CX', 'CXR', '162', 44);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cocos (Keeling) Islands', 'CC', 'CCK', '166', 45);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Colombia', 'CO', 'COL', '170', 46);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Comoros', 'KM', 'COM', '174', 47);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Congo, Democratic Republic of the', 'CD', 'COD', '180', 48);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Congo (Brazzaville)', 'CG', 'COG', '178', 49);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cook Islands', 'CK', 'COK', '184', 50);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Costa Rica', 'CR', 'CRI', '188', 51);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Côte d''Ivoire', 'CI', 'CIV', '384', 52);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Croatia', 'HR', 'HRV', '191', 53);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cuba', 'CU', 'CUB', '192', 54);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Cyprus', 'CY', 'CYP', '196', 55);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Czech Republic', 'CZ', 'CZE', '203', 56);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Denmark', 'DK', 'DNK', '208', 57);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Djibouti', 'DJ', 'DJI', '262', 58);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Dominica', 'DM', 'DMA', '212', 59);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Dominican Republic', 'DO', 'DOM', '214', 60);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Ecuador', 'EC', 'ECU', '218', 61);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Egypt', 'EG', 'EGY', '818', 62);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('El Salvador', 'SV', 'SLV', '222', 63);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Equatorial Guinea', 'GQ', 'GNQ', '226', 64);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Eritrea', 'ER', 'ERI', '232', 65);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Estonia', 'EE', 'EST', '233', 66);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Ethiopia', 'ET', 'ETH', '231', 67);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Falkland Islands (Malvinas)', 'FK', 'FLK', '238', 68);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Faroe Islands', 'FO', 'FRO', '234', 69);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Fiji', 'FJ', 'FJI', '242', 70);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Finland', 'FI', 'FIN', '246', 71);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('France', 'FR', 'FRA', '250', 72);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('French Guiana', 'GF', 'GUF', '254', 73);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('French Polynesia', 'PF', 'PYF', '258', 74);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Gabon', 'GA', 'GAB', '266', 75);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Gambia', 'GM', 'GMB', '270', 76);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Palestinian Territory, Gaza', 'PS', 'PSE', '275', 77);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Georgia', 'GE', 'GEO', '268', 78);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Germany', 'DE', 'DEU', '276', 79);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Ghana', 'GH', 'GHA', '288', 80);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Gibraltar', 'GI', 'GIB', '292', 81);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Greece', 'GR', 'GRC', '300', 82);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Greenland', 'GL', 'GRL', '304', 83);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Grenada', 'GD', 'GRD', '308', 84);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guadeloupe', 'GP', 'GLP', '312', 85);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guam', 'GU', 'GUM', '316', 86);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guatemala', 'GT', 'GTM', '320', 87);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guernsey', 'GG', 'GGY', '831', 88);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guinea', 'GN', 'GIN', '324', 89);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guinea-Bissau', 'GW', 'GNB', '624', 90);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Guyana', 'GY', 'GUY', '328', 91);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Haiti', 'HT', 'HTI', '332', 92);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Heard Island and Mcdonald Islands', 'HM', 'HMD', '334', 93);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Honduras', 'HN', 'HND', '340', 94);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Hong Kong, Special Administrative Region of China', 'HK', 'HKG', '344', 95);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Hungary', 'HU', 'HUN', '348', 96);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Iceland', 'IS', 'ISL', '352', 97);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('India', 'IN', 'IND', '356', 98);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Indonesia', 'ID', 'IDN', '360', 99);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Iran, Islamic Republic of', 'IR', 'IRN', '364', 100);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Iraq', 'IQ', 'IRQ', '368', 101);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Ireland', 'IE', 'IRL', '372', 102);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Israel', 'IL', 'ISR', '376', 103);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Italy', 'IT', 'ITA', '380', 104);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Jamaica', 'JM', 'JAM', '388', 105);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Japan', 'JP', 'JPN', '392', 106);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Jersey', 'JE', 'JEY', '832', 107);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Jordan', 'JO', 'JOR', '400', 108);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Kazakhstan', 'KZ', 'KAZ', '398', 109);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Kenya', 'KE', 'KEN', '404', 110);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Kiribati', 'KI', 'KIR', '296', 111);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Korea, Democratic People''s Republic of', 'KP', 'PRK', '408', 112);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Korea, Republic of', 'KR', 'KOR', '410', 113);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Kuwait', 'KW', 'KWT', '414', 114);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Kyrgyzstan', 'KG', 'KGZ', '417', 115);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Lao PDR', 'LA', 'LAO', '418', 116);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Latvia', 'LV', 'LVA', '428', 117);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Lebanon', 'LB', 'LBN', '422', 118);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Lesotho', 'LS', 'LSO', '426', 119);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Liberia', 'LR', 'LBR', '430', 120);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Libya', 'LY', 'LBY', '434', 121);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Liechtenstein', 'LI', 'LIE', '438', 122);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Lithuania', 'LT', 'LTU', '440', 123);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Luxembourg', 'LU', 'LUX', '442', 124);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Macao, Special Administrative Region of China', 'MO', 'MAC', '446', 125);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Macedonia, Republic of', 'MK', 'MKD', '807', 126);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Madagascar', 'MG', 'MDG', '450', 127);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Malawi', 'MW', 'MWI', '454', 128);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Malaysia', 'MY', 'MYS', '458', 129);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Maldives', 'MV', 'MDV', '462', 130);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mali', 'ML', 'MLI', '466', 131);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Malta', 'MT', 'MLT', '470', 132);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Isle of Man', 'IM', 'IMN', '833', 133);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Marshall Islands', 'MH', 'MHL', '584', 134);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Martinique', 'MQ', 'MTQ', '474', 135);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mauritania', 'MR', 'MRT', '478', 136);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mauritius', 'MU', 'MUS', '480', 137);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mayotte', 'YT', 'MYT', '175', 138);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mexico', 'MX', 'MEX', '484', 139);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Micronesia, Federated States of', 'FM', 'FSM', '583', 140);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Moldova', 'MD', 'MDA', '498', 141);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Monaco', 'MC', 'MCO', '492', 142);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mongolia', 'MN', 'MNG', '496', 143);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Montserrat', 'MS', 'MSR', '500', 144);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Morocco', 'MA', 'MAR', '504', 145);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Mozambique', 'MZ', 'MOZ', '508', 146);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Namibia', 'NA', 'NAM', '516', 147);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Nauru', 'NR', 'NRU', '520', 148);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Nepal', 'NP', 'NPL', '524', 149);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Netherlands', 'NL', 'NLD', '528', 150);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Netherlands Antilles', 'AN', 'ANT', '530', 151);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('New Caledonia', 'NC', 'NCL', '540', 152);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('New Zealand', 'NZ', 'NZL', '554', 153);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Nicaragua', 'NI', 'NIC', '558', 154);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Niger', 'NE', 'NER', '562', 155);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Nigeria', 'NG', 'NGA', '566', 156);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Niue', 'NU', 'NIU', '570', 157);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Norfolk Island', 'NF', 'NFK', '574', 158);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Northern Mariana Islands', 'MP', 'MNP', '580', 159);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Norway', 'NO', 'NOR', '578', 160);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Oman', 'OM', 'OMN', '512', 161);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Pakistan', 'PK', 'PAK', '586', 162);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Palau', 'PW', 'PLW', '585', 163);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Panama', 'PA', 'PAN', '591', 164);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Papua New Guinea', 'PG', 'PNG', '598', 165);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Paraguay', 'PY', 'PRY', '600', 166);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Peru', 'PE', 'PER', '604', 167);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Philippines', 'PH', 'PHL', '608', 168);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Pitcairn', 'PN', 'PCN', '612', 169);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Poland', 'PL', 'POL', '616', 170);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Portugal', 'PT', 'PRT', '620', 171);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Puerto Rico', 'PR', 'PRI', '630', 172);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Qatar', 'QA', 'QAT', '634', 173);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Réunion', 'RE', 'REU', '638', 174);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Romania', 'RO', 'ROU', '642', 175);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Russian Federation', 'RU', 'RUS', '643', 176);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Rwanda', 'RW', 'RWA', '646', 177);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint Helena', 'SH', 'SHN', '654', 178);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint Kitts and Nevis', 'KN', 'KNA', '659', 179);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint Lucia', 'LC', 'LCA', '662', 180);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint Pierre and Miquelon', 'PM', 'SPM', '666', 181);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint Vincent and Grenadines', 'VC', 'VCT', '670', 182);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Samoa', 'WS', 'WSM', '882', 183);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('San Marino', 'SM', 'SMR', '674', 184);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Sao Tome and Principe', 'ST', 'STP', '678', 185);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saudi Arabia', 'SA', 'SAU', '682', 186);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Senegal', 'SN', 'SEN', '686', 187);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Serbia', 'RS', 'SRB', '688', 188);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Seychelles', 'SC', 'SYC', '690', 189);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Sierra Leone', 'SL', 'SLE', '694', 190);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Singapore', 'SG', 'SGP', '702', 191);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Slovakia', 'SK', 'SVK', '703', 192);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Slovenia', 'SI', 'SVN', '705', 193);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Solomon Islands', 'SB', 'SLB', '090', 194);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Somalia', 'SO', 'SOM', '706', 195);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('South Africa', 'ZA', 'ZAF', '710', 196);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Spain', 'ES', 'ESP', '724', 197);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Sri Lanka', 'LK', 'LKA', '144', 198);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Sudan', 'SD', 'SDN', '736', 199);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Suriname *', 'SR', 'SUR', '740', 200);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Swaziland', 'SZ', 'SWZ', '748', 201);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Sweden', 'SE', 'SWE', '752', 202);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Switzerland', 'CH', 'CHE', '756', 203);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Syrian Arab Republic (Syria)', 'SY', 'SYR', '760', 204);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Taiwan, Republic of China', 'TW', 'TWN', '158', 205);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Tajikistan', 'TJ', 'TJK', '762', 206);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Tanzania *, United Republic of', 'TZ', 'TZA', '834', 207);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Thailand', 'TH', 'THA', '764', 208);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Togo', 'TG', 'TGO', '768', 209);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Tokelau', 'TK', 'TKL', '772', 210);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Tonga', 'TO', 'TON', '776', 211);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Trinidad and Tobago', 'TT', 'TTO', '780', 212);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Tunisia', 'TN', 'TUN', '788', 213);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Turkey', 'TR', 'TUR', '792', 214);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Turkmenistan', 'TM', 'TKM', '795', 215);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Turks and Caicos Islands', 'TC', 'TCA', '796', 216);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Tuvalu', 'TV', 'TUV', '798', 217);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Uganda', 'UG', 'UGA', '800', 218);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Ukraine', 'UA', 'UKR', '804', 219);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('United Arab Emirates', 'AE', 'ARE', '784', 220);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('United Kingdom', 'GB', 'GBR', '826', 221);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('United States of America', 'US', 'USA', '840', 222);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Uruguay', 'UY', 'URY', '858', 223);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Uzbekistan', 'UZ', 'UZB', '860', 224);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Vanuatu', 'VU', 'VUT', '548', 225);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Venezuela (Bolivarian Republic of)', 'VE', 'VEN', '862', 226);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Viet Nam', 'VN', 'VNM', '704', 227);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Virgin Islands, US', 'VI', 'VIR', '850', 228);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Wallis and Futuna Islands', 'WF', 'WLF', '876', 229);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Palestinian Territory, West Bank', 'PS', 'PSE', '275', 230);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Western Sahara', 'EH', 'ESH', '732', 231);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Yemen', 'YE', 'YEM', '887', 232);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Zambia', 'ZM', 'ZMB', '894', 233);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Zimbabwe', 'ZW', 'ZWE', '716', 234);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('South Sudan', 'SS', 'SSD', '728', 235);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Montenegro', 'ME', 'MNE', '499', 236);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint-Barthélemy', 'BL', 'BLM', '652', 237);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Saint-Martin (French part)', 'MF', 'MAF', '663', 238);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Svalbard and Jan Mayen Islands', 'SJ', 'SJM', '744', 239);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Timor-Leste', 'TL', 'TLS', '626', 240);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('United States Minor Outlying Islands', 'UM', 'UMI', '581', 241);
+INSERT INTO country (name, iso2, iso3, iso_numeric, id) VALUES ('Antarctica', 'AQ', 'ATA', '010', 242);
+
+
+--
+-- TOC entry 2217 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('country_id_seq', 242, true);
+
+
+-- Completed on 2014-12-28 09:42:32 PST
+
+--
+-- PostgreSQL database dump complete
+--
+

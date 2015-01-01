@@ -56,6 +56,7 @@ module.exports=function(grunt){
 					'app/assets/css/main.less',
 					'app/libs/3l/3L/3L.less',
 					'app/assets/media/groupedWorld.svg',
+					'app/assets/media/countries.sql',
 					'app/assets/media/AG.LND.AGRI.ZS.json',
 					'app/assets/media/NY.GDP.MKTP.CD.json',
 					'app/assets/media/SP.DYN.IMRT.IN.json',
