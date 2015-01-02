@@ -98,7 +98,8 @@ function changeSize(evt){
         "@mobileType":isMobile().type(),
         "@rowTrim":pixelWrap("rowTrim"),
         "@columnTrim":pixelWrap("columnTrim"),
-        "@trimmedBox":pixelWrap("trimmedBox")
+        "@trimmedBox":pixelWrap("trimmedBox"),
+        "@svgWorld":pixelWrap("svgWorld")
     });
     if(window.hardcoded){window.hardcoded()}
 }    
@@ -123,6 +124,7 @@ function getCurrentDimensions(){
             theOrientation=(window.screen.width>window.screen.height)?"horizontal":"vertical";
         }
     }
+    var actualSVGW=1117;
     axis1L=0;
     axis1T=0;
     axis1R=0;
@@ -145,7 +147,6 @@ function getCurrentDimensions(){
         axis3B=(theOrientation=="horizontal") ? theSmall : theLarge;
         axis3W=0;
         axis3T=(theOrientation=="horizontal") ? theSmall : theLarge;
-
     }else{
         axis2L=0;
         axis2T=rowTrim;
@@ -161,6 +162,7 @@ function getCurrentDimensions(){
         axis3W=(theOrientation=="horizontal") ? columnTrim : theSmall;
         axis3T=(theOrientation=="horizontal") ? rowTrim : theLarge-(3 * rowTrim);
     }
+    svgWorld=(axis2W/actualSVGW);
     pageBottomL=0;
     pageBottomH=rowTrim;
     pageBottomR=0;

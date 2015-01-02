@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css" />  <!--  Replace with .min.js-->
   <script src="assets/js/startup.js"></script>
   <script>
-var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, isMobile, mobileType, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
+var columnTrim, rowTrim, axis1L, axis1T, axis1R, axis1B, axis1W, axis1H, axis2L, axis2T, axis2R, axis2B, axis2W, axis2H, axis3L, axis3T, axis3R, axis3B, axis3W, axis3H, bobAppX, bobAppY, isMobile, mobileType, pageBottomL, pageBottomT, pageBottomR, pageBottomB, pageBottomW, pageBottomH, theLarge, theSmall, theOrientation, svgWorld, bigW, smallW, mainSize, navSize, footerSize, userAgent=navigator.userAgent,uaFont="";
 
 if(userAgent.toLowerCase().indexOf("chrome")!=-1){
     uaFont="Roboto";
@@ -74,7 +74,8 @@ less = {
       pageBottomR:null,
       pageBottomB:null,
       pageBottomW:null,
-      pageBottomH:null
+      pageBottomH:null,
+      svgWorld:.1
     },
     dumpLineNumbers: "comments",
     relativeUrls: false,
@@ -104,7 +105,6 @@ less = {
   <script src="components/youtube/youtube_search.js"></script>
   <script src="components/svg/svg.js"></script>
   <script src="components/navigation/navigation.js"></script>
-  <script src="shared/d3_module.js"></script>
   <script src="shared/three_module.js"></script>
   <script src="shared/country_module.js"></script>
 

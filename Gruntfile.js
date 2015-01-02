@@ -29,7 +29,6 @@ module.exports=function(grunt){
 					'app/components/youtube/youtube_search.js',
 					'app/components/svg/svg.js',
 					'app/components/navigation/navigation.js',
-					'app/shared/d3_module.js',
 					'app/shared/three_module.js',
 					'app/shared/country_module.js'
 					],

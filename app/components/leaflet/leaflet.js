@@ -18,7 +18,7 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 					if(_content){me.leafletDiv=_content}
 					switch($state.$current.name){
 						case "mapfeed.geolocation":
-							var _url=service.osmPrefix + $stateParams.geoLocation,_maxZoom=18;
+							var _url=service.osmPrefix + $stateParams.geoLocation,_maxZoom=17;
 							$http({method: 'GET', url: _url})
 								.success(function(data, status, headers, config) {
 									if(data.length>0){
@@ -31,7 +31,7 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 										    [data[0].boundingbox[0], data[0].boundingbox[2]],
 										    [data[0].boundingbox[1], data[0].boundingbox[3]]]);
 										map.addLayer(osm);
-										if(map.getZoom()>_maxZoom){map.setZoom(map.getMaxZoom());};
+									//	if(map.getZoom()>_maxZoom){map.setZoom(map.getMaxZoom());};
 									}
 								})
 							.error(function(data, status, headers, config) {

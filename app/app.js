@@ -2,7 +2,6 @@
 
 var bobApp=angular.module("bobApp",  [
 	'threeModule',
-	'd3Module',
 	'countryModule',
 	'bobApp.svg',
 	'bobApp.context',

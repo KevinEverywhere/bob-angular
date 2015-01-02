@@ -19,7 +19,6 @@ module.exports = function(config){
       'app/libs/angular-loader/angular-loader.js',
       'app/libs/angular-mocks/angular-mocks.js',
       'app/libs/angular-route/angular-route.js',
-      'app/shared/d3_module.js',
       'app/shared/three_module.js',
       'app/shared/country_module.js',
       'app/libs/less/dist/less-1.7.0.min.js',

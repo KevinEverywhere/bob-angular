@@ -88,11 +88,14 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router", "
 				$window.location.href = "#/mapfeed/geo-location/" + countryService.getNameFrom2($scope.currentItem);
 			};
 			$scope.loadSVG=function(xml){
+				console.log("scope.loadSVG");
         		try{
-					$scope.importedNode = document.importNode(xml.documentElement, true);
-					$window.d3.select("#" + $scope._svgDiv).node().appendChild($scope.importedNode);
-					$scope.threeCSSService.init($scope.elem, $scope, $scope.__content, $scope._context);
-					render();
+					if($window.document.getElementById("theWorld")==null){
+						$scope.importedNode = document.importNode(xml.documentElement, true);
+						$window.d3.select("#" + $scope._svgDiv).node().appendChild($scope.importedNode);
+						$scope.threeCSSService.init($scope.elem, $scope, $scope.__content, $scope._context);
+						render();
+					}
 				}catch(oops){}
 			};
 			$scope.loadWBData=function(indicator){
@@ -101,18 +104,22 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router", "
 				fullURL=_startURL + indicator + _endURL;
             };
 			$scope.init=function(elem, _content, _svgDiv, _context, svgURL){
-				$rootScope._context=$("#"+ _context).html();
 				var me=$scope;
-				$scope.elem=elem;
-				$scope.__content=_content;
-				$scope._context=_context;
-				$scope._svgDiv=_svgDiv;
-				$scope.svgURL=svgURL;
-				$scope.d3World=d3.xml($scope.svgURL, "image/svg+xml",function(xml) {
-					$window._xml=xml;
-					me.loadSVG(xml);
-					me.initWorld();
-				});
+				if(!me.isInited){
+					$scope.elem=elem;
+					$scope.__content=_content;
+					$scope._context=_context;
+					$scope._svgDiv=_svgDiv;
+					$scope.svgURL=svgURL;
+					if($window.document.getElementById("theWorld")==null){
+						$scope.d3World=d3.xml($scope.svgURL, "image/svg+xml",function(xml) {
+							$window._xml=xml;
+							me.loadSVG(xml);
+							me.initWorld();
+						});
+					}
+					me.isInited=true;
+				}
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);
