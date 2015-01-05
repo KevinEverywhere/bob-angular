@@ -3,19 +3,25 @@
 *bob-angular is currently in ongoing development. It will progress to version 0.0.1 when all initial functionality, unit and end to end tests are in place.*
 
 The sample application that is built from this code is viewable at 
-[bob-angular](http://bob-angular.herokuapp.com/). The client-side
-code can be seen at the [bob-angular-app](https://github.com/KevinEverywhere/bob-angular-app)
-repository.
+[bob-angular][bobangular]. The client-side code can be seen at the 
+[bob-angular-app][bobangularApp] repository.
 
-This project is influenced by and borrows from [angular-seed](https://github.com/angular/angular-seed). It uses [three.js](http://threejs.org/) to provide a means to map 2D Web content to 3D space. 
+This project is influenced by and borrows from [angular-seed][angularseed]. It uses [three.js][three] to provide a means to map 2D Web content to 3D space. It also contains an [express][express] server, with [node][node]-[postgres][postgres] backend.
 
-The application is preconfigured to install the Angular framework, three.js, and required third-party frameworks. The seed app contains video, Leaflet map tiles, SVG and HTML content, built on top of bootstrap, JQuery, less and other familiar frameworks. It also includes unit and e2e tests. The application itself is built by grunt into the dist directory. It is built during the install process and can be seen at the bob-angular-app repository.
+The application is preconfigured to install the [Angular][angular] framework, three.js, and required third-party frameworks. The seed app contains video, [Leaflet][leaflet] map tiles, SVG and HTML content, built on top of [bootstrap][bootstrap], [JQuery][jquery], [less][less] and other familiar frameworks. It also includes unit and e2e tests. The application itself is built by grunt into the dist directory. It is built during the install process and can be seen at the bob-angular-app repository.
+
+### Feedback and Blog
+
+A blog is being launched at [https://bobangular.wordpress.com/][bobangularWP]
+You must have [node.js][node] and its package manager ([npm][npm]) installed. All other dependencies
+are managed by node through package.json, and then [bower][bower] through bower.json and [grunt][grunt]
+through Gruntfile. You can get node and npm from [nodejs][node].
 
 ### Prerequisites
 
-You must have node.js and its package manager (npm) installed. All other dependencies
-are managed by node through package.json, and then bower through bower.json and grunt
-through Gruntfile. You can get node and npm from [nodejs](http://nodejs.org/).
+You must have [node.js][node] and its package manager ([npm][npm]) installed. All other dependencies
+are managed by node through package.json, and then [bower][bower] through bower.json and [grunt][grunt]
+through Gruntfile. You can get node and npm from [nodejs][node].
 
 ### Clone bob-angular
 
@@ -34,9 +40,9 @@ npm start
 
 ### Install Dependencies
 
-There are server-side, application and testing dependencies loaded in  `npm`, 
-the [node package manager][npm], and in the front-end development dependencies
-through `bower`, a [client-side code package manager][bower].
+There are server-side, application and testing dependencies loaded in [npm][npm], 
+the node package manager, and in the front-end development dependencies through 
+[bower][bower], a client-side code package manager.
 
 The npm install and npm start scripts will install two new directories, 
 and then populate them with imported code:
@@ -109,9 +115,11 @@ tests/e2e-tests/                       --> end-to-end tests
 
 ## Testing
 
+All of the unit and E2E tests were written using the [Jasmine][jasmine] framework.
+
 ### Unit Tests
 
-The karma unit tests are set up in the components folders that they are associated with. Additional tests will be developed for services distinctly and throughout the app as opportunities are identified.
+The [karma][karma] unit tests are set up in the components folders that they are associated with. Additional tests will be developed for services distinctly and throughout the app as opportunities are identified.
 
 Sample file and location:
 
@@ -129,7 +137,7 @@ npm test
 
 ### E2E Tests                      
 
-The E2E tests require two terminal windows to be open: one with the local server, the other for protractor. This is facilitated by first starting the server by entering the following into the terminal:
+The E2E tests require two terminal windows to be open: one with the local server, the other for [protractor][protractor]. This is facilitated by first starting the server by entering the following into the terminal:
 
 ```
 npm start
@@ -165,6 +173,13 @@ npm run launch-selenium  (for starting selenium server)
 
 The test section, like the other parts of this experiment, is incomplete. It will include device and server combinations as they are ready for publishing.
 
+The application uses a postgres database with one table and four fields. There is an SQL file at the URL below that can be used to create a table on your system if you want to have the postgres component function. Within the application, default text JSON is available for those without the database.
+
+```
+/app/assets/media/countries.sql
+```
+
+
 bob-angular is currently under constant development. As features are added and content explored, additional tests will be added to those currently included.
 
 ## Contact
@@ -172,18 +187,23 @@ bob-angular is currently under constant development. As features are added and c
 For more information on bob-angular please contact kevin@planetkevin.com
 
 [angular]: http://angularjs.org/
+[angularseed]:https://github.com/angular/angular-seed
 [three]: http://threejs.org/
 [express]: http://expressjs.com/
+[postgres]: http://www.postgresql.org/
 [git]: http://git-scm.com/
 [grunt]: http://gruntjs.com/
 [bower]: http://bower.io
 [npm]: https://www.npmjs.org/
 [node]: http://nodejs.org
 [less]: http://lesscss.org/
+[bootstrap]:http://getbootstrap.com/
+[jquery]: http://jquery.org/
 [leaflet]:http://leafletjs.com/
 [protractor]: https://github.com/angular/protractor
 [jasmine]: http://jasmine.github.io
 [karma]: http://karma-runner.github.io
-[travis]: https://travis-ci.org/
-
+[bobangular]: http://bob-angular.herokuapp.com/
+[bobangularApp]:https://github.com/KevinEverywhere/bob-angular-app
+[bobangularWP]:https://bobangular.wordpress.com/
 
