@@ -12,10 +12,7 @@ The application is preconfigured to install the [Angular][angular] framework, th
 
 ### Feedback and Blog
 
-A blog is being launched at [https://bobangular.wordpress.com/][bobangularWP]
-You must have [node.js][node] and its package manager ([npm][npm]) installed. All other dependencies
-are managed by node through package.json, and then [bower][bower] through bower.json and [grunt][grunt]
-through Gruntfile. You can get node and npm from [nodejs][node].
+A blog is being launched at [https://bobangular.wordpress.com/][bobangularWP]. It will be supported by a YouTube channel, and this Read Me file will be updated with its link.
 
 ### Prerequisites
 
