@@ -1,6 +1,6 @@
 ###version 0.0.0
 
-*This is in development and is not recommended to develop with as a base until version 0.0.1. You can still look under the hood to see how things work by following the installation process.*
+*bob-angular is currently in ongoing development. It will progress to version 0.0.1 when all initial functionality, unit and end to end tests are in place.*
 
 The sample application that is built from this code is viewable at 
 [bob-angular](http://bob-angular.herokuapp.com/). The client-side
@@ -77,7 +77,7 @@ Ensure that you have the correct software installed to begin, and that the direc
 ## Directory Layout
 
 ```
-.bowercc                               --> directs bower to load libs
+.bowerrc                               --> directs bower to load libs
 .gitignore                             --> the files that are excluded
 app/                                   --> application source files
   assets/                              --> media, CSS JS, JSON assets
@@ -93,7 +93,6 @@ app/                                   --> application source files
   app.js                               --> main application module
   index.html                           --> the entrace point to the app.
 bower.json                             --> client-side libraries to install
-child.process.index.js                 --> testing page, in development
 exports.index.js                       --> express server for testing
 Gruntfile.js                           --> Creates the files that go in dist
 index.js                               --> express server 
