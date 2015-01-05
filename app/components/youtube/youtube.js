@@ -14,13 +14,10 @@ angular.module('bobApp.youtube', ["bobApp"])
 				youTubeController:null,
 				timer:function(){
 					try{
-						console.log("_service.timee.currentPosition=" + _service.currentPosition || YouTubeService.currentPosition);
-						console.log("_service.player=" + _service.player);
 						if(_service.player && _service.player.getCurrentTime()>0){
 							_service.currentPosition=$rootScope.currentPosition=_service.player.getCurrentTime();
 						}
 					}catch(oops){
-						console.log("not ready");
 					}
 				},
 				startMedia:function(which, obj){

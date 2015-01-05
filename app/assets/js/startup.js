@@ -12,7 +12,7 @@ function changeOrient(event){
         changeSize(event)
      //   event.preventDefault();
     }catch(oops){
-        changeSize(event)
+       // changeSize(event)
         console.log("no orient change");
     }
 };
@@ -101,7 +101,7 @@ function changeSize(evt){
         "@trimmedBox":pixelWrap("trimmedBox"),
         "@svgWorld":pixelWrap("svgWorld")
     });
-    if(window.hardcoded){window.hardcoded()}
+    if(window.hardcoded){window.hardcoded(svgWorld)}
 }    
 
 var rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){

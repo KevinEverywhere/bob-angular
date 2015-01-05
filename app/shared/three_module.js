@@ -165,8 +165,13 @@ var threeModule = angular.module('threeModule', [])
 					scope.childElem=scope.renderer.domElement;
 					scope.elem.appendChild(scope.childElem);
 					scope.contentElement = $(scope._name)[0];
-                    scope._width=$window.getComputedStyle(scope.elem) ? parseInt($window.getComputedStyle(scope.elem).width) : 320;
-                    scope._height=$window.getComputedStyle(scope.elem) ? parseInt($window.getComputedStyle(scope.elem).height) : 200;
+					try{
+						scope._width=$window.getComputedStyle(scope.elem) ? parseInt($window.getComputedStyle(scope.elem).width) : 320;
+						scope._height=$window.getComputedStyle(scope.elem) ? parseInt($window.getComputedStyle(scope.elem).height) : 200;
+					}catch(oops){
+						scope._width=320;
+						scope._height=200;
+					}
 					if(!(scope.unitTestPass)){
 						scope.updateSize();
 						scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
@@ -237,7 +242,8 @@ var threeModule = angular.module('threeModule', [])
 				}
 			}
 			if(!service.isInitted){
-		        $window.hardcoded=function(){
+		        $window.hardcoded=function(arg){
+		        	console.log("svgWorld=" + arg);
 		        //	service.updateAllSizes();
 		        };
 		        service.isInitted=true;

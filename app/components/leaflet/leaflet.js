@@ -31,7 +31,7 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 										    [data[0].boundingbox[0], data[0].boundingbox[2]],
 										    [data[0].boundingbox[1], data[0].boundingbox[3]]]);
 										map.addLayer(osm);
-									//	if(map.getZoom()>_maxZoom){map.setZoom(map.getMaxZoom());};
+										if(map.getZoom()>_maxZoom){map.setZoom(map.getMaxZoom());};
 									}
 								})
 							.error(function(data, status, headers, config) {

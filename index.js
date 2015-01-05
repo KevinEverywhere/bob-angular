@@ -32,7 +32,6 @@ router.get('/db/:id', function(req, res) {
 				client.query('SELECT ' + _id + ' FROM country', function(err, result) {
 					done();
 					if (err){
-						console.error(err); 
 						res.send("Error " + err); 
 					}else{
 						res.send(result.rows); 
@@ -59,7 +58,6 @@ router.get('/db/:id/:val', function(req, res) {
 				client.query('SELECT * FROM country' + _str, function(err, result) {
 					done();
 					if (err){
-						console.error(err); 
 						res.send("Error " + err); 
 					}else{
 						res.send(result.rows); 
