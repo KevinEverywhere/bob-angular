@@ -59,6 +59,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "node index.js",
+    "preupdate": "npm install",
     "pretest": "npm install",
     "test": "./node_modules/karma/bin/karma start",
     "prefulltest": "npm test",
