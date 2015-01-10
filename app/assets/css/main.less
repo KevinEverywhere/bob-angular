@@ -174,10 +174,13 @@ ul.alignLeft{
 */
 
 #theWorld{
-	position:relative;
+	position:absolute;
+	/*
 	top:-2.5em;
 	left:-2.5em;
-	.transformSVG(@svgWorld);
+	width:@actualSVGW;
+	height:@actualSVGH;
+	*/ 
 }
 
 .transformSVG(@toWhat) {
@@ -187,17 +190,38 @@ ul.alignLeft{
 	-moz-transform: scale(@toWhat, @toWhat);
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
+	transform-style: preserve-3d;
+	transform: scale(@toWhat, @toWhat);
+}
+
+#svgWrapper{
+position:relative;
+	padding:0em;
+	margin:0em;
+	width:@axis2W;
+	height:@axis2H;
+	left:(@axis2W - @actualSVGW)/2;
+	top:(@axis2H - @actualSVGH)/2;
 }
 
 .svgDiv{
 	position:absolute;
-	top:0em;
-	left:0em;
 	z-index:992;
+	left:0em;
+	top:0em;
 	right:0em;
 	bottom:0em;
 	opacity:0,
 	overflow:hidden;
+	.transformSVG(@actualSVG);
+}
+
+.dim_1117_574{
+	position:relative;
+	width:@actualSVGW;
+	height:@actualSVGH;
+	.transformSVG(@actualSVG);
+	overflow: auto;
 }
 
 #ytSearchDiv{
@@ -208,7 +232,7 @@ ul.alignLeft{
 }
 
 #ytSearch{
-background:none;
+	background:none;
 }
 
 #ytDiv #ytplayer, #ytSearch, #youtubeSearch{

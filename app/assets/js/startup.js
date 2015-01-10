@@ -1,3 +1,7 @@
+var actualSVG=1,actualSVGW=1117, actualSVGH=574, rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
+    gapi.client.setApiKey(apiKey);
+};
+
 function pixelWrap(_var){
   if(window[_var] != null){
     return window[_var] +"px";
@@ -99,14 +103,12 @@ function changeSize(evt){
         "@rowTrim":pixelWrap("rowTrim"),
         "@columnTrim":pixelWrap("columnTrim"),
         "@trimmedBox":pixelWrap("trimmedBox"),
-        "@svgWorld":pixelWrap("svgWorld")
+        "@actualSVG":actualSVG,
+        "@svgW":pixelWrap("svgW"),
+        "@svgH":pixelWrap("svgH")
     });
-    if(window.hardcoded){window.hardcoded(svgWorld)}
+    if(window.hardcoded){window.hardcoded(svgW)}
 }    
-
-var rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
-    gapi.client.setApiKey(apiKey);
-};
 
 function getCurrentDimensions(){
     try{
@@ -124,7 +126,6 @@ function getCurrentDimensions(){
             theOrientation=(window.screen.width>window.screen.height)?"horizontal":"vertical";
         }
     }
-    var actualSVGW=1117;
     axis1L=0;
     axis1T=0;
     axis1R=0;
@@ -162,7 +163,9 @@ function getCurrentDimensions(){
         axis3W=(theOrientation=="horizontal") ? columnTrim : theSmall;
         axis3T=(theOrientation=="horizontal") ? rowTrim : theLarge-(3 * rowTrim);
     }
-    svgWorld=(axis2W/actualSVGW);
+    actualSVG=(axis2W/actualSVGW);
+    svgW=axis2W;
+    svgH=(actualSVGH/actualSVGW)*axis2W;
     pageBottomL=0;
     pageBottomH=rowTrim;
     pageBottomR=0;

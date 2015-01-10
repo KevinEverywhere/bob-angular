@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg height="574" version="1.1" width="1117" xmlns="http://www.w3.org/2000/svg" id="theWorld" style="overflow: hidden; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-user-select: none; cursor: default; position: relative; background-color: rgb(51, 51, 51);">
+<svg class="dim_1117_574" width="1117" height="574" version="1.1" xmlns="http://www.w3.org/2000/svg" id="theWorld" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-user-select: none; cursor: default; position: relative;">
 	<style>
 		.fmt{
 			fill: rgb(52, 255, 52); 
