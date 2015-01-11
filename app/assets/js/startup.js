@@ -1,4 +1,4 @@
-var actualSVG=1,actualSVGW=1117, actualSVGH=574, rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
+var svgL, svgT, actualSVG=1,actualSVGW=1117, actualSVGH=574, rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
     gapi.client.setApiKey(apiKey);
 };
 
@@ -105,7 +105,9 @@ function changeSize(evt){
         "@trimmedBox":pixelWrap("trimmedBox"),
         "@actualSVG":actualSVG,
         "@svgW":pixelWrap("svgW"),
-        "@svgH":pixelWrap("svgH")
+        "@svgH":pixelWrap("svgH"),
+        "@svgL":pixelWrap((axis2W - actualSVGW)/2),
+        "@svgT":pixelWrap((axis2H - actualSVGH)/2)
     });
     if(window.hardcoded){window.hardcoded(svgW)}
 }    
@@ -173,7 +175,7 @@ function getCurrentDimensions(){
     pageBottomT=(theOrientation=="horizontal") ? (theSmall-rowTrim) : (theLarge-rowTrim);
     pageBottomW=(theOrientation=="horizontal") ? theLarge : theSmall;
     bobAppX=(theOrientation=="horizontal") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
-    bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
+    bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2;
 }
 
 // and jQuery help for element defaults. (http://www.ajaxblender.com/howto-add-hints-form-auto-focus-using-javascript.html)
