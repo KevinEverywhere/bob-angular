@@ -106,8 +106,8 @@ function changeSize(evt){
         "@actualSVG":actualSVG,
         "@svgW":pixelWrap("svgW"),
         "@svgH":pixelWrap("svgH"),
-        "@svgL":pixelWrap((axis2W - actualSVGW)/2),
-        "@svgT":pixelWrap((axis2H - actualSVGH)/2)
+        "@svgL":pixelWrap("svgL"),
+        "@svgT":pixelWrap("svgT")
     });
     if(window.hardcoded){window.hardcoded(svgW)}
 }    
@@ -176,6 +176,8 @@ function getCurrentDimensions(){
     pageBottomW=(theOrientation=="horizontal") ? theLarge : theSmall;
     bobAppX=(theOrientation=="horizontal") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2; 
     bobAppY=(theOrientation=="vertical") ? (theLarge-theSmall)/2 : (theSmall-theLarge)/2;
+    svgL=(axis2W - actualSVGW)/2;
+    svgT=(axis2H - actualSVGH)/2;
 }
 
 // and jQuery help for element defaults. (http://www.ajaxblender.com/howto-add-hints-form-auto-focus-using-javascript.html)
