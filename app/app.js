@@ -23,7 +23,6 @@ var bobApp=angular.module("bobApp",  [
 		$rootScope.hasOpened=true;
 		$rootScope.currentData=null;
 		$rootScope.interstitialized={done:false};
-
 		$rootScope.titles={
 			"video":"You Tube",
 			"videofeed.videofeed.index":"You Tube Feed",
@@ -34,7 +33,6 @@ var bobApp=angular.module("bobApp",  [
 			"svg":"svg example",
 			"svg.detail":"svg statistics"
 		};
-
 		var redraw=function () {
 			resize();
 		};
