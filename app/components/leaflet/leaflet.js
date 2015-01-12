@@ -1,4 +1,4 @@
-'use strict'; 
+ 'use strict'; 
 // Vaci Ut, Budapest, Hungary
 angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router"])
 	.service('leafletService', ['$rootScope', "$http", "$q", "$state", "$stateParams", "$window", "$location",
@@ -81,7 +81,6 @@ angular.module('bobApp.leaflet', ["bobApp", "threeModule", "ngRoute", "ui.router
 		}
 		return service;
 	}])
-
 	.controller('ThreeLeafletController', ["$window", "$http", "$scope", "$rootScope", "$state", "$stateParams", "threeCSSService", "leafletService", 
 		function ThreeLeafletController($window, $http, $scope, $rootScope, $state, $stateParams, threeCSSService, leafletService) {
 			$scope.name='ThreeLeafletController';
