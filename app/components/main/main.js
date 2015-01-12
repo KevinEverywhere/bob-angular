@@ -36,9 +36,9 @@ angular.module('bobApp.main',  ["bobApp", "threeModule", "ngRoute", "ui.router"]
 				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr * 10);
 				$scope.renderer.render($scope.scene, $scope.camera);
 			}
-			$scope.init=function(elem, _content){
+			$scope.init=function(elem, _content, _context){
 				if(!this.isInited){
-					threeCSSService.init(elem, $scope, _content);
+					threeCSSService.init(elem, $scope, _content, _context);
 					this.isInited=true;
 					try{
 						render();

@@ -23,6 +23,18 @@ var bobApp=angular.module("bobApp",  [
 		$rootScope.hasOpened=true;
 		$rootScope.currentData=null;
 		$rootScope.interstitialized={done:false};
+
+		$rootScope.titles={
+			"video":"You Tube",
+			"videofeed.videofeed.index":"You Tube Feed",
+			"map":"leaflet map",
+			"mapfeed.geolocation":"search results",
+			"home":"about this app",
+			"main":"about this app",
+			"svg":"svg example",
+			"svg.detail":"svg statistics"
+		};
+
 		var redraw=function () {
 			resize();
 		};
@@ -43,7 +55,6 @@ var bobApp=angular.module("bobApp",  [
 		$window.addEventListener('offline',function(e) {
 			$rootScope.$broadcast("onlineStatusUpdate");
 		}, false);
-
  		$rootScope.$on('navigatingToSection',function(event, toWhich){
 			$state.go(toWhich);
  		});
@@ -57,7 +68,6 @@ var bobApp=angular.module("bobApp",  [
 					if(q!=-1){
 						var cutString=$location.absUrl().substr(q),
 						_start=cutString.indexOf("=")+1,_end=cutString.indexOf("#");
-					//	$state.go("videofeed.videofeed",{videofeed:cutString.substring(_start,_end)})
 						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
 					}
 					break;
@@ -78,7 +88,6 @@ var bobApp=angular.module("bobApp",  [
 										"/" + searchObj[s].split("=")[1];
 							}
 						}
-						//	$state.go("videofeed.geolocation",{ geolocation:searchString.substring(1) });
 						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
 					}
 					break;
@@ -120,12 +129,8 @@ var bobApp=angular.module("bobApp",  [
 		});
 		$rootScope.$on('$stateChangeSuccess', 
 		function(event, toState, toParams, fromState, fromParams){
-			console.log("CURRENT STATE IS " + toState.name);
 			switch(toState.name){
-				case "video":
-					break;
 				case "videofeed.videofeed.index":
-				console.log("everything is right");
 					var q=$location.absUrl().indexOf("?");
 					if(q!=-1){
 						var cutString=$location.absUrl().substr(q),
@@ -137,16 +142,8 @@ var bobApp=angular.module("bobApp",  [
 					}
 
 					break;
-				case "mapfeed":
-					break;
-				case "home":
-					break;
-				case "svg":
-					break;
 				case "svg.detail":
-					console.log("svg.detail " + $stateParams.detail);
-					svgD3Data.mapWBStats($stateParams.detail)
-					// 
+					svgD3Data.mapWBStats($stateParams.detail);
 					break;
 			}
 		});
@@ -160,9 +157,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/main/main.html',				controller: 'ThreeCSSController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -171,9 +165,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/youtube/youtube.html',			controller: 'ThreeYouTubeController'
-				},
-				"axis3":{
- 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -182,9 +173,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/youtube/youtube_search.html',	controller: 'YouTubeSearchController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -193,9 +181,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/youtube/youtube.html',			controller: 'ThreeYouTubeController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -204,9 +189,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/youtube/youtube.html',			controller: 'ThreeYouTubeController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -215,9 +197,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/youtube/youtube.html',			controller: 'ThreeYouTubeController'
-				},
-				"axis3":{
- 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -226,9 +205,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/leaflet/leaflet.html',			controller: 'ThreeLeafletController'
-				},
-				"axis3":{
- 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -237,9 +213,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/leaflet/leaflet.html',			controller: 'ThreeLeafletController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -248,9 +221,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/leaflet/leaflet.html',			controller: 'ThreeLeafletController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -259,9 +229,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/leaflet/leaflet.html',			controller: 'ThreeLeafletController'
-				},
-				"axis3":{
-					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -270,9 +237,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/svg/svg.html',					controller: 'ThreeSVGController'
-				},
-				"axis3":{
- 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  })
@@ -281,9 +245,6 @@ var bobApp=angular.module("bobApp",  [
 			views:{
 				"axis2":{
 					templateUrl: 'components/svg/svg.html',					controller: 'ThreeSVGController'
-				},
-				"axis3":{
- 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
 				}
 			}
 		  });

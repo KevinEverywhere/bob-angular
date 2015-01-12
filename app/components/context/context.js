@@ -13,22 +13,8 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope.maxPosition=5;
 			$scope.minPosition=-10;
 			$scope.init=function(elem, _content){
-				switch($state.current.name.substring(0,3)){
-					case "vid":
-						$("#sectionTitle").html("You Tube");
-						break;
-					case "map":
-						$("#sectionTitle").html("Leaflet Map");
-						$window.scope=$scope;
-						console.log("$scope.name=" + $scope.name);
-						break;
-					case "hom":
-						$("#sectionTitle").html("About this App");
-						break;
-					case "svg":
-						$("#sectionTitle").html("SVG Example");
-						break;
-				}
+				console.log("ThreeContextController.init=" + $rootScope.sectionTitle);
+				$scope.sectionTitle=$rootScope.sectionTitle;
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
 					this.isInited=true;
