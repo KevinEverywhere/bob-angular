@@ -10,30 +10,28 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router", "
 		 			return _str;
 		 		},
 		 		mapWBStats:function(whichStat){
-		 			var me=service;
+		 		//	console.log("mapWBStats:(" + whichStat);
+		 			var me=service, nonStates=["1A", "S3", "B8", "Z4", "4E", "XC", "Z7", "7E", "EU", "F1", "XE", "XD", "XR", "XS", "ZJ", "XJ", "XL", "XO", "XM", "XN", "ZQ", "XQ", "XP", "XU", "XY", "OE", "S4", "S2", "S1", "8S", "ZG", "ZF", "XT", "1W"];
 					d3.json(service.wrapURL(whichStat),function(err, d){
 						if(!err){
 							me.d3Data=d[1].sort(function(a,b){return (b.value*1) > (a.value*1)  });
 							$window.d3Data=me.d3Data;
+							var countryLength=(me.d3Data.length-nonStates.length);
+							// console.log("searched for "+ whichStat);
 							angular.forEach(d3Data, function(value, key){
-								var countryLength=210;
-								try{
-									var key1=(key/countryLength), key2=(255 * key1);
-									var _color="rgba("+key2/5+", "+key2/4+", "+key2+", "+key1+")",
-									country=value.country.id.toLowerCase();
-									d3.select("#" + country).attr(
-										'opacity', key1
-										);
-									d3.select("#" + country).attr(
-										'fill',_color
-										);
-									d3.select("#" + country).selectAll('g').attr(
-										'fill',_color
-										);
-									d3.select("#" + country).selectAll('g').selectAll('path').attr(
-										'fill',_color
-										);
-								}catch(oops){
+								var country=value.country.id.toLowerCase();
+								if(nonStates.indexOf(value.country.id)==-1 && (d3.select("#" + country)[0][0] != null)){
+									var key1=(key/countryLength), key2=(255 * key1), _color="rgba("+key2/5+", "+key2/4+", "+key2+", "+key1+")";
+									try{
+										// console.log("for "+ value.country.id + " = " + d3.select("#" + country)[0][0]);
+										d3.select("#" + country).attr('opacity', key1);
+										d3.select("#" + country).attr('fill',_color);
+									//	d3.select("#" + country).selectAll('g').attr('fill',_color);
+									//	d3.select("#" + country).selectAll('g').selectAll('path').attr('fill',_color);
+									}catch(oops){
+										console.log("oopsmessage");
+										console.log(oops);
+									}
 								}
 							});
 						}

@@ -114,7 +114,7 @@ var bobApp=angular.module("bobApp",  [
 					}
 					break;
 				case "svg":
-					console.log("state is svg inside switch ");
+					console.log("stateChangeStart is svg");
 					break;
 			}
 		});
@@ -144,7 +144,7 @@ var bobApp=angular.module("bobApp",  [
 				case "svg":
 					break;
 				case "svg.detail":
-					console.log("svg.detail  inside switch ");
+					console.log("svg.detail " + $stateParams.detail);
 					svgD3Data.mapWBStats($stateParams.detail)
 					// 
 					break;
@@ -163,9 +163,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -177,9 +174,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
  					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -191,9 +185,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -205,9 +196,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -219,9 +207,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -233,9 +218,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
  					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -247,9 +229,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
  					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -261,9 +240,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -275,9 +251,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -289,9 +262,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
 					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -303,9 +273,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
  					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  })
@@ -317,9 +284,6 @@ var bobApp=angular.module("bobApp",  [
 				},
 				"axis3":{
  					templateUrl: 'components/context/context.html',			controller: 'ThreeContextController'
-				},
-				"pageBottom":{
-					templateUrl: 'components/footer/footer.html',			controller: 'ThreeFooterController'
 				}
 			}
 		  });
