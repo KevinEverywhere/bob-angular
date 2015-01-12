@@ -5,6 +5,9 @@ var threeModule = angular.module('threeModule', [])
 		function threeCSSService($window, $rootScope, $http, $state, $timeout) {
 			var service={
 				_oldContent:{},
+				_oldTitle:{
+					"home":""
+				},
 				isInitted:false,
 				childObjects:[],
 				"globalPositioning":{
@@ -49,10 +52,14 @@ var threeModule = angular.module('threeModule', [])
 						this.childObjects[z].rerender();
 					}
 				},
+				getTitleDiv:function(){
+					return $('#' + service.contextTitle)
+				},
 				getContextDiv:function(){
 					return $('#' + service.contextElement)
 				},
-				swapContext:function(_context){
+				swapContext:function(_context, _content){
+					console.log("swapContext");
 					if(_context){
 						for(var z in service._oldContent){
 							service._oldContent[z].toggleClass("isHidden", true);
@@ -63,15 +70,21 @@ var threeModule = angular.module('threeModule', [])
 							service._oldContent[_context].toggleClass("isHidden", false);
 						}
 						var me=service,__context=_context;
-						$timeout(function(){me.getContextDiv().html(me._oldContent[__context]);},1);
+						$timeout(function() {
+							console.log("$state.current.name["+$state.current.name+"]")
+							me.getContextDiv().html(me._oldContent[_context]);
+							me.getTitleDiv().html($rootScope.titles[$state.current.name]);
+						},10);
 					};
 				},
 				init:function(_elem, scope, _content, _context){
+					console.log("threeCSSService.scope._context=" + _context);
 					scope._service=service;
 					scope.elem = document.getElementById(_elem) || {appendChild:function(arg){console.log("unit testing appendChild called.");}};
 					scope._content=_content;
                     scope._name="#" + _elem + " > ." + _content;
                     service.childObjects[scope._name]=scope;
+					console.log("scope._context=" + _context);
 					scope.addActiveAnimation=function(animName, animParams){
 						this.activeAnimations[animName]=animName;
 						if(animParams) {this.activeParams[animName]=animParams;}
@@ -172,13 +185,14 @@ var threeModule = angular.module('threeModule', [])
 						scope._width=320;
 						scope._height=200;
 					}
+					console.log("scope.unitTestPass=" + scope.unitTestPass);
 					if(!(scope.unitTestPass)){
 						scope.updateSize();
 						scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
 						scope.scene.add( scope.css3DObject );
 	                    service.postinit(scope, true);
 						service.mapScopeObject(scope, true);
-						service.swapContext(_context);
+						service.swapContext(_context, _content);
 					}else{
 						console.log("Unit testing route");
 						scope.css3DObject={unitTestPass:true};
@@ -239,8 +253,15 @@ var threeModule = angular.module('threeModule', [])
 				},
 				runOnce:function(){
 					service.contextElement="sectionBody";
+					service.contextTitle="sectionTitle";
 				}
 			}
+
+			service.contextElement="sectionBody";
+			service.contextTitle
+
+
+
 			if(!service.isInitted){
 		        $window.hardcoded=function(arg){
 		        	console.log("svgWorld=" + arg);
