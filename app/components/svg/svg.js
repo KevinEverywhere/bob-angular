@@ -10,7 +10,6 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router", "
 		 			return _str;
 		 		},
 		 		mapWBStats:function(whichStat){
-		 		//	console.log("mapWBStats:(" + whichStat);
 		 			var me=service, nonStates=["1A", "S3", "B8", "Z4", "4E", "XC", "Z7", "7E", "EU", "F1", "XE", "XD", "XR", "XS", "ZJ", "XJ", "XL", "XO", "XM", "XN", "ZQ", "XQ", "XP", "XU", "XY", "OE", "S4", "S2", "S1", "8S", "ZG", "ZF", "XT", "1W"];
 					d3.json(service.wrapURL(whichStat),function(err, d){
 						if(!err){
