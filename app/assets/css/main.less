@@ -53,6 +53,9 @@ ul.nav{
 	.collapsed{
 		display:block !important;
 	}
+	.notMobile, #sectionTitle, .panel-heading{
+		display:none;
+	}
 	.nav > li > a{
 		padding:1em 0em;
 		border:none;
@@ -60,9 +63,34 @@ ul.nav{
 		top: -.15em;
 		line-height:0em;
 	}
+
+	.contextPanel input{
+		display:inline-block;
+		padding:auto;
+		width:48%;
+	}
+	.contextPanel .list-group-item{
+		display:inline-block;
+		width:32%;
+		text-align:center;
+	}
+
+	.panel-body{
+		padding:.125em;
+	}
+
+	#axis3 .panel, .contextPanel{
+		overflow:hidden;
+	}
+	.three .content, .axis3, #axis3 .content{
+		overflow:hidden;
+	}
 }
 
 @media screen and (min-height: 768px) and (orientation:portrait){
+	.notMobile{
+		display:none;
+	}
 }
 
 @media screen and (min-width: 240px) and (max-width: 767px) and (orientation:landscape){
@@ -161,7 +189,7 @@ ul.alignLeft{
 	background-color:#eee;
 }
 
-#leaflet, #leaflet .content, #context, #context .content, #svgHolder, #main, #ytSearch{
+#leaflet, #leaflet .content, #context, #context .content, #axis3 .content, #svgHolder, #main, #ytSearch{
 	position:absolute;
 	left:0px;
 	top:0px;
@@ -356,12 +384,14 @@ h3 li.active{
 	width:@axis3W;
 	height:@axis3H;
 	z-index:300;
+	min-height:@axis3H;
 }
 
 .axis3{
 	width:@axis3W;
 	height:@axis3H;
 }
+
 
 /*
 	Footer Styles

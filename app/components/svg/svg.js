@@ -20,11 +20,15 @@ angular.module('bobApp.svg', ["bobApp", "threeModule", "ngRoute", "ui.router", "
 							angular.forEach(d3Data, function(value, key){
 								var country=value.country.id.toLowerCase();
 								if(nonStates.indexOf(value.country.id)==-1 && (d3.select("#" + country)[0][0] != null)){
-									var key1=(key/countryLength), key2=(255 * key1), _color="rgba("+key2/5+", "+key2/4+", "+key2+", "+key1+")";
+									var key1=Math.min(key/countryLength,1), 
+									key2=(255 * key1), _color="rgba("+key2/5+
+										", "+key2/4+", "+key2+", "+key1+")";
 									try{
-										// console.log("for "+ value.country.id + " = " + d3.select("#" + country)[0][0]);
+										// console.log("for "+ value.country.id + " = " + d3.select("#" + country)[0][0]);	
+
+
 										d3.select("#" + country).attr('opacity', key1);
-										d3.select("#" + country).attr('fill',_color);
+									//	d3.select("#" + country).attr('fill',_color);
 									//	d3.select("#" + country).selectAll('g').attr('fill',_color);
 									//	d3.select("#" + country).selectAll('g').selectAll('path').attr('fill',_color);
 									}catch(oops){

@@ -140,16 +140,16 @@ function getCurrentDimensions(){
         axis2L=0;
         axis2T=rowTrim;
         axis2R=0;
-        axis2B=rowTrim;
+        axis2B=rowTrim*2;
         axis2W=(theOrientation=="horizontal") ? theLarge : theSmall;
-        axis2H=(theOrientation=="horizontal") ? (theSmall-(2 * rowTrim)) : theLarge-(2 * rowTrim);
+        axis2H=(theOrientation=="horizontal") ? (theSmall-(3 * rowTrim)) : theLarge-(3 * rowTrim);
 
         axis3L=0;
-        axis3H=0;
+        axis3H=rowTrim;
         axis3R=(theOrientation=="horizontal") ? theLarge : theSmall;
-        axis3B=(theOrientation=="horizontal") ? theSmall : theLarge;
-        axis3W=0;
-        axis3T=(theOrientation=="horizontal") ? theSmall : theLarge;
+        axis3B=rowTrim;
+        axis3W=(theOrientation=="horizontal") ? theLarge : theSmall;
+        axis3T=(theOrientation=="horizontal") ? theSmall-(2 * rowTrim) : theLarge-(2 * rowTrim);
     }else{
         axis2L=0;
         axis2T=rowTrim;

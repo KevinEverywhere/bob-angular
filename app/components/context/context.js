@@ -32,7 +32,7 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 					$scope._dir=-$scope._dir;
 					$scope.currentPosition+=$scope._dir;
 				}
-				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr * 10);
+				$scope.css3DObject.position.z=$scope.css3DObject.position.z + ($scope._dir * $scope.incr);
 				$scope.renderer.render($scope.scene, $scope.camera);
 			}
 			var render=function() {
