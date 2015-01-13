@@ -266,7 +266,7 @@ position:relative;
 	display:inline-block;	
 }
 
-.three .content, .axis3{
+.three .content, .axis3, #axis3 .content{
 	overflow-y:auto;
 }
 
@@ -322,7 +322,7 @@ position:relative;
 	bottom:@axis1B;
 	width:@axis1W;
 	height:@axis1H;
-	z-index:9999;
+	z-index:999999;
 }
 
 h3 li{
@@ -343,6 +343,7 @@ h3 li.active{
 	bottom:@axis2B;
 	width:@axis2W;
 	height:@axis2H;
+	z-index:200;
 }
 
 #axis3{
@@ -354,6 +355,7 @@ h3 li.active{
 	bottom:@axis3B;
 	width:@axis3W;
 	height:@axis3H;
+	z-index:300;
 }
 
 .axis3{
@@ -373,6 +375,7 @@ h3 li.active{
 	bottom:@pageBottomB;
 	width:@pageBottomW;
 	height:@pageBottomH;
+	z-index:999999;
 }
 
 #pageBottom .content{
