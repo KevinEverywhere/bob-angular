@@ -216,8 +216,10 @@ var threeModule = angular.module('threeModule', [])
 				},
 				postinit:function(scope, init){
 					if(!init){
-	                    scope._width=parseInt($window.getComputedStyle(scope.elem).width);
-	                    scope._height=parseInt($window.getComputedStyle(scope.elem).height);
+						try{
+		                    scope._width=parseInt($window.getComputedStyle(scope.elem).width);
+		                    scope._height=parseInt($window.getComputedStyle(scope.elem).height);
+	                	}catch(oops){}
 					}
 				},
 				initObjectPosition:function(whichScope){
