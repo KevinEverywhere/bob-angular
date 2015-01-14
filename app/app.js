@@ -86,7 +86,7 @@ var bobApp=angular.module("bobApp",  [
 										"/" + searchObj[s].split("=")[1];
 							}
 						}
-						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
+					//	$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
 					}
 					break;
 				case "mapfeed.geolocation":
@@ -104,7 +104,7 @@ var bobApp=angular.module("bobApp",  [
 										"/" + searchObj[s].split("=")[1];
 							}
 						}
-						$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
+					//	$window.location.href = $location.absUrl().substring(0,q) + "#/mapfeed/" + searchString.substring(1);
 					}
 					break;
 				case "mapfeed.latlong":
@@ -133,7 +133,7 @@ var bobApp=angular.module("bobApp",  [
 					if(q!=-1){
 						var cutString=$location.absUrl().substr(q),
 						_start=cutString.indexOf("=")+1,_end=cutString.indexOf("#");
-						$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
+					//	$window.location.href = $location.absUrl().substring(0,q) + "#/videofeed/" + cutString.substring(_start,_end) + "/0";
 					}else{
 						YouTubeSearchService.currentVideo=toParams.idx;
 						YouTubeService.startMedia(YouTubeSearchService.videos[YouTubeSearchService.currentVideo].id,YouTubeService);

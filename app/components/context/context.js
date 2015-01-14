@@ -43,26 +43,30 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 	])
 
 
-	.directive('threeLeafletElement', function threeLeafletElement(){
-		var leafletObj = {
-			restrict: 'EAC',
-			replace:true,
-			scope: {
-				"type":"=",
-				"label":"=",
-				"title":"=",
-				"name":"=",
-				"dependency":"="
-			},
-			controller: "ThreeLeafletController",
-			link:function (scope, elem, attrs) {
-			    this.scope = scope;
-			    this.elem = elem;
-			    this.attrs = attrs;
-			}
-		};
-		return leafletObj;
-	});
+	.directive('threeLeafletElement', ["$window", function threeLeafletElement($window){
+			var leafletObj = {
+				restrict: 'EAC',
+				replace:true,
+				scope: {
+					"type":"=",
+					"label":"=",
+					"title":"=",
+					"name":"=",
+					"dependency":"=",
+					doLeaflet:function(which){
+			//			$window.alert(which);
+						console.log("doLeaflet=function(" + which);
+					}
+				},
+				controller: "ThreeLeafletController",
+				link:function (scope, elem, attrs) {
+				    this.scope = scope;
+				    this.elem = elem;
+				    this.attrs = attrs;
+				}
+			};
+			return leafletObj;
+		}]);
 
 
 

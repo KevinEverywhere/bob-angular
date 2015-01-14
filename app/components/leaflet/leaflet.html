@@ -4,15 +4,15 @@
 		<div id="leafletContext" class="contextPanel">
 			<div ng-show="currentData!=null"></div>
 			<div ng-show="currentData==null" 
-				class="three-leaflet-element"><form novalidate id="leafletForm"
+				class="three-leaflet-element"><form novalidate id="leafletForm" ng-submit="doLeaflet(this)"
 					><p class="notMobile">
-						Enter a street address, city or country.
+						Enter postcode, address, institution or place.
 					</p><div class="form-group">
 						<label class="notMobile">Location</label>
 						<input value='' class='form-control field' 
 						type='text' ng-model="geo-location" ng-change="change()"
 						name="geo-location" id="geo-location"
-						placeholder="Enter location"></input><br class="notMobile"/> 
+						placeholder="Enter search terms"></input><br class="notMobile"/> 
  						<input type="submit" value="Search" /> 
 					</div>
 				</form>
