@@ -111,7 +111,7 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 			};
 			$scope.timer=function(){
 				YouTubeService.timer();
-				console.log("YouTubeService.timer(); called");
+			//	console.log("YouTubeService.timer(); called");
 			}
 			$scope.animate=function(){
 				$scope.currentRotate+=($scope._dir * $scope.incr);

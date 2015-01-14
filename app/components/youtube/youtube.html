@@ -1,21 +1,22 @@
 <div ng-controller="ThreeYouTubeController" class="threeYouTube" id="youtube" ng-init="init('youtube','content','ytContext');">
 	<div class="content ytDiv" id="ytDiv">
 		<div id="ytplayer"></div>
-		<div id="ytContext" class="contextPanel">
-		<form novalidate id="ytForm">
-				<p class="notMobile">
-					A Dutch astronaut's guided view of the ISS. Enter a search term below to load a live feed from Youtube.
-				</p>
-				<input class='form-control field em1 auto-hint' 
-				       type='text'
-				       name="v" id="v"
-				       title="Enter keyword" /> 
-				<br class="notMobile"/>
-				<p class="notMobile">
-					[Hint: I like entering "live" with the name of an artist, like "Kings of Leon live".]
-				</p>
-				<br class="notMobile"/>
-				<input type="submit" value="Search" /> 
+			<div id="ytContext" class="contextPanel">
+				<form novalidate id="ytForm">
+					<div class="form-group">
+						<p class="notMobile">
+							A Dutch astronaut's guided view of the ISS. Enter a search term below to load a live feed from Youtube.
+						</p>
+						<input class='form-control field' 
+					       type='text' placeholder='Enter keyword(s)'
+					       name="v" id="v" /> 
+					<br class="notMobile"/>
+					<p class="notMobile">
+						[Hint: I like entering "live" with the name of an artist, like "Kings of Leon live".]
+					</p>
+					<br class="notMobile"/>
+					<input type="submit" value="Search" /> 
+				</div>
 			</form>
 		</div>
 	</div>

@@ -3,6 +3,7 @@
 var threeModule = angular.module('threeModule', [])
 	.service('threeCSSService', ["$window", "$rootScope", "$http", "$state", "$timeout",
 		function threeCSSService($window, $rootScope, $http, $state, $timeout) {
+			$window.scope={};
 			var service={
 				_oldContent:{},
 				_oldTitle:{
@@ -79,9 +80,11 @@ var threeModule = angular.module('threeModule', [])
 				},
 				init:function(_elem, scope, _content, _context){
 					console.log("threeCSSService.scope._context=" + _context);
-					scope._service=service;
+					scope._service=service || scope._service;
+					scope._elem =_elem;
 					scope.elem = document.getElementById(_elem) || {appendChild:function(arg){console.log("unit testing appendChild called.");}};
 					scope._content=_content;
+					scope._context=_context;
                     scope._name="#" + _elem + " > ." + _content;
                     service.childObjects[scope._name]=scope;
 					console.log("scope._context=" + _context);
@@ -103,8 +106,18 @@ var threeModule = angular.module('threeModule', [])
 							}
 						}
 					}
+					scope.reinit=function(){
+						console.log("scope.reinit._content=" +scope._content);
+						scope._service.init(scope._elem, scope, scope._content, scope._context || null)
+						$.fn.redraw = function() {return this.hide(0, function() {$(this).show();});};
+						$(scope._name).redraw();
+						console.log("REDRAWN=" +scope._name);
+					//	this.init(_elem, scope, _content, _context)
+					},
 					scope.rerender=function(){
 						scope.isInited=false;
+						console.log("rerender._name=" + scope._name);
+						scope.reinit();
 						scope._service.postinit(scope);
 					}
 					scope.startAnimation=function(obj){
@@ -185,10 +198,12 @@ var threeModule = angular.module('threeModule', [])
 						scope._width=320;
 						scope._height=200;
 					}
+					$window.scope[scope._name]=scope;
+					console.log("scope._name=" + scope._content);
 					console.log("scope.unitTestPass=" + scope.unitTestPass);
 					if(!(scope.unitTestPass)){
 						scope.updateSize();
-						scope.css3DObject = new THREE.CSS3DObject( scope.contentElement );
+						if(!scope.css3DObject){scope.css3DObject = new THREE.CSS3DObject( scope.contentElement )};
 						scope.scene.add( scope.css3DObject );
 	                    service.postinit(scope, true);
 						service.mapScopeObject(scope, true);
@@ -264,8 +279,8 @@ var threeModule = angular.module('threeModule', [])
 
 			if(!service.isInitted){
 		        $window.hardcoded=function(arg){
-		        	console.log("svgWorld=" + arg);
-		        //	service.updateAllSizes();
+		        	console.log("hardcoded.updateallsizes=" + arg);
+		        	service.updateAllSizes();
 		        };
 		        service.isInitted=true;
 			}
