@@ -22,6 +22,10 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 						}catch(oops){}
 					}
 					$timeout(function(){
+						console.log("#timeout . fired=");
+						
+						console.log("#sectionBody=" + scope.getContextHTML());
+						// 
 						$("#sectionBody").html(scope.getContextHTML());
 					}, 1000);
 				},
@@ -36,7 +40,8 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				},
 				setCurrentVideo:function(toWhat, scope){
 					_service.currentVideo=toWhat;
-					threeCSSService.init('youtubeSearch', scope, "content");
+					threeCSSService.init('youtubeSearch', scope, "content", scope._context);
+					console.log('from currentVideo');
 					_service.render(scope);
 					YouTubeService.activePlayer={height: scope._height,width: scope._width};
 					YouTubeService.startMedia(_service.videos[_service.currentVideo].id,YouTubeService);

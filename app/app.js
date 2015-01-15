@@ -21,6 +21,9 @@ var bobApp=angular.module("bobApp",  [
 		$rootScope.$state = $state;
 		$rootScope.$stateParams = $stateParams;
 		$rootScope.hasOpened=true;
+		$rootScope.getCurrentContext=function(){
+			return "getCurrentContext";
+		};
 		$rootScope.currentData=null;
 		$rootScope.interstitialized={done:false};
 		$rootScope.titles={

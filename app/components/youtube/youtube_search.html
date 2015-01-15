@@ -5,16 +5,14 @@
 		</div>
 		<div id="ytSearchContext" youTubeSearchResults ="true">
 			<div class="contextPanel">
-				<div data-exng-show="currentData!=null">
+				<div ng-show="currentData!=null">
 					<form novalidate id="ytForm">
-					<div class="form-group">
-						<p class="notMobile">Enter text to begin a new search</p>
-						<input class='form-control field' 
-					       type='text' placeholder='Enter keyword(s)'
-					       name="v" id="v" /> 
-					<br class="notMobile"/>
+					<span class="notMobile">Enter text to begin a new search<br/></span>
+					<input class='form-control field em1' 
+					type='text' placeholder='Enter keyword(s)'
+					name="v" id="v"
+					title="Enter keyword" />
 					<input type="submit" value="Search" /> 
-
 					<br class="notMobile"/>
 					<ul class="image_text row"> 
 						<li ng-repeat="video in currentData.query.results.video">

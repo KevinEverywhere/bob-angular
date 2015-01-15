@@ -15,11 +15,15 @@ angular.module('bobApp.context', ["bobApp", "threeModule", "ngRoute", "ui.router
 			$scope.init=function(elem, _content){
 				console.log("ThreeContextController.init=" + $rootScope.sectionTitle);
 				$scope.sectionTitle=$rootScope.sectionTitle;
+				$scope.sectionBody=$rootScope.sectionBody;
 				if(!this.isInited){
 					threeCSSService.init(elem, $scope, _content);
 					this.isInited=true;
 					render();
 				}
+			}
+			$scope.getCurrentContext=function(){
+				return $rootScope.getCurrentContext();
 			}
 			$scope.animate=function(){
 				$scope.currentPosition+=($scope._dir * $scope.incr);
