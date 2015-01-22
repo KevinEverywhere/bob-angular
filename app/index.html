@@ -123,7 +123,7 @@ less = {
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div id="bob-app">
+  <div id="bob-app" class="isHidden">
     <div id="axis1" class="padded" ng-include="'components/navigation/navigation.html'"></div>
     <div ui-view="axis2" id="axis2" class="padded"></div>
     <div id="axis3" class="padded" ng-include="'components/context/context.html'"></div>
@@ -131,8 +131,9 @@ less = {
   </div>
 <script type="text/javascript">
   $(document).ready(function (){
+      var timeoutLength=500;
       angular.bootstrap(document, ['bobApp']);
-      setTimeout(function(){changeSize();},250);
+      setTimeout(function(){changeSize();$("#bob-app").removeClass("isHidden")},timeoutLength);
   });  
 </script>
 <script src="app.js"></script>
