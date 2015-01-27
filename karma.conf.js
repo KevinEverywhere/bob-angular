@@ -4,16 +4,16 @@ module.exports = function(config){
     basePath : './',
 
     files : [
-      'app/libs/angular/angular.js',
-      'app/app.js',
+      'app/libs/html5-boilerplate/css/normalize.css',
+      'app/libs/html5-boilerplate/css/main.css',
       'app/libs/jquery/dist/jquery.min.js',
       'app/libs/bootstrap/dist/js/bootstrap.js',
       'app/libs/d3/d3.js',
       'app/libs/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js',
       'app/libs/leaflet/dist/leaflet.js',
       'app/libs/three.js/index.js',
-      'app/libs/TrackballControls/index.js',
       'app/libs/css-3d-renderer/index.js',
+      'app/libs/angular/angular.js',
       'app/libs/ui-router/release/angular-ui-router.js',
       'app/libs/localCRUD/index.js',
       'app/libs/angular-loader/angular-loader.js',
@@ -22,11 +22,10 @@ module.exports = function(config){
       'app/shared/three_module.js',
       'app/shared/country_module.js',
       'app/libs/less/dist/less-1.7.0.min.js',
-      'app/libs/html5-boilerplate/css/normalize.css',
-      'app/libs/html5-boilerplate/css/main.css',
       'app/libs/leaflet/dist/leaflet.css',
       'app/libs/bootstrap/dist/css/bootstrap.css',
       'app/assets/js/startup.js',
+      'app/app.js',
       'app/components/**/*.js'
     ],
 

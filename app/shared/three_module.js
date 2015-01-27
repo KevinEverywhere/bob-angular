@@ -60,7 +60,7 @@ var threeModule = angular.module('threeModule', [])
 					return $('#' + service.contextElement)
 				},
 				swapContext:function(_context, _content){
-					console.log("swapContext");
+					console.log("swapContext=" + _context);
 					if(_context){
 						for(var z in service._oldContent){
 							service._oldContent[z].toggleClass("isHidden", true);
@@ -273,15 +273,8 @@ var threeModule = angular.module('threeModule', [])
 					service.contextTitle="sectionTitle";
 				}
 			}
-
-			service.contextElement="sectionBody";
-			service.contextTitle
-
-
-
 			if(!service.isInitted){
 		        $window.hardcoded=function(arg){
-		        	console.log("hardcoded.updateallsizes=" + arg);
 		        	service.updateAllSizes();
 		        };
 		        service.isInitted=true;

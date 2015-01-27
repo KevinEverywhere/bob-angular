@@ -21,13 +21,6 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 							_service.setCurrentVideo($stateParams.idx || 0, scope);
 						}catch(oops){}
 					}
-					$timeout(function(){
-						console.log("#timeout . fired=");
-						
-						console.log("#sectionBody=" + scope.getContextHTML());
-						// 
-						$("#sectionBody").html(scope.getContextHTML());
-					}, 1000);
 				},
 				incrementCurrentVideo:function(){
 					if(_service.currentVideo<_service.videos.length-1){
@@ -60,6 +53,34 @@ angular.module('bobApp.youtube.search', ["bobApp", "bobApp.youtube"])
 				counter:0,
 				maxCount:20,
 				timeoutLength:1000,
+
+
+/*
+		YouTubeService.youTubeController=this;
+		if((YouTubeService.currentMedia=="") &&(YouTubeService.currentPosition==0)) {
+			if($rootScope.youtubeid){
+				$scope.youtubeid=$rootScope.youtubeid;
+			}else{
+				$scope.youtubeid= $scope.youtubeid || $stateParams.youtubeid || "afBm0Dpfj_k";
+			}
+		}else{
+			$scope.youtubeid=YouTubeService.currentMedia; 							
+		}
+		threeCSSService.init(elem, $scope, _content, _context);
+		this.isInited=true;
+		try{
+			render();
+			try{
+				$scope.startMedia($scope.youtubeid);
+			}catch(oops){
+				$timeout(function(){$scope.startMedia($scope.youtubeid);},1000)
+			}
+		}catch(oops){
+			console.log("youtube.js rendering bypassed for unit tests.")
+		}							
+
+*/
+
 				findVideos:function(searchTerm, scopeArg, callback){
 					var  me=this, scope=scopeArg, beginString='https://query.yahooapis.com/v1/public/yql?format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&q=select%20*%20from%20youtube.search%20where%20query%3D"',
 					endString='"&callback=';

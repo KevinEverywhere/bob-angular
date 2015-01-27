@@ -1,6 +1,4 @@
-var svgL, svgT, actualSVG=1,actualSVGW=1117, actualSVGH=574, rowTrim=50, columnTrim=200, trimmedBox=180, apiKey='AIzaSyA-pLtbyLpZuLivlcOZSIq54horCyM8FlU', handleClientLoad=function (){
-    gapi.client.setApiKey(apiKey);
-};
+var svgL, svgT, actualSVG=1,actualSVGW=1117, actualSVGH=574, rowTrim=50, columnTrim=200, trimmedBox=180;
 
 function pixelWrap(_var){
   if(window[_var] != null){

@@ -7,9 +7,13 @@ exports.config = {
     browser.driver.manage().window().setSize(800,600);
   },
   directConnect: true,
+  chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
+  firefoxDriver: '../../node_modules/protractor/selenium/chromedriver',
+    
+  /*
   chromeDriver: '../../node_modules/chromedriver/bin/chromedriver',
-/*  chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
-*/
+  */
+
   multiCapabilities: [{
       'browserName' : 'chrome'
     },{

@@ -32,7 +32,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 						}
 						var me=obj;
 			//			if(me.player && ($state.$current.indexOf("video") != -1)){
-						if(me.player && ($state.$current != "video")){
+						if(me.player && $state.$current != "video"){
 							me.player.loadVideoById(which);
 							me.player.seekTo(_service.currentPosition);
 						}else{
@@ -63,6 +63,7 @@ angular.module('bobApp.youtube', ["bobApp"])
 				onPlayerStateChange:function(evt){
 					if(_service.player.getPlayerState()==2){
 						if($state.$current.name=="videofeed.videofeed.index"){
+							_service.currentPosition=0;
 							$rootScope.$broadcast("incrementCurrentVideo");
 						}
 					}

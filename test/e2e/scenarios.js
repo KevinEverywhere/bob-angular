@@ -1,29 +1,35 @@
 'use strict';
 
 describe('bobApp', function() {
-  var ptor;
+console.log("describing bobapp");
 
-  browser.get('http://localhost:3000/');
-  ptor = protractor.getInstance();
+  browser.get('http://localhost:3000/#/');
+
+  browser.waitForAngular(
+    function(){
+      console.log("angular ready")
+    }
+    );
 
   describe('bobApp.navigation', function() {
-    it('should have #navigation in the main window', function() {
-       var ele = element(by.css('#navigation'));
-       expect(ptor.isElementPresent(ele)).toBe(true);
+    console.log("GOT HERE");
+    it('should have by id #navigation in the main window', function() {
+       var ele = element(by.id('navigation'));
+       expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
   describe('bobApp.footer', function() {
-    it('should have #footer in the main window', function() {
-       var ele = element(by.css('#footer'));
-       expect(ptor.isElementPresent(ele)).toBe(true);
+    it('should have by id #footer in the main window', function() {
+       var ele = element(by.id('footer'));
+       expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
   describe('bobApp.context', function() {
     it('should have #context in the main window', function() {
        var ele = element(by.css('#context'));
-       expect(ptor.isElementPresent(ele)).toBe(true);
+       expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
@@ -32,7 +38,7 @@ describe('bobApp', function() {
       var _link=element(by.id("homeLink"));
       _link.click();
       var ele = element(by.css('#main'));
-      expect(ptor.isElementPresent(ele)).toBe(true);
+      expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
@@ -41,7 +47,7 @@ describe('bobApp', function() {
       var _link=element(by.id("videoLink"));
       _link.click();
       var ele = element(by.css('#youtube'));
-      expect(ptor.isElementPresent(ele)).toBe(true);
+      expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
@@ -50,7 +56,7 @@ describe('bobApp', function() {
       var _link=element(by.id("mapLink"));
       _link.click();
        var ele = element(by.css('#leaflet'));
-       expect(ptor.isElementPresent(ele)).toBe(true);
+       expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
@@ -59,7 +65,7 @@ describe('bobApp', function() {
       var _link=element(by.id("svgLink"));
       _link.click();
        var ele = element(by.css('.svgDiv'));
-       expect(ptor.isElementPresent(ele)).toBe(true);
+       expect(browser.isElementPresent(ele)).toBe(true);
     });
   });
 
