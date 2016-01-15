@@ -39,7 +39,6 @@ module.exports=function(grunt){
 		copy: {
 		  main: {
 		    files: [
-		      // flattens results to a single level
 		      {expand: true,  src: [ 
 					'app/index.html',
 					'app/**/*.map',
