@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 	// The /db routes require an independently configured database with a table named 
-	// "country" and fields named "name", "id", "iso2", "iso3", and "iso_numeric".
+	// "country" and fields named "name", "id", "iso2", "iso3", and "iso_numeric". 
 	// The file, app/assets/media/countries.sql, can be used to create and populate the table.
 
 router.get('/db', function(req, res, next) {});
