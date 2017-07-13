@@ -11,6 +11,9 @@
     "Kevin Ready",
     "Kevin Ready <kevin@planetkevin.com>"
   ],
+  "engines": {
+    "node": "6.11.1"
+  },
   "keywords": [
     "angular",
     "d3",
